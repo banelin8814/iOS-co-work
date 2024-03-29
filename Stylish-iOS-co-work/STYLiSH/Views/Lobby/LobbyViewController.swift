@@ -9,30 +9,66 @@
 import UIKit
 
 class LobbyViewController: STBaseViewController {
-
+    
+    //colorpicker
+    private let dimmedBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.alpha = 0 // 初始时设置为完全透明
+        return view
+    }()
+    
     @IBOutlet weak var lobbyView: LobbyView! {
         didSet {
             lobbyView.delegate = self
         }
     }
-
+    
     private var datas: [PromotedProducts] = [] {
         didSet {
             lobbyView.reloadData()
         }
     }
-
+    
     private let marketProvider = MarketProvider(httpClient: HTTPClient())
-
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.titleView = UIImageView(image: .asset(.Image_Logo02))
         
         lobbyView.beginHeaderRefresh()
+        //colorpicker
+        view.addSubview(dimmedBackgroundView)
+        dimmedBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dimmedBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dimmedBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dimmedBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            dimmedBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        dimmedBackgroundView.alpha = 1
+        let colorPickerView = ColorPickerUIView(frame: .zero)
+        colorPickerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(colorPickerView)
+        
+        colorPickerView.layer.shadowColor = UIColor.black.cgColor
+        colorPickerView.layer.shadowOpacity = 0.9
+        colorPickerView.layer.shadowOffset = CGSize(width: 0, height: -5)
+        colorPickerView.layer.shadowRadius = 5
+        
+        NSLayoutConstraint.activate([
+            colorPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            colorPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            colorPickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/5)
+        ])
+        
+       
+        
     }
-
+    
     // MARK: - Action
     private func fetchData() {
         marketProvider.fetchHots(completion: { [weak self] result in
@@ -51,16 +87,16 @@ extension LobbyViewController: LobbyViewDelegate {
     func triggerRefresh(_ lobbyView: LobbyView) {
         fetchData()
     }
-
+    
     // MARK: - UITableViewDataSource and UITableViewDelegate
     func numberOfSections(in tableView: UITableView) -> Int {
         return datas.count
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datas[section].products.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: LobbyTableViewCell.self),
@@ -92,9 +128,9 @@ extension LobbyViewController: LobbyViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(
-                withIdentifier: String(describing: LobbyTableViewHeaderView.self)
-            ) as? LobbyTableViewHeaderView else {
-                return nil
+            withIdentifier: String(describing: LobbyTableViewHeaderView.self)
+        ) as? LobbyTableViewHeaderView else {
+            return nil
         }
         headerView.titleLabel.text = datas[section].title
         return headerView
