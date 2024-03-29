@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1BC15E702BB6DE4B003BEBC1 /* ColorPickerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC15E6F2BB6DE4B003BEBC1 /* ColorPickerUIView.swift */; };
+		1BC15E722BB6E859003BEBC1 /* CircularColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC15E712BB6E859003BEBC1 /* CircularColorPickerView.swift */; };
 		30C2E5FF28B87D4700DD2939 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C2E5FE28B87D4700DD2939 /* TPDirect.framework */; };
 		3C09F5122211435B00C5B3E2 /* Lobby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C09F5112211435B00C5B3E2 /* Lobby.storyboard */; };
 		3C09F51C22114A0100C5B3E2 /* STTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */; };
@@ -146,6 +147,7 @@
 
 /* Begin PBXFileReference section */
 		1BC15E6F2BB6DE4B003BEBC1 /* ColorPickerUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerUIView.swift; sourceTree = "<group>"; };
+		1BC15E712BB6E859003BEBC1 /* CircularColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorPickerView.swift; sourceTree = "<group>"; };
 		30C2E5FE28B87D4700DD2939 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
 		3C09F5112211435B00C5B3E2 /* Lobby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lobby.storyboard; sourceTree = "<group>"; };
 		3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTabBarViewController.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				1BC15E6F2BB6DE4B003BEBC1 /* ColorPickerUIView.swift */,
+				1BC15E712BB6E859003BEBC1 /* CircularColorPickerView.swift */,
 			);
 			path = "Collor Picker";
 			sourceTree = "<group>";
@@ -1041,6 +1044,7 @@
 				3CB801252229AEE30029A552 /* UITableView+Extension.swift in Sources */,
 				3CDC5A6A222D860B0071D0D1 /* SizeSelectionCell.swift in Sources */,
 				3C1ACFE622152B1F005583E2 /* UIScreen+Extension.swift in Sources */,
+				1BC15E722BB6E859003BEBC1 /* CircularColorPickerView.swift in Sources */,
 				3C6020DD222B90DF00312958 /* ProductDetailCell.swift in Sources */,
 				3C09F51E22114E1900C5B3E2 /* UIStoryboard+Extension.swift in Sources */,
 				3C0DD87E2213533F00F5237E /* LobbyTableViewCell.swift in Sources */,
@@ -1292,7 +1296,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A79VBQ2875;
+				DEVELOPMENT_TEAM = 96FT7QHVFB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/STYLiSH/Resource/TapPay",
@@ -1304,7 +1308,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AppWorksSchool.STYLiSH;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stylish.bane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "STYLiSH/Resource/STYLiSH-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1318,7 +1322,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A79VBQ2875;
+				DEVELOPMENT_TEAM = 96FT7QHVFB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/STYLiSH/Resource/TapPay",
@@ -1330,7 +1334,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AppWorksSchool.STYLiSH;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stylish.bane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "STYLiSH/Resource/STYLiSH-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

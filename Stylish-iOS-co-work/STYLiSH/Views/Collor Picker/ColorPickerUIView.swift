@@ -1,7 +1,7 @@
-
 import UIKit
 
 class ColorPickerUIView: UIView {
+    
     // 性別選擇器
     let genderSegmentedControl: UISegmentedControl = {
         let segments = ["男", "女"]
@@ -19,10 +19,10 @@ class ColorPickerUIView: UIView {
     }()
     
     // 色彩選擇器
-    let colorPicker: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    let colorPicker: CircularColorPickerView = {
+        let picker = CircularColorPickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
     }()
     
     override init(frame: CGRect) {
@@ -36,21 +36,19 @@ class ColorPickerUIView: UIView {
     }
     
     override func layoutSubviews() {
-           super.layoutSubviews()
-           
-           // 添加頂部圓角遮罩層
-           let maskLayer = CAShapeLayer()
-           maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-           layer.mask = maskLayer
-       }
-       
+        super.layoutSubviews()
+        // 添加頂部圓角遮罩層
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+        layer.mask = maskLayer
+    }
     
     private func setupView() {
         self.backgroundColor = .white
+        
         addSubview(genderSegmentedControl)
         addSubview(birthdatePicker)
         addSubview(colorPicker)
-        
         
         // 添加佈局約束
         NSLayoutConstraint.activate([
