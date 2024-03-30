@@ -17,6 +17,9 @@ class LobbyViewController: STBaseViewController {
         view.alpha = 0 // 初始时设置为完全透明
         return view
     }()
+    let colorPickerView = ColorPickerUIView(frame: .zero)
+    
+    
     
     @IBOutlet weak var lobbyView: LobbyView! {
         didSet {
@@ -39,32 +42,16 @@ class LobbyViewController: STBaseViewController {
         navigationItem.titleView = UIImageView(image: .asset(.Image_Logo02))
         
         lobbyView.beginHeaderRefresh()
+        
         //colorpicker
         view.addSubview(dimmedBackgroundView)
-        dimmedBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            dimmedBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            dimmedBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            dimmedBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-            dimmedBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        dimmedBackgroundView.alpha = 1
-        let colorPickerView = ColorPickerUIView(frame: .zero)
-        colorPickerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(colorPickerView)
         
-        colorPickerView.layer.shadowColor = UIColor.black.cgColor
-        colorPickerView.layer.shadowOpacity = 0.9
-        colorPickerView.layer.shadowOffset = CGSize(width: 0, height: -5)
-        colorPickerView.layer.shadowRadius = 5
-        
-        NSLayoutConstraint.activate([
-            colorPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            colorPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            colorPickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
-        ])
-        
+        popUpView()
+        colorPickerView.dismissHandler = {[weak self] in
+            self?.colorPickerView.isHidden = true
+            self?.dimmedBackgroundView.isHidden = true
+        }
     }
     
     // MARK: - Action
@@ -78,6 +65,33 @@ class LobbyViewController: STBaseViewController {
             }
         })
     }
+   
+  
+    
+    func popUpView(){
+        self.colorPickerView.isHidden = false
+        //        self.colorPickerView.frame.origin.y = self.view.frame.height / 3
+        //        self.colorPickerView.frame.origin.x = self.view.frame.width
+        colorPickerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            colorPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            colorPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            colorPickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
+        ])
+        dimmedBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dimmedBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dimmedBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dimmedBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            dimmedBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        dimmedBackgroundView.alpha = 1
+    }
+    
+   
+    
+    
 }
 
 extension LobbyViewController: LobbyViewDelegate {
