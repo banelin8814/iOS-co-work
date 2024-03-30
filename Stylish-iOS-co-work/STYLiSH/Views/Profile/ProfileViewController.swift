@@ -37,20 +37,20 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
+//        fetchData()
     }
 
-    // MARK: - Action
-    private func fetchData() {
-        userProvider.getUserProfile(completion: { [weak self] result in
-            switch result {
-            case .success(let user):
-                self?.user = user
-            case .failure:
-                LKProgressHUD.showFailure(text: "讀取資料失敗！")
-            }
-        })
-    }
+//    // MARK: - Action
+//    private func fetchData() {
+//        userProvider.getUserProfile(completion: { [weak self] result in
+//            switch result {
+//            case .success(let user):
+//                self?.user = user
+//            case .failure:
+//                LKProgressHUD.showFailure(text: "讀取資料失敗！")
+//            }
+//        })
+//    }
     
     private func updateUser(_ user: User) {
         imageProfile.loadImage(user.picture, placeHolder: .asset(.Icons_36px_Profile_Normal))
