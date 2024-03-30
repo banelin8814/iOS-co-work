@@ -10,6 +10,9 @@ import UIKit
 
 class ActivityPageViewController: UIViewController {
     
+    var recommendProduct: Product?
+    var matchingProducts: [Product] = []
+    
     lazy var closeButton: UIButton = {
         let close = UIButton()
         close.setImage(UIImage(named: "Icons_24px_Close"), for: .normal)
@@ -18,7 +21,6 @@ class ActivityPageViewController: UIViewController {
         return close
     }()
     
-    var products: [Product] = []
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -28,6 +30,8 @@ class ActivityPageViewController: UIViewController {
         tableView.separatorStyle = .none
         view.addSubview(tableView)
         setupCloseButton()
+        fetchMainData(color: "FFFFFF", gender: "women")
+        fetchMatchData()
     }
     
     @objc private func closeButtonPressed() {
@@ -46,6 +50,84 @@ class ActivityPageViewController: UIViewController {
     }
 
 }
+
+//MARK: - Extension: fetching data
+extension ActivityPageViewController {
+    
+    func fetchMainData(color: String, gender: String) {
+        APIManager.shared.sendRequest(
+            urlString: "http://13.214.22.170/api/1.0/recommendation?color=\(color)&gender=\(gender)",
+            method: .get,
+            parameters: ["key": "value"]
+        ) { data, response, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Error: Invalid response")
+                return
+            }
+            
+            guard let recommendedData = data else {
+                print("Error: No data received")
+                return
+            }
+            
+            do {
+                if let data = data {
+                    let decoder = JSONDecoder()
+                    let recommendedData = try decoder.decode(RecommendProduct.self, from: data)
+                    self.recommendProduct = recommendedData.data
+                    print("成功：\(recommendedData)")
+                }
+            } catch {
+                print("Error parsing JSON: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    //TODO: -
+    func fetchMatchData() {
+        APIManager.shared.sendRequest(
+            urlString: "http://13.214.22.170/api/1.0",
+            method: .get,
+            parameters: ["key": "value"]
+        ) { data, response, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Error: Invalid response")
+                return
+            }
+            
+            guard let recommendedData = data else {
+                print("Error: No data received")
+                return
+            }
+            
+            do {
+                if let data = data {
+                    let decoder = JSONDecoder()
+                    let matchingData = try decoder.decode(RecommendProduct.self, from: data)
+                    self.matchingProducts = [matchingData.data]
+                    print("成功：\(matchingData)")
+                }
+            } catch {
+                print("Error parsing JSON: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+}
+
+//MARK: - Extension: TableViewDataSource, TableViewDelegate
 
 extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -74,14 +156,17 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
                 for: indexPath
             ) 
             guard let mainProductCell = cell as? MainProductCell else { return cell }
-//            let product = products[indexPath.row]
-//            cell.mainImage.kf.setImage(with: URL(string: product.mainImage))
-//            cell.titleLabel.text = product.title
-//            cell.descriptionLabel.text = product.description
-            mainProductCell.mainImage.image = UIImage(named: "Image_Placeholder")
+            guard let mainImage = recommendProduct?.mainImage, let url = URL(string: mainImage) else {
+                return cell
+            }
+            mainProductCell.mainImage.kf.setImage(with: url)
             mainProductCell.mainImage.contentMode = .scaleAspectFill
-            mainProductCell.titleLabel.text = "Title"
-            mainProductCell.descriptionLabel.text = "Description"
+            mainProductCell.titleLabel.text = recommendProduct?.title
+            mainProductCell.descriptionLabel.text = recommendProduct?.description
+//            mainProductCell.mainImage.image = UIImage(named: "Image_Placeholder")
+//            mainProductCell.mainImage.contentMode = .scaleAspectFill
+//            mainProductCell.titleLabel.text = "Title"
+//            mainProductCell.descriptionLabel.text = "Description"
             return mainProductCell
             
         case 2:
@@ -125,7 +210,6 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
         titleLabel.frame = CGRect(x: 16, y: 8, width: tableView.bounds.size.width - 32, height: 50)
         titleLabel.textColor = UIColor.darkGray
         
-        // Set the section title directly
         switch section {
         case 0:
             titleLabel.text = "專屬推薦"
@@ -150,8 +234,8 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
 extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-//        return products.count
+//        return 5
+        return matchingProducts.count
     }
     
     func collectionView(
@@ -162,14 +246,15 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
             withReuseIdentifier: String(describing: CollectionViewCell.self),
             for: indexPath)
         guard let collectionViewCell = cell as? CollectionViewCell else { return cell }
-//        let product = products[indexPath.row]
-//        cell.imageView.kf.setImage(with: URL(string: product.mainImage))
-//        cell.titleLabel.text = product.title
-//        cell.descriptionLabel.text = product.description
-        collectionViewCell.imageView.image = UIImage(named: "Image_Placeholder")
+        let product = matchingProducts[indexPath.row]
+        collectionViewCell.imageView.kf.setImage(with: URL(string: product.mainImage))
         collectionViewCell.imageView.contentMode = .scaleAspectFill
-        collectionViewCell.titleLabel.text = "Title"
-        collectionViewCell.descriptionLabel.text = "Description"
+        collectionViewCell.titleLabel.text = product.title
+        collectionViewCell.descriptionLabel.text = product.description
+//        collectionViewCell.imageView.image = UIImage(named: "Image_Placeholder")
+//        collectionViewCell.imageView.contentMode = .scaleAspectFill
+//        collectionViewCell.titleLabel.text = "Title"
+//        collectionViewCell.descriptionLabel.text = "Description"
         return collectionViewCell
     }
     
@@ -178,7 +263,7 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let height = collectionView.bounds.height // Height of the table view cell
+        let height = collectionView.bounds.height
         return CGSize(width: 120, height: height)
     }
     

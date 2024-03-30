@@ -10,6 +10,7 @@
 		0E7B270F2BB6DB78001628E6 /* LobbyBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */; };
 		0E7B27112BB6ED90001628E6 /* ActivityPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */; };
 		0E7B27142BB6F259001628E6 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27132BB6F259001628E6 /* TableViewCells.swift */; };
+		0E9B7F3D2BB82D1300770DC3 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9B7F3C2BB82D1300770DC3 /* APIManager.swift */; };
 		30C2E5FF28B87D4700DD2939 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C2E5FE28B87D4700DD2939 /* TPDirect.framework */; };
 		3C09F5122211435B00C5B3E2 /* Lobby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C09F5112211435B00C5B3E2 /* Lobby.storyboard */; };
 		3C09F51C22114A0100C5B3E2 /* STTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */; };
@@ -150,6 +151,7 @@
 		0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyBanner.swift; sourceTree = "<group>"; };
 		0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPageViewController.swift; sourceTree = "<group>"; };
 		0E7B27132BB6F259001628E6 /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
+		0E9B7F3C2BB82D1300770DC3 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		30C2E5FE28B87D4700DD2939 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
 		3C09F5112211435B00C5B3E2 /* Lobby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lobby.storyboard; sourceTree = "<group>"; };
 		3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTabBarViewController.swift; sourceTree = "<group>"; };
@@ -760,6 +762,7 @@
 			isa = PBXGroup;
 			children = (
 				3C9EF5332213C5C800DEE152 /* HTTPClient.swift */,
+				0E9B7F3C2BB82D1300770DC3 /* APIManager.swift */,
 				5AE6F62629E3FAD7003764C6 /* APIProviders */,
 				3CE7A51422305E5A009FF003 /* KeyChainManager.swift */,
 				3CEBE076222F718D0064EF82 /* StorageManager.swift */,
@@ -1024,6 +1027,7 @@
 				0E7B270F2BB6DB78001628E6 /* LobbyBanner.swift in Sources */,
 				3CE7A51C223089C3009FF003 /* OrderProvider.swift in Sources */,
 				3C0DD87A221350B300F5237E /* UIColor+Extension.swift in Sources */,
+				0E9B7F3D2BB82D1300770DC3 /* APIManager.swift in Sources */,
 				3CC706162216B34800CAD850 /* ProductTableViewCell.swift in Sources */,
 				3CEBE077222F718D0064EF82 /* StorageManager.swift in Sources */,
 				3C09F51C22114A0100C5B3E2 /* STTabBarViewController.swift in Sources */,
