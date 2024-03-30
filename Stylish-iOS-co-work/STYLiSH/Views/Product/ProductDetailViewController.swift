@@ -168,32 +168,26 @@ extension ProductDetailViewController: UITableViewDataSource {
 
         // 確認 indexPath 是否對應於原有的產品資訊
         if indexPath.row < datas.count {
-            // 如果是，就使用原來的資料來配置 cell
+            // 是，就用原來的資料來設定 cell
             return datas[indexPath.row].cellForIndexPath(indexPath, tableView: tableView, data: product)
         } else {
-            // 如果不是，這意味著我們到了最後一個 cell，也就是我們要新增的「撰寫評論」按鈕
+            // 不是，代表最後一個 cell
             guard let buttonCell = tableView.dequeueReusableCell(
                 withIdentifier: String(describing: ProductDetailButtonCell.self),
                 for: indexPath
             ) as? ProductDetailButtonCell else {
-                // 如果轉型失敗，輸出錯誤訊息並終止程式（開發階段使用，生產環境可能需要不同的處理方式）
+                // 如果轉型失敗，輸出錯誤訊息並終止程式
                 fatalError("無法取得 ProductDetailButtonCell")
             }
-
-            // 設定 buttonCell 內的按鈕標題等內容
-            // buttonCell.yourButton.setTitle("撰寫評論", for: .normal)
             
-            // 為按鈕添加點擊事件的閉包
-            buttonCell.onWriteCommentButtonTapped = { [weak self] in //Error: Value of type 'ProductDetailButtonCell' has no member 'onWriteCommentButtonTapped'
-                // 當按鈕被點擊時，呼叫 showCommentViewController 方法來處理後續動作，如顯示評論界面
-                self?.showCommentViewController() //Error: Value of type 'ProductDetailViewController' has no member 'showCommentViewController'
+            // 為按鈕新增點擊事件的 Closure
+            buttonCell.onWriteCommentButtonTapped = { [weak self] in
+                self?.showCommentViewController()
             }
             
             return buttonCell
         }
     }
-
-    
 }
 
 extension ProductDetailViewController: LKGalleryViewDelegate {
@@ -241,7 +235,7 @@ extension ProductDetailViewController {
         if let addCommentVC = storyboard?.instantiateViewController(withIdentifier: "AddCommentViewController") as? AddCommentViewController {
             present(addCommentVC, animated: true, completion: nil)
         } else {
-            print("AddCommentViewController could not be instantiated from storyboard")
+            print("無法初始化 AddCommentViewController")
         }
     }
 

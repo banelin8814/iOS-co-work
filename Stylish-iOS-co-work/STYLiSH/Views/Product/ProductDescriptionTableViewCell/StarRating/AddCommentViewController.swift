@@ -39,7 +39,7 @@ class AddCommentViewController: UIViewController {
     private let attentionLabel: UILabel = {
         let label = UILabel()
         label.text = "注意事項 \n \n您的評論有可能用於您所評論的商品之廣告用途 \n如果其中有不適宜在網絡上發布的內容，此評論將可能不予顯示，請見諒"
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.numberOfLines = .zero
         label.textAlignment = .left
         label.textColor = .hexStringToUIColor(hex: "#3F3A3A")
@@ -101,7 +101,7 @@ class AddCommentViewController: UIViewController {
             self.selectedRate = rate
         }
         
-        /// 更新星等的實心或空心狀態
+        /// 更新星級的實心或空心狀態
         starsContainer.arrangedSubviews.forEach { subview in
             guard let starImageView = subview as? UIImageView else {
                 return
