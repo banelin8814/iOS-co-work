@@ -11,6 +11,8 @@
 		27BE61CC2BB7E27F00D2D935 /* StarRatingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61CA2BB7E27F00D2D935 /* StarRatingTableViewCell.xib */; };
 		27BE61CE2BB7E5E500D2D935 /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */; };
 		27BE61D02BB7E65200D2D935 /* UIView + PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */; };
+		27BE61D92BB800ED00D2D935 /* ProductDetailButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61D72BB800ED00D2D935 /* ProductDetailButtonCell.swift */; };
+		27BE61DA2BB800ED00D2D935 /* ProductDetailButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61D82BB800ED00D2D935 /* ProductDetailButtonCell.xib */; };
 		30C2E5FF28B87D4700DD2939 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C2E5FE28B87D4700DD2939 /* TPDirect.framework */; };
 		3C09F5122211435B00C5B3E2 /* Lobby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C09F5112211435B00C5B3E2 /* Lobby.storyboard */; };
 		3C09F51C22114A0100C5B3E2 /* STTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */; };
@@ -152,6 +154,8 @@
 		27BE61CA2BB7E27F00D2D935 /* StarRatingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarRatingTableViewCell.xib; sourceTree = "<group>"; };
 		27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentViewController.swift; sourceTree = "<group>"; };
 		27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + PulseAnimation.swift"; sourceTree = "<group>"; };
+		27BE61D72BB800ED00D2D935 /* ProductDetailButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailButtonCell.swift; sourceTree = "<group>"; };
+		27BE61D82BB800ED00D2D935 /* ProductDetailButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailButtonCell.xib; sourceTree = "<group>"; };
 		30C2E5FE28B87D4700DD2939 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
 		3C09F5112211435B00C5B3E2 /* Lobby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lobby.storyboard; sourceTree = "<group>"; };
 		3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTabBarViewController.swift; sourceTree = "<group>"; };
@@ -498,6 +502,8 @@
 				3C6020DB222B90DF00312958 /* ProductDetailCell.swift */,
 				3C6020DC222B90DF00312958 /* ProductDetailLabelCell.xib */,
 				3C6020DF222B937F00312958 /* ProductDetailColorCell.xib */,
+				27BE61D82BB800ED00D2D935 /* ProductDetailButtonCell.xib */,
+				27BE61D72BB800ED00D2D935 /* ProductDetailButtonCell.swift */,
 			);
 			path = ProductDetailCell;
 			sourceTree = "<group>";
@@ -915,6 +921,7 @@
 				3C4B10DA22292732009942B7 /* card_visa@3x.png in Resources */,
 				3C6020D9222B883600312958 /* ProductDescriptionTableViewCell.xib in Resources */,
 				3C6020E0222B937F00312958 /* ProductDetailColorCell.xib in Resources */,
+				27BE61DA2BB800ED00D2D935 /* ProductDetailButtonCell.xib in Resources */,
 				3C831C6522E9AF8F00112298 /* STOrderUserInputCell.xib in Resources */,
 				3C4B10D922292732009942B7 /* card_visa@2x.png in Resources */,
 			);
@@ -1068,6 +1075,7 @@
 				3CE7A51E22308D34009FF003 /* OrderObject.swift in Sources */,
 				3CD9BB35223B882C0012C00D /* AuthViewController.swift in Sources */,
 				58A77AA0262F3CC800B88679 /* LSColor+Extension.swift in Sources */,
+				27BE61D92BB800ED00D2D935 /* ProductDetailButtonCell.swift in Sources */,
 				3CB801212229A0970029A552 /* KingFisherWrapper.swift in Sources */,
 				3CFAC67322EEF71C00785FAB /* String+Extension.swift in Sources */,
 				3C33863F221BB2B800ED97E4 /* ProductListViewController.swift in Sources */,
