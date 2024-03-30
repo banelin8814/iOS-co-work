@@ -1,5 +1,5 @@
 //
-//  StarRatingTableViewCell.swift
+//  UserCommentTableViewCell.swift
 //  STYLiSH
 //
 //  Created by Kyle Lu on 2024/3/30.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StarRatingTableViewCell: UITableViewCell {
+class UserCommentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()

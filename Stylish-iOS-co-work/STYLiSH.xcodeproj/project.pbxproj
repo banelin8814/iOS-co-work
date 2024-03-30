@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		27BE61CB2BB7E27F00D2D935 /* StarRatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61C92BB7E27F00D2D935 /* StarRatingTableViewCell.swift */; };
-		27BE61CC2BB7E27F00D2D935 /* StarRatingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61CA2BB7E27F00D2D935 /* StarRatingTableViewCell.xib */; };
+		27BE61CB2BB7E27F00D2D935 /* UserCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61C92BB7E27F00D2D935 /* UserCommentTableViewCell.swift */; };
+		27BE61CC2BB7E27F00D2D935 /* UserCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61CA2BB7E27F00D2D935 /* UserCommentTableViewCell.xib */; };
 		27BE61CE2BB7E5E500D2D935 /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */; };
 		27BE61D02BB7E65200D2D935 /* UIView + PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */; };
 		27BE61D92BB800ED00D2D935 /* ProductDetailButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61D72BB800ED00D2D935 /* ProductDetailButtonCell.swift */; };
@@ -150,8 +150,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		27BE61C92BB7E27F00D2D935 /* StarRatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingTableViewCell.swift; sourceTree = "<group>"; };
-		27BE61CA2BB7E27F00D2D935 /* StarRatingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarRatingTableViewCell.xib; sourceTree = "<group>"; };
+		27BE61C92BB7E27F00D2D935 /* UserCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentTableViewCell.swift; sourceTree = "<group>"; };
+		27BE61CA2BB7E27F00D2D935 /* UserCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCommentTableViewCell.xib; sourceTree = "<group>"; };
 		27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentViewController.swift; sourceTree = "<group>"; };
 		27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + PulseAnimation.swift"; sourceTree = "<group>"; };
 		27BE61D72BB800ED00D2D935 /* ProductDetailButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailButtonCell.swift; sourceTree = "<group>"; };
@@ -331,8 +331,8 @@
 		27BE61C42BB7E17F00D2D935 /* StarRating */ = {
 			isa = PBXGroup;
 			children = (
-				27BE61C92BB7E27F00D2D935 /* StarRatingTableViewCell.swift */,
-				27BE61CA2BB7E27F00D2D935 /* StarRatingTableViewCell.xib */,
+				27BE61C92BB7E27F00D2D935 /* UserCommentTableViewCell.swift */,
+				27BE61CA2BB7E27F00D2D935 /* UserCommentTableViewCell.xib */,
 				27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */,
 			);
 			path = StarRating;
@@ -913,7 +913,7 @@
 				3C34794D222E82F600969C30 /* AmountSelectionCell.xib in Resources */,
 				3C4B10D422292732009942B7 /* card_jcb@2x.png in Resources */,
 				3C4B10DB22292732009942B7 /* card_mastercard@2x.png in Resources */,
-				27BE61CC2BB7E27F00D2D935 /* StarRatingTableViewCell.xib in Resources */,
+				27BE61CC2BB7E27F00D2D935 /* UserCommentTableViewCell.xib in Resources */,
 				3CED8086230112C400B7DA8E /* InfoPlist.strings in Resources */,
 				3C4B10CD22292732009942B7 /* card_jcb.png in Resources */,
 				3C33690F2226F53E008A5A7A /* TrolleyTableViewCell.xib in Resources */,
@@ -1049,7 +1049,7 @@
 				3CEBE07C222F7A210064EF82 /* Int+Extension.swift in Sources */,
 				3CED80AE23012CE400B7DA8E /* NSLocalizedString+Extension.swift in Sources */,
 				3CA25519222A484300B286F6 /* ProductsListProvider.swift in Sources */,
-				27BE61CB2BB7E27F00D2D935 /* StarRatingTableViewCell.swift in Sources */,
+				27BE61CB2BB7E27F00D2D935 /* UserCommentTableViewCell.swift in Sources */,
 				3C3369162227CE7D008A5A7A /* TrolleyProductBaseView.swift in Sources */,
 				3CE7A50222302354009FF003 /* ProductContentCategory.swift in Sources */,
 				3C6020E8222BBA3C00312958 /* ProductBasicCell.swift in Sources */,
