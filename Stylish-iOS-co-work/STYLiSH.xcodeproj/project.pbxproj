@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27BE61CB2BB7E27F00D2D935 /* StarRatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61C92BB7E27F00D2D935 /* StarRatingTableViewCell.swift */; };
+		27BE61CC2BB7E27F00D2D935 /* StarRatingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61CA2BB7E27F00D2D935 /* StarRatingTableViewCell.xib */; };
+		27BE61CE2BB7E5E500D2D935 /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */; };
+		27BE61D02BB7E65200D2D935 /* UIView + PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */; };
 		30C2E5FF28B87D4700DD2939 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C2E5FE28B87D4700DD2939 /* TPDirect.framework */; };
 		3C09F5122211435B00C5B3E2 /* Lobby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C09F5112211435B00C5B3E2 /* Lobby.storyboard */; };
 		3C09F51C22114A0100C5B3E2 /* STTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */; };
@@ -144,6 +148,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27BE61C92BB7E27F00D2D935 /* StarRatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingTableViewCell.swift; sourceTree = "<group>"; };
+		27BE61CA2BB7E27F00D2D935 /* StarRatingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarRatingTableViewCell.xib; sourceTree = "<group>"; };
+		27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentViewController.swift; sourceTree = "<group>"; };
+		27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + PulseAnimation.swift"; sourceTree = "<group>"; };
 		30C2E5FE28B87D4700DD2939 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
 		3C09F5112211435B00C5B3E2 /* Lobby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lobby.storyboard; sourceTree = "<group>"; };
 		3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTabBarViewController.swift; sourceTree = "<group>"; };
@@ -316,6 +324,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		27BE61C42BB7E17F00D2D935 /* StarRating */ = {
+			isa = PBXGroup;
+			children = (
+				27BE61C92BB7E27F00D2D935 /* StarRatingTableViewCell.swift */,
+				27BE61CA2BB7E27F00D2D935 /* StarRatingTableViewCell.xib */,
+				27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */,
+			);
+			path = StarRating;
+			sourceTree = "<group>";
+		};
 		3C09F51F22115A9F00C5B3E2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +351,7 @@
 				3CB80E77222FCCC20095F18C /* Bundle+Extension.swift */,
 				3CFAC67222EEF71C00785FAB /* String+Extension.swift */,
 				58A77A9F262F3CC800B88679 /* LSColor+Extension.swift */,
+				27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -468,6 +487,7 @@
 			children = (
 				3C6020D6222B883600312958 /* ProductDescriptionTableViewCell.swift */,
 				3C6020D7222B883600312958 /* ProductDescriptionTableViewCell.xib */,
+				27BE61C42BB7E17F00D2D935 /* StarRating */,
 			);
 			path = ProductDescriptionTableViewCell;
 			sourceTree = "<group>";
@@ -887,6 +907,7 @@
 				3C34794D222E82F600969C30 /* AmountSelectionCell.xib in Resources */,
 				3C4B10D422292732009942B7 /* card_jcb@2x.png in Resources */,
 				3C4B10DB22292732009942B7 /* card_mastercard@2x.png in Resources */,
+				27BE61CC2BB7E27F00D2D935 /* StarRatingTableViewCell.xib in Resources */,
 				3CED8086230112C400B7DA8E /* InfoPlist.strings in Resources */,
 				3C4B10CD22292732009942B7 /* card_jcb.png in Resources */,
 				3C33690F2226F53E008A5A7A /* TrolleyTableViewCell.xib in Resources */,
@@ -994,6 +1015,7 @@
 				3C0DD876221348E900F5237E /* LobbyViewController.swift in Sources */,
 				3C33691F2227DC7B008A5A7A /* TrolleySelectionView.swift in Sources */,
 				3C831C6422E9AF8F00112298 /* STOrderUserInputCell.swift in Sources */,
+				27BE61D02BB7E65200D2D935 /* UIView + PulseAnimation.swift in Sources */,
 				3C4B10E222292EBB009942B7 /* STTapPayViewController.swift in Sources */,
 				3C831C8A22EAAF7A00112298 /* STPaymentInfoTableViewCell.swift in Sources */,
 				3C990F6C22E5C78200F2FCEA /* ProductDetailView.swift in Sources */,
@@ -1020,6 +1042,7 @@
 				3CEBE07C222F7A210064EF82 /* Int+Extension.swift in Sources */,
 				3CED80AE23012CE400B7DA8E /* NSLocalizedString+Extension.swift in Sources */,
 				3CA25519222A484300B286F6 /* ProductsListProvider.swift in Sources */,
+				27BE61CB2BB7E27F00D2D935 /* StarRatingTableViewCell.swift in Sources */,
 				3C3369162227CE7D008A5A7A /* TrolleyProductBaseView.swift in Sources */,
 				3CE7A50222302354009FF003 /* ProductContentCategory.swift in Sources */,
 				3C6020E8222BBA3C00312958 /* ProductBasicCell.swift in Sources */,
@@ -1040,6 +1063,7 @@
 				3C09F52122115AB700C5B3E2 /* UIImage+Extension.swift in Sources */,
 				3C6B8FE8222CE53100804EFE /* BasicSelectionCell.swift in Sources */,
 				3C41B8472216667000112F94 /* ProductViewController.swift in Sources */,
+				27BE61CE2BB7E5E500D2D935 /* AddCommentViewController.swift in Sources */,
 				3CE7A51322305916009FF003 /* UserProvider.swift in Sources */,
 				3CE7A51E22308D34009FF003 /* OrderObject.swift in Sources */,
 				3CD9BB35223B882C0012C00D /* AuthViewController.swift in Sources */,
