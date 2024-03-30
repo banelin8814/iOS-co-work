@@ -1,4 +1,5 @@
 PODS:
+  - Colorful (3.0.0)
   - FBAEMKit (16.1.0):
     - FBSDKCoreKit_Basics (= 16.1.0)
   - FBSDKCoreKit (16.1.0):
@@ -15,6 +16,7 @@ PODS:
   - SwiftLint (0.52.2)
 
 DEPENDENCIES:
+  - Colorful (~> 3.0)
   - FBSDKLoginKit
   - IQKeyboardManagerSwift
   - JGProgressHUD (from `https://github.com/ronanociosoig/JGProgressHUD`)
@@ -25,6 +27,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Colorful
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
@@ -45,6 +48,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ronanociosoig/JGProgressHUD
 
 SPEC CHECKSUMS:
+  Colorful: 9e093edacaa9fb73512ad9da157f0707b82d2542
   FBAEMKit: c7efe06720a8b15b1d25b68921ba46dee20996e0
   FBSDKCoreKit: ca77d40d46786157b7b31ad3516f5ad9c2315339
   FBSDKCoreKit_Basics: d39c3361379def7297bf76738cdd4fd2e0eb1a68
@@ -56,6 +60,6 @@ SPEC CHECKSUMS:
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: 976305e42e4d1d7c46d2474e9480ac8d3aea95ff
+PODFILE CHECKSUM: a4272190ba922b792be170cab0c893f4cf22c8c7
 
 COCOAPODS: 1.15.2

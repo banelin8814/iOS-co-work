@@ -35,7 +35,7 @@ enum ImageAsset: String {
     case Icons_24px_Refunded
     case Icons_24px_Address
     case Icons_24px_CustomerService
-    case Icons_24px_SystemFeedback
+    case Icons_36px_colorPicker
     case Icons_24px_RegisterCellphone
     case Icons_24px_Settings
 

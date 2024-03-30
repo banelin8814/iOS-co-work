@@ -20,6 +20,20 @@
                ReferencedContainer = "container:STYLiSH.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5AE029382A68B96000532297"
+               BuildableName = "STYLiSHTests.xctest"
+               BlueprintName = "STYLiSHTests"
+               ReferencedContainer = "container:STYLiSH.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -37,17 +51,6 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5AE029382A68B96000532297"
-               BuildableName = "STYLiSHTests.xctest"
-               BlueprintName = "STYLiSHTests"
-               ReferencedContainer = "container:STYLiSH.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
