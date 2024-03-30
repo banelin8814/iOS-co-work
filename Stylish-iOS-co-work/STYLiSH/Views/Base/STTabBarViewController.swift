@@ -39,7 +39,7 @@ class STTabBarViewController: UITabBarController {
         
         StorageManager.shared.fetchOrders()
         
-        delegate = self
+//        delegate = self
     }
 }
 
@@ -96,7 +96,7 @@ extension STTabBarViewController {
     }
 }
 
-// MARK: - UITabBarControllerDelegate
+ // MARK: - UITabBarControllerDelegate
 extension STTabBarViewController: UITabBarControllerDelegate {
 
     func tabBarController(
@@ -111,10 +111,12 @@ extension STTabBarViewController: UITabBarControllerDelegate {
         }
         
         if KeyChainManager.shared.token == nil {
-            if let authVC = UIStoryboard.auth.instantiateInitialViewController() {
-                authVC.modalPresentationStyle = .overCurrentContext
-                present(authVC, animated: false, completion: nil)
-            }
+
+// MARK: - 關閉 FB 登入視窗
+//            if let authVC = UIStoryboard.auth.instantiateInitialViewController() {
+//                authVC.modalPresentationStyle = .overCurrentContext
+//                present(authVC, animated: false, completion: nil)
+//            }
             return false
         } else {
             return true
