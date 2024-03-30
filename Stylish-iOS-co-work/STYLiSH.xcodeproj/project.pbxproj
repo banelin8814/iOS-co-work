@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1BC15E702BB6DE4B003BEBC1 /* ColorPickerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC15E6F2BB6DE4B003BEBC1 /* ColorPickerUIView.swift */; };
-		1BC15E722BB6E859003BEBC1 /* CircularColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC15E712BB6E859003BEBC1 /* CircularColorPickerView.swift */; };
 		0E7B270F2BB6DB78001628E6 /* LobbyBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */; };
 		0E7B27112BB6ED90001628E6 /* ActivityPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */; };
 		0E7B27142BB6F259001628E6 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27132BB6F259001628E6 /* TableViewCells.swift */; };
@@ -149,8 +147,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1BC15E6F2BB6DE4B003BEBC1 /* ColorPickerUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerUIView.swift; sourceTree = "<group>"; };
-		1BC15E712BB6E859003BEBC1 /* CircularColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorPickerView.swift; sourceTree = "<group>"; };
 		0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyBanner.swift; sourceTree = "<group>"; };
 		0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPageViewController.swift; sourceTree = "<group>"; };
 		0E7B27132BB6F259001628E6 /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
@@ -326,13 +322,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		1BC15E6E2BB6DE0B003BEBC1 /* Collor Picker */ = {
-			isa = PBXGroup;
-			children = (
-				1BC15E6F2BB6DE4B003BEBC1 /* ColorPickerUIView.swift */,
-				1BC15E712BB6E859003BEBC1 /* CircularColorPickerView.swift */,
-			);
-			path = "Collor Picker";
 		0E7B27122BB6F233001628E6 /* ActivityPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,7 +599,6 @@
 		3CD2912E22113CE4008B8A2D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1BC15E6E2BB6DE0B003BEBC1 /* Collor Picker */,
 				3C3369102227CDAF008A5A7A /* Base */,
 				5AE6F61E29E3F94A003764C6 /* Auth */,
 				5AE6F62029E3F954003764C6 /* TapPay */,
@@ -1061,7 +1049,6 @@
 				3CB801252229AEE30029A552 /* UITableView+Extension.swift in Sources */,
 				3CDC5A6A222D860B0071D0D1 /* SizeSelectionCell.swift in Sources */,
 				3C1ACFE622152B1F005583E2 /* UIScreen+Extension.swift in Sources */,
-				1BC15E722BB6E859003BEBC1 /* CircularColorPickerView.swift in Sources */,
 				3C6020DD222B90DF00312958 /* ProductDetailCell.swift in Sources */,
 				3C09F51E22114E1900C5B3E2 /* UIStoryboard+Extension.swift in Sources */,
 				0E7B27112BB6ED90001628E6 /* ActivityPageViewController.swift in Sources */,
@@ -1074,7 +1061,6 @@
 				3C6B8FE8222CE53100804EFE /* BasicSelectionCell.swift in Sources */,
 				3C41B8472216667000112F94 /* ProductViewController.swift in Sources */,
 				3CE7A51322305916009FF003 /* UserProvider.swift in Sources */,
-				1BC15E702BB6DE4B003BEBC1 /* ColorPickerUIView.swift in Sources */,
 				3CE7A51E22308D34009FF003 /* OrderObject.swift in Sources */,
 				3CD9BB35223B882C0012C00D /* AuthViewController.swift in Sources */,
 				58A77AA0262F3CC800B88679 /* LSColor+Extension.swift in Sources */,
@@ -1314,7 +1300,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96FT7QHVFB;
+				DEVELOPMENT_TEAM = A79VBQ2875;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/STYLiSH/Resource/TapPay",
@@ -1326,7 +1312,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stylish.bane;
+				PRODUCT_BUNDLE_IDENTIFIER = AppWorksSchool.STYLiSH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "STYLiSH/Resource/STYLiSH-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1340,7 +1326,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96FT7QHVFB;
+				DEVELOPMENT_TEAM = A79VBQ2875;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/STYLiSH/Resource/TapPay",
@@ -1352,7 +1338,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stylish.bane;
+				PRODUCT_BUNDLE_IDENTIFIER = AppWorksSchool.STYLiSH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "STYLiSH/Resource/STYLiSH-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
