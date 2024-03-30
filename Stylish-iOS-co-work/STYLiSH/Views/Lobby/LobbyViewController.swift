@@ -62,10 +62,8 @@ class LobbyViewController: STBaseViewController {
             colorPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             colorPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             colorPickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/5)
+            colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
         ])
-        
-       
         
     }
     
