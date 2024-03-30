@@ -52,6 +52,7 @@ class ActivityPageViewController: UIViewController {
 }
 
 //MARK: - Extension: fetching data
+
 extension ActivityPageViewController {
     
     func fetchMainData(color: String, gender: String) {
@@ -229,13 +230,28 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
         return headerView
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.section == 1 else { return }
+        let storyboard = UIStoryboard(name: "Product", bundle: nil)
+        guard let productDetailVC = storyboard.instantiateViewController(
+            withIdentifier: "ProductDetailViewController"
+        ) as? ProductDetailViewController else { return }
+        productDetailVC.product = recommendProduct
+        productDetailVC.backButtonAction = { [weak self] in
+            self?.dismiss(animated: false, completion: nil)
+        }
+        let navController = UINavigationController(rootViewController: productDetailVC)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: false, completion: nil)
+    }
+    
 }
 
 extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 5
-        return matchingProducts.count
+        return 5
+//        return matchingProducts.count
     }
     
     func collectionView(
@@ -246,15 +262,15 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
             withReuseIdentifier: String(describing: CollectionViewCell.self),
             for: indexPath)
         guard let collectionViewCell = cell as? CollectionViewCell else { return cell }
-        let product = matchingProducts[indexPath.row]
-        collectionViewCell.imageView.kf.setImage(with: URL(string: product.mainImage))
-        collectionViewCell.imageView.contentMode = .scaleAspectFill
-        collectionViewCell.titleLabel.text = product.title
-        collectionViewCell.descriptionLabel.text = product.description
-//        collectionViewCell.imageView.image = UIImage(named: "Image_Placeholder")
+//        let product = matchingProducts[indexPath.row]
+//        collectionViewCell.imageView.kf.setImage(with: URL(string: product.mainImage))
 //        collectionViewCell.imageView.contentMode = .scaleAspectFill
-//        collectionViewCell.titleLabel.text = "Title"
-//        collectionViewCell.descriptionLabel.text = "Description"
+//        collectionViewCell.titleLabel.text = product.title
+//        collectionViewCell.descriptionLabel.text = product.description
+        collectionViewCell.imageView.image = UIImage(named: "Image_Placeholder")
+        collectionViewCell.imageView.contentMode = .scaleAspectFill
+        collectionViewCell.titleLabel.text = "Title"
+        collectionViewCell.descriptionLabel.text = "Description"
         return collectionViewCell
     }
     
@@ -267,4 +283,18 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
         return CGSize(width: 120, height: height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Product", bundle: nil)
+        guard let productDetailVC = storyboard.instantiateViewController(
+            withIdentifier: "ProductDetailViewController"
+        ) as? ProductDetailViewController else { return }
+        productDetailVC.product = matchingProducts[indexPath.item]
+        productDetailVC.backButtonAction = { [weak self] in
+            self?.dismiss(animated: false, completion: nil)
+        }
+        let navController = UINavigationController(rootViewController: productDetailVC)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: false, completion: nil)
+    }
+
 }
