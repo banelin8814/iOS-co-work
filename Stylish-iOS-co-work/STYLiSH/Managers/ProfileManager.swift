@@ -31,7 +31,7 @@ class ProfileManager {
             ServiceItem.refund,
             ServiceItem.address,
             ServiceItem.customService,
-            ServiceItem.colorPicker,
+            ServiceItem.systomReport,
             ServiceItem.bindPhone,
             ServiceItem.setting
         ]

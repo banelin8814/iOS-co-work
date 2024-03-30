@@ -63,7 +63,7 @@ enum ServiceItem: ProfileItem {
     case refund
     case address
     case customService
-    case colorPicker
+    case systomReport
     case bindPhone
     case setting
 
@@ -74,7 +74,7 @@ enum ServiceItem: ProfileItem {
         case .refund: return .asset(.Icons_24px_Refunded)
         case .address: return .asset(.Icons_24px_Address)
         case .customService: return .asset(.Icons_24px_CustomerService)
-        case .colorPicker: return .asset(.Icons_36px_colorPicker)
+        case .systomReport: return .asset(.Icons_24px_SystemFeedback)
         case .bindPhone: return .asset(.Icons_24px_RegisterCellphone)
         case .setting: return .asset(.Icons_24px_Settings)
         }
@@ -87,7 +87,7 @@ enum ServiceItem: ProfileItem {
         case .refund: return NSLocalizedString("帳戶退款")
         case .address: return NSLocalizedString("地址")
         case .customService: return NSLocalizedString("客服訊息")
-        case .colorPicker: return NSLocalizedString("系統回饋")
+        case .systomReport: return NSLocalizedString("系統回饋")
         case .bindPhone: return NSLocalizedString("手機綁定")
         case .setting: return NSLocalizedString("設定")
         }
