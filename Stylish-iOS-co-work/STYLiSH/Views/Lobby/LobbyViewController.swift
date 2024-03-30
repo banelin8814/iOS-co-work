@@ -29,7 +29,7 @@ class LobbyViewController: STBaseViewController {
         super.viewDidLoad()
 
         navigationItem.titleView = UIImageView(image: .asset(.Image_Logo02))
-        
+//        lobbyView.delegate = self
         lobbyView.beginHeaderRefresh()
     }
 
@@ -43,6 +43,15 @@ class LobbyViewController: STBaseViewController {
                 LKProgressHUD.showFailure(text: "讀取資料失敗！")
             }
         })
+    }
+    
+    func presentActivityPageViewController() {
+        let storyboard = UIStoryboard(name: "Lobby", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(
+            withIdentifier: String(describing: ActivityPageViewController.self)
+        ) as? ActivityPageViewController else { return }
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
     }
 }
 
@@ -91,13 +100,13 @@ extension LobbyViewController: LobbyViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat { return 0.01 }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(
-                withIdentifier: String(describing: LobbyTableViewHeaderView.self)
-            ) as? LobbyTableViewHeaderView else {
-                return nil
+        if let headerView = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: String(describing: LobbyTableViewHeaderView.self)
+        ) as? LobbyTableViewHeaderView {
+            headerView.titleLabel.text = datas[section].title
+            return headerView
         }
-        headerView.titleLabel.text = datas[section].title
-        return headerView
+        return nil
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -111,4 +120,5 @@ extension LobbyViewController: LobbyViewDelegate {
         detailVC.product = datas[indexPath.section].products[indexPath.row]
         show(detailVC, sender: nil)
     }
+    
 }

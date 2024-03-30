@@ -57,18 +57,15 @@ class LobbyView: UIView {
     // MARK: - Private Method
     private func setupTableView() {
         
-        tableView.register(LobbyBanner.self, forHeaderFooterViewReuseIdentifier: "LobbyBanner")
+        tableView.register(
+            LobbyBanner.self,
+            forHeaderFooterViewReuseIdentifier: String(describing: LobbyTableViewHeaderView.self)
+        )
         let headerView = LobbyBanner(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
         tableView.tableHeaderView = headerView
         let allImages = banners
         headerView.configure(with: allImages)
-        headerView.didSelectBanner = {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "ActivityPageViewController") as! ActivityPageViewController
-            viewController.modalPresentationStyle = .fullScreen
-//            self.present(viewController, animated: true)
-//            self.navigationController?.pushViewController(viewController, animated: true)
-        }
+        headerView.delegate = self
         
         tableView.lk_registerCellWithNib(
             identifier: String(describing: LobbyTableViewCell.self),
@@ -86,4 +83,12 @@ class LobbyView: UIView {
         })
     }
 
+}
+
+extension LobbyView: TableViewCellDelegate {
+    func didSelectBanner(in cell: LobbyBanner) {
+        if let lobbyVC = delegate as? LobbyViewController {
+            lobbyVC.presentActivityPageViewController()
+        }
+    }
 }

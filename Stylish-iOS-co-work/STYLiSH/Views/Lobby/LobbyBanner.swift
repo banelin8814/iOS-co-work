@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol TableViewCellDelegate: AnyObject {
+    func didSelectBanner(in cell: LobbyBanner)
+}
+
 class LobbyBanner: UITableViewHeaderFooterView, UIScrollViewDelegate {
     
     let scrollView = UIScrollView()
     let pageControl = UIPageControl()
     var didSelectBanner: (() -> Void)?
+    weak var delegate: TableViewCellDelegate?
+   
     
     static let reuseIdentifier = "LobbyBanner"
     
@@ -68,7 +74,12 @@ class LobbyBanner: UITableViewHeaderFooterView, UIScrollViewDelegate {
             imageView.kf.setImage(with: URL(string: imageURL))
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
-            imageView.frame = CGRect(x: CGFloat(index) * UIScreen.width, y: 0, width: UIScreen.width, height: bounds.height)
+            imageView.frame = CGRect(
+                x: CGFloat(index) * UIScreen.width,
+                y: 0,
+                width: UIScreen.width,
+                height: bounds.height
+            )
             scrollView.addSubview(imageView)
             
             if imageURL == "https://pse.is/5ramnu" {
@@ -98,12 +109,11 @@ class LobbyBanner: UITableViewHeaderFooterView, UIScrollViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
     }
     
+//    @objc func bannerTapped() {
+//        didSelectBanner?()
+//    }
+    
     @objc func bannerTapped() {
-        didSelectBanner?()
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier: "ActivityPageViewController") as! ActivityPageViewController
-//        viewController.modalPresentationStyle = .fullScreen
-//        self.navigationController?.pushViewController(viewController, animated: true)
-//        self.navigationController?.navigationBar.isHidden = true
+        delegate?.didSelectBanner(in: self)
     }
 }
