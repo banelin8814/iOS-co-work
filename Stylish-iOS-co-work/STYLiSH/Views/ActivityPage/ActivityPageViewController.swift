@@ -137,7 +137,7 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
             titleLabel.text = "搭配商品"
             titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         default:
-            titleLabel.text = "" // Handle additional cases if needed
+            titleLabel.text = ""
         }
         
         headerView.addSubview(titleLabel)

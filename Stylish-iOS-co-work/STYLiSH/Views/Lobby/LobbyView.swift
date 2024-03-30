@@ -61,7 +61,7 @@ class LobbyView: UIView {
             LobbyBanner.self,
             forHeaderFooterViewReuseIdentifier: String(describing: LobbyTableViewHeaderView.self)
         )
-        let headerView = LobbyBanner(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
+        let headerView = LobbyBanner(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 180))
         tableView.tableHeaderView = headerView
         let allImages = banners
         headerView.configure(with: allImages)

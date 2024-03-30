@@ -81,6 +81,25 @@ class LobbyBanner: UITableViewHeaderFooterView, UIScrollViewDelegate {
             )
             scrollView.addSubview(imageView)
             
+            let labelStrings = [
+                "在選擇的瞬間，我想為你描繪一幅色彩斑斕的人生畫卷 \n ----- 閃爍《色彩人生篇》",
+                "於是 我也想要給你 一個那麼美好的自己 \n -----不朽《與自己和好如初》",
+                "永遠 展現自信與專業 無法抵擋的男人魅力 \n -----復古《再一次經典》",
+                "瞬間 在城市的角落 找到失落多時的記憶 \n -----印象《都會故事集》"
+            ]
+
+            let label = UILabel()
+            label.text = labelStrings[index]
+            label.font = UIFont.systemFont(ofSize: 12)
+            label.numberOfLines = 0
+            label.textColor = .white
+            label.frame = CGRect(x: 10, y: 25, width: 250, height: 50)
+            label.layer.shadowColor = UIColor.black.cgColor
+            label.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+            label.layer.shadowRadius = 1.5
+            label.layer.shadowOpacity = 1.2
+            imageView.addSubview(label)
+            
             if imageURL == "https://pse.is/5ramnu" {
                 // Add a gesture recognizer to the image view
                 let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(bannerTapped))
@@ -108,9 +127,7 @@ class LobbyBanner: UITableViewHeaderFooterView, UIScrollViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
     }
     
-//    @objc func bannerTapped() {
-//        didSelectBanner?()
-//    }
+    
     
     @objc func bannerTapped() {
         delegate?.didSelectBanner(in: self)
