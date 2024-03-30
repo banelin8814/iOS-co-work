@@ -127,8 +127,6 @@ class LobbyBanner: UITableViewHeaderFooterView, UIScrollViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
     }
     
-    
-    
     @objc func bannerTapped() {
         delegate?.didSelectBanner(in: self)
     }

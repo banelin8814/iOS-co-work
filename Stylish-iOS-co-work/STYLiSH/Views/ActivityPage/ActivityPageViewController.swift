@@ -154,7 +154,10 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
 //        return products.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: String(describing: CollectionViewCell.self),
             for: indexPath)
@@ -170,7 +173,11 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
         return collectionViewCell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         let height = collectionView.bounds.height // Height of the table view cell
         return CGSize(width: 120, height: height)
     }
