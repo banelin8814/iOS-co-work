@@ -61,7 +61,7 @@ class ColorPickerUIView: UIView {
     
     var dismissHandler: (() -> Void)?
     
-    
+    var userChoosedColor: UIColor?
     
     
     override init(frame: CGRect) {
@@ -120,11 +120,16 @@ class ColorPickerUIView: UIView {
         colorPicker.onChangeColor = {[weak self] color in
             self?.titleLabel2.tintColor = color
             self?.titleLabel2.textColor = color
+            self?.userChoosedColor = color
         }
         
     }
     
     @objc func didChooseColor(){
         dismissHandler?()
+        //點了選完的button
+//        guard let 選完的顏色 = 選完的顏色 return {else}
+        //1.顏色轉乘hexcode post給數據
+        //2.改個人頁面顏色
     }
 }
