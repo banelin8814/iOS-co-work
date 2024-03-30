@@ -10,16 +10,19 @@ import UIKit
 
 class RecommendationCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
+    override func setSelected(_ selected: Bool, animated: Bool) {}
 }
 
 class MainProductCell: UITableViewCell {
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    override func setSelected(_ selected: Bool, animated: Bool) {}
 }
 
 class MatchingProductCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
+    override func setSelected(_ selected: Bool, animated: Bool) {}
 }
 
 class CollectionViewCell: UICollectionViewCell {

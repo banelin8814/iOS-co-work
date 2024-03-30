@@ -76,8 +76,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipk-9r-Zdr">
-                                                    <rect key="frame" x="16" y="37.5" width="343" height="25.5"/>
-                                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
+                                                    <rect key="frame" x="16" y="39" width="343" height="22.5"/>
+                                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
                                                     <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -106,14 +106,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADH-5H-rHD">
-                                                    <rect key="frame" x="16" y="263.5" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
+                                                    <rect key="frame" x="16" y="258" width="343" height="18.5"/>
+                                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="13"/>
                                                     <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrF-Ms-Doo">
-                                                    <rect key="frame" x="16" y="219.5" width="343" height="28"/>
-                                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
+                                                    <rect key="frame" x="16" y="219.5" width="343" height="22.5"/>
+                                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
                                                     <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -131,9 +131,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="descriptionLabel" destination="LrF-Ms-Doo" id="92j-wy-Vg5"/>
+                                            <outlet property="descriptionLabel" destination="ADH-5H-rHD" id="gb0-bp-vcl"/>
                                             <outlet property="mainImage" destination="oZD-LA-B5a" id="gqs-Sb-LPC"/>
-                                            <outlet property="titleLabel" destination="ADH-5H-rHD" id="b4W-J0-WKt"/>
+                                            <outlet property="titleLabel" destination="LrF-Ms-Doo" id="Zim-hH-g0g"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MatchingProductCell" rowHeight="250" id="Y3k-rU-Lj0" customClass="MatchingProductCell" customModule="STYLiSH" customModuleProvider="target">
@@ -144,36 +144,37 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QNn-DN-00r">
-                                                    <rect key="frame" x="16" y="11" width="343" height="228"/>
+                                                    <rect key="frame" x="16" y="16" width="359" height="218"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zTJ-W9-xy2">
-                                                        <size key="itemSize" width="196" height="221"/>
+                                                        <size key="itemSize" width="188" height="191"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="Fz2-6Q-mCL" customClass="CollectionViewCell" customModule="STYLiSH" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="3.5" width="196" height="221"/>
+                                                            <rect key="frame" x="0.0" y="13.5" width="188" height="191"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Pf4-gy-D3l">
-                                                                <rect key="frame" x="0.0" y="0.0" width="196" height="221"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="188" height="191"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="392-6X-MsP">
-                                                                        <rect key="frame" x="16" y="0.0" width="164" height="164"/>
+                                                                        <rect key="frame" x="16" y="0.0" width="156" height="195"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" secondItem="392-6X-MsP" secondAttribute="height" multiplier="1:1" id="dhL-Vh-qLc"/>
+                                                                            <constraint firstAttribute="width" constant="120" id="UwY-zn-VxD"/>
+                                                                            <constraint firstAttribute="width" secondItem="392-6X-MsP" secondAttribute="height" multiplier="4:5" id="rou-x4-V3d"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Sa-wl-uvA">
-                                                                        <rect key="frame" x="16" y="172" width="164" height="22.5"/>
-                                                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
+                                                                        <rect key="frame" x="16" y="203" width="156" height="22"/>
+                                                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
                                                                         <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIq-2J-Ybq">
-                                                                        <rect key="frame" x="16" y="202.5" width="164" height="17"/>
+                                                                        <rect key="frame" x="16" y="233" width="156" height="17"/>
                                                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="12"/>
                                                                         <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -189,12 +190,13 @@
                                                                     <constraint firstAttribute="trailing" secondItem="lIq-2J-Ybq" secondAttribute="trailing" constant="16" id="VU0-pt-MMy"/>
                                                                     <constraint firstItem="392-6X-MsP" firstAttribute="leading" secondItem="Pf4-gy-D3l" secondAttribute="leading" constant="16" id="X4g-PC-7o9"/>
                                                                     <constraint firstItem="1Sa-wl-uvA" firstAttribute="leading" secondItem="Pf4-gy-D3l" secondAttribute="leading" constant="16" id="ZLb-e5-FTo"/>
+                                                                    <constraint firstItem="392-6X-MsP" firstAttribute="width" secondItem="1Sa-wl-uvA" secondAttribute="height" multiplier="78:11" id="jw3-yp-ll8"/>
                                                                     <constraint firstItem="lIq-2J-Ybq" firstAttribute="leading" secondItem="Pf4-gy-D3l" secondAttribute="leading" constant="16" id="ouv-w8-g6h"/>
                                                                     <constraint firstAttribute="trailing" secondItem="1Sa-wl-uvA" secondAttribute="trailing" constant="16" id="wvD-md-cLY"/>
                                                                     <constraint firstItem="lIq-2J-Ybq" firstAttribute="top" secondItem="1Sa-wl-uvA" secondAttribute="bottom" constant="8" id="yJT-ZV-lQY"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
-                                                            <size key="customSize" width="196" height="221"/>
+                                                            <size key="customSize" width="188" height="191"/>
                                                             <connections>
                                                                 <outlet property="descriptionLabel" destination="lIq-2J-Ybq" id="wHH-Yh-ox3"/>
                                                                 <outlet property="imageView" destination="392-6X-MsP" id="a2z-uz-hpx"/>
@@ -205,12 +207,14 @@
                                                 </collectionView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="QNn-DN-00r" firstAttribute="top" secondItem="SlO-UE-k5Y" secondAttribute="topMargin" id="9kG-S0-mxN"/>
-                                                <constraint firstItem="QNn-DN-00r" firstAttribute="bottom" secondItem="SlO-UE-k5Y" secondAttribute="bottomMargin" id="W9O-2J-IBq"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="QNn-DN-00r" secondAttribute="trailing" id="Zzj-hU-2x6"/>
-                                                <constraint firstItem="QNn-DN-00r" firstAttribute="leading" secondItem="SlO-UE-k5Y" secondAttribute="leadingMargin" id="o0o-J9-xgd"/>
+                                                <constraint firstItem="QNn-DN-00r" firstAttribute="trailing" secondItem="SlO-UE-k5Y" secondAttribute="trailingMargin" constant="16" id="Aie-gF-YAO"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="QNn-DN-00r" firstAttribute="top" secondItem="Y3k-rU-Lj0" secondAttribute="top" constant="16" id="41L-pe-69d"/>
+                                            <constraint firstAttribute="bottom" secondItem="QNn-DN-00r" secondAttribute="bottom" constant="16" id="AF6-dS-k4H"/>
+                                            <constraint firstItem="QNn-DN-00r" firstAttribute="leading" secondItem="Y3k-rU-Lj0" secondAttribute="leading" constant="16" id="Wt2-XZ-22t"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="collectionView" destination="QNn-DN-00r" id="9e4-4Q-kx0"/>
                                         </connections>
@@ -233,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kK-8U-dTM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1847" y="34"/>
+            <point key="canvasLocation" x="1845.5999999999999" y="33.733133433283363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="e5e-ii-eG7">

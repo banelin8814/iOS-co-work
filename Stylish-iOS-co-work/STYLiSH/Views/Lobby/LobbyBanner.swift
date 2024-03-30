@@ -19,7 +19,6 @@ class LobbyBanner: UITableViewHeaderFooterView, UIScrollViewDelegate {
     var didSelectBanner: (() -> Void)?
     weak var delegate: TableViewCellDelegate?
    
-    
     static let reuseIdentifier = "LobbyBanner"
     
     override init(reuseIdentifier: String?) {

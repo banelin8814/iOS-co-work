@@ -15,10 +15,10 @@ protocol LobbyViewDelegate: UITableViewDataSource, UITableViewDelegate {
 class LobbyView: UIView {
     
     let banners = [
+        "https://pse.is/5ramnu",
         "https://api.appworks-school.tw/assets/201807242228/keyvisual.jpg",
         "https://api.appworks-school.tw/assets/201807242222/keyvisual.jpg",
-        "https://api.appworks-school.tw/assets/201807202140/keyvisual.jpg",
-        "https://pse.is/5ramnu"
+        "https://api.appworks-school.tw/assets/201807202140/keyvisual.jpg"
     ]
 
     @IBOutlet weak var tableView: UITableView! {

@@ -53,21 +53,6 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
         return 3
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var header: String = ""
-        switch section {
-        case 0:
-            header = "專屬推薦"
-        case 1:
-            header = "主打商品"
-        case 2:
-            header = "搭配商品"
-        default:
-            break
-        }
-       return header
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -94,6 +79,7 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
 //            cell.titleLabel.text = product.title
 //            cell.descriptionLabel.text = product.description
             mainProductCell.mainImage.image = UIImage(named: "Image_Placeholder")
+            mainProductCell.mainImage.contentMode = .scaleAspectFill
             mainProductCell.titleLabel.text = "Title"
             mainProductCell.descriptionLabel.text = "Description"
             return mainProductCell
@@ -106,6 +92,11 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
             guard let matchingProductCell = cell as? MatchingProductCell else { return cell }
             matchingProductCell.collectionView.delegate = self
             matchingProductCell.collectionView.dataSource = self
+            if let layout = matchingProductCell.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.minimumInteritemSpacing = 0
+                layout.minimumLineSpacing = 0
+            }
+    
             return matchingProductCell
             
         default:
@@ -118,12 +109,40 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 100
+            return 80
         } else if indexPath.section == 1 {
             return 300
         } else {
-            return 200
+            return 250
         }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .white
+        
+        let titleLabel = UILabel()
+        titleLabel.frame = CGRect(x: 16, y: 8, width: tableView.bounds.size.width - 32, height: 50)
+        titleLabel.textColor = UIColor.darkGray
+        
+        // Set the section title directly
+        switch section {
+        case 0:
+            titleLabel.text = "專屬推薦"
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        case 1:
+            titleLabel.text = "主打商品"
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        case 2:
+            titleLabel.text = "搭配商品"
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        default:
+            titleLabel.text = "" // Handle additional cases if needed
+        }
+        
+        headerView.addSubview(titleLabel)
+        
+        return headerView
     }
     
 }
@@ -145,15 +164,15 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
 //        cell.titleLabel.text = product.title
 //        cell.descriptionLabel.text = product.description
         collectionViewCell.imageView.image = UIImage(named: "Image_Placeholder")
+        collectionViewCell.imageView.contentMode = .scaleAspectFill
         collectionViewCell.titleLabel.text = "Title"
         collectionViewCell.descriptionLabel.text = "Description"
         return collectionViewCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = tableView.frame.width // Width of the table view cell
-        let height = collectionView.frame.height
-        return CGSize(width: width, height: height)
+        let height = collectionView.bounds.height // Height of the table view cell
+        return CGSize(width: 120, height: height)
     }
-
+    
 }
