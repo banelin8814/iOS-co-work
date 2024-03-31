@@ -63,7 +63,7 @@
 		<true/>
 	</dict>
 	<key>STBaseURL</key>
-	<string>https://api.appworks-school.tw/api/1.0</string>
+	<string>https://chouyu.site/api/1.0</string>
 	<key>STTapPayAppID</key>
 	<integer>12348</integer>
 	<key>STTapPayAppKey</key>
