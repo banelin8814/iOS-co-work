@@ -29,7 +29,7 @@ class LobbyViewController: STBaseViewController {
         super.viewDidLoad()
 
         navigationItem.titleView = UIImageView(image: .asset(.Image_Logo02))
-//        lobbyView.delegate = self
+        
         lobbyView.beginHeaderRefresh()
     }
 
