@@ -74,14 +74,14 @@ class UserCommentTableViewCell: UITableViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            starsContainer.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            starsContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            starsContainer.heightAnchor.constraint(equalToConstant: 20),
-            
-            commentLabel.topAnchor.constraint(equalTo: starsContainer.bottomAnchor, constant: 8),
+            commentLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
             commentLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             commentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            commentLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            
+            starsContainer.topAnchor.constraint(equalTo: commentLabel.bottomAnchor, constant: 8),
+            starsContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            starsContainer.heightAnchor.constraint(equalToConstant: 20),
+            starsContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
 
     }

@@ -9,14 +9,15 @@
 import UIKit
 
 class SeeMoreCommentsCell: UITableViewCell {
-    var onSeeMoreTapped: (() -> Void)? // 添加一個閉包作為回調
+    var onSeeMoreTapped: (() -> Void)? // 添加一個 closure
 
-    let seeMoreButton = UIButton(type: .system) // 創建一個按鈕
+    let seeMoreButton = UIButton(type: .system)
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // 按鈕初始化設置
+        // 按鈕初始化設定
         seeMoreButton.setTitle("看更多評論", for: .normal)
+        seeMoreButton.tintColor = .brown
         seeMoreButton.addTarget(self, action: #selector(seeMoreButtonAction), for: .touchUpInside)
         contentView.addSubview(seeMoreButton)
         seeMoreButton.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +28,7 @@ class SeeMoreCommentsCell: UITableViewCell {
     }
 
     @objc func seeMoreButtonAction() {
-        onSeeMoreTapped?() // 當按鈕被點擊，調用閉包
+        onSeeMoreTapped?() // 當按鈕被點擊，調用 closure
     }
 }
 

@@ -11,7 +11,7 @@ import UIKit
 class ProductDetailViewController: STBaseViewController {
 
     var userComments: [UserComment] = []
-    var displayedComments = 3  // 一開始顯示 3 條評論
+    var displayedComments = 3
 
     private struct Segue {
         static let picker = "SeguePicker"
@@ -74,9 +74,15 @@ class ProductDetailViewController: STBaseViewController {
     
     private func loadFakeComments() {
         userComments = [
-            UserComment(username: "Alice", comment: "非常好的產品！", rating: 5),
-            UserComment(username: "Bob", comment: "很滿意！", rating: 4),
-            UserComment(username: "Cindy", comment: "下次還會再買！", rating: 5)
+            UserComment(username: "Alice", comment: "非常👍！", rating: 5),
+            UserComment(username: "Bob", comment: "沒想到生日活動有整單 5 折！", rating: 5),
+            UserComment(username: "Cindy", comment: "下次還會再買～", rating: 4),
+            UserComment(username: "David", comment: "Good Good!", rating: 3),
+            UserComment(username: "Eva", comment: "我特地買給家人穿", rating: 5),
+            UserComment(username: "Frank", comment: "不錯哦", rating: 5),
+            UserComment(username: "Gray", comment: "不買太可惜", rating: 3),
+            UserComment(username: "Hunter", comment: "已經回購第 3 件", rating: 5),
+            UserComment(username: "Ivy", comment: "朋友送的很喜歡！", rating: 5)
         ]
 
         tableView.reloadData()
@@ -178,19 +184,27 @@ class ProductDetailViewController: STBaseViewController {
     }
     
     func loadMoreComments() {
-        // 增加 displayedComments 的值，然後刷新 tableView
-        displayedComments = min(userComments.count, displayedComments + 3)
+        // 計算剩餘未顯示的評論數量
+        let remainingComments = userComments.count - displayedComments
+        // 如果還有未顯示的評論，增加 displayedComments 的值
+        if remainingComments > 0 {
+            displayedComments += min(3, remainingComments)
+        }
         tableView.reloadData()
     }
-
 }
 
 // MARK: - UITableViewDataSource
 extension ProductDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let commentCount = min(userComments.count, 3)
-        return datas.count + 1 + commentCount + (userComments.count > 3 ? 1 : 0)
+//        let commentCount = min(userComments.count, 3)
+//        return datas.count + 1 + commentCount + (userComments.count > 3 ? 1 : 0)
+        
+        let baseCount = datas.count + 1 // 基本的 cell 數量，包括產品詳情和 "撰寫評論" 按鈕
+            let commentCount = min(userComments.count, displayedComments) // 當前顯示的評論數量
+            let hasMoreCommentsToShow = userComments.count > displayedComments // 是否還有更多評論未顯示
+            return baseCount + commentCount + (hasMoreCommentsToShow ? 1 : 0) // 如果還有未顯示的評論，加上 "看更多評論" 按鈕的 cell
     }
 
 
@@ -228,9 +242,10 @@ extension ProductDetailViewController: UITableViewDataSource {
 
 
         default:
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreCommentsCell", for: indexPath) as? SeeMoreCommentsCell ?? SeeMoreCommentsCell()
             cell.onSeeMoreTapped = { [weak self] in
-                self?.loadMoreComments() // 這裡調用一個方法來加載更多評論
+                self?.loadMoreComments()
             }
             return cell
         }
