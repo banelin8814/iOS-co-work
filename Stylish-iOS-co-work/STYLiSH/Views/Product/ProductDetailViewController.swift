@@ -198,9 +198,7 @@ class ProductDetailViewController: STBaseViewController {
 extension ProductDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let commentCount = min(userComments.count, 3)
-//        return datas.count + 1 + commentCount + (userComments.count > 3 ? 1 : 0)
-        
+
         let baseCount = datas.count + 1 // 基本的 cell 數量，包括產品詳情和 "撰寫評論" 按鈕
             let commentCount = min(userComments.count, displayedComments) // 當前顯示的評論數量
             let hasMoreCommentsToShow = userComments.count > displayedComments // 是否還有更多評論未顯示
@@ -238,11 +236,10 @@ extension ProductDetailViewController: UITableViewDataSource {
             // 更新星星的顯示
             commentCell.updateStars(rating: comment.rating)
            
+            commentCell.selectionStyle = .none
             return commentCell
 
-
         default:
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreCommentsCell", for: indexPath) as? SeeMoreCommentsCell ?? SeeMoreCommentsCell()
             cell.onSeeMoreTapped = { [weak self] in
                 self?.loadMoreComments()
