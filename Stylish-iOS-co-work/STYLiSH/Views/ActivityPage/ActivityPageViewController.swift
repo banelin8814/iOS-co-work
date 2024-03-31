@@ -30,8 +30,15 @@ class ActivityPageViewController: UIViewController {
         tableView.separatorStyle = .none
         view.addSubview(tableView)
         setupCloseButton()
-        fetchMainData(color: "FFFFFF", gender: "women")
-        fetchMatchData()
+
+        let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "FFFFFF"
+        let gender = UserDefaults.standard.string(forKey: "SelectedGender") ?? "women"
+        
+        fetchMainData(color: color, gender: gender) /*{*/
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     
     @objc private func closeButtonPressed() {
@@ -55,10 +62,10 @@ class ActivityPageViewController: UIViewController {
 
 extension ActivityPageViewController {
     
-    func fetchMainData(color: String, gender: String) {
+    func fetchMainData(color: String, gender: String/*, completion: @escaping () -> Void*/) {
         APIManager.shared.sendRequest(
-            urlString: "http://13.214.22.170/api/1.0/recommendation?color=\(color)&gender=\(gender)",
-            method: .get,
+            urlString: "https://traviss.beauty/api/1.0/recommendation?color=\(color)&gender=\(gender)",
+            method: .post,
             parameters: ["key": "value"]
         ) { data, response, error in
             if let error = error {
@@ -72,7 +79,7 @@ extension ActivityPageViewController {
                 return
             }
             
-            guard let recommendedData = data else {
+            guard data != nil else {
                 print("Error: No data received")
                 return
             }
@@ -83,18 +90,22 @@ extension ActivityPageViewController {
                     let recommendedData = try decoder.decode(RecommendProduct.self, from: data)
                     self.recommendProduct = recommendedData.data
                     print("成功：\(recommendedData)")
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
+//                completion()
         }
     }
     
     //TODO: -
     func fetchMatchData() {
         APIManager.shared.sendRequest(
-            urlString: "http://13.214.22.170/api/1.0",
-            method: .get,
+            urlString: "https://13.214.22.170/api/1.0",
+            method: .post,
             parameters: ["key": "value"]
         ) { data, response, error in
             if let error = error {
@@ -123,6 +134,7 @@ extension ActivityPageViewController {
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
+            
         }
     }
     
@@ -164,10 +176,6 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
             mainProductCell.mainImage.contentMode = .scaleAspectFill
             mainProductCell.titleLabel.text = recommendProduct?.title
             mainProductCell.descriptionLabel.text = recommendProduct?.description
-//            mainProductCell.mainImage.image = UIImage(named: "Image_Placeholder")
-//            mainProductCell.mainImage.contentMode = .scaleAspectFill
-//            mainProductCell.titleLabel.text = "Title"
-//            mainProductCell.descriptionLabel.text = "Description"
             return mainProductCell
             
         case 2:
@@ -237,6 +245,11 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
             withIdentifier: "ProductDetailViewController"
         ) as? ProductDetailViewController else { return }
         productDetailVC.product = recommendProduct
+//        guard let product = recommendProduct, let galleryView = productDetailVC.galleryView else { return }
+//        guard let images = recommendProduct?.images else { return }
+//        productDetailVC.galleryView.datas = images
+//        guard let images = recommendProduct?.images else { return }
+//        productDetailVC.galleryView.datas = images
         productDetailVC.backButtonAction = { [weak self] in
             self?.dismiss(animated: false, completion: nil)
         }
