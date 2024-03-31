@@ -20,20 +20,16 @@ class UserCommentTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
-        // 設定 nameLabel 的屬性
         nameLabel.font = .systemFont(ofSize: 14, weight: .bold)
         nameLabel.textColor = .darkGray
         
-        // 設定 commentLabel 的屬性
         commentLabel.font = .systemFont(ofSize: 18)
         commentLabel.textColor = .darkGray
         commentLabel.numberOfLines = 0
         
-        // 添加元件到 contentView
         contentView.addSubview(nameLabel)
         contentView.addSubview(commentLabel)
         
-        // 呼叫下面的配置方法
         setupConstraints()
     }
     
@@ -55,11 +51,11 @@ class UserCommentTableViewCell: UITableViewCell {
     }
     
     private func setupStars() {
-        // 清除舊的星星視圖
+        // 清除舊的星星 view
         starsViews.forEach { $0.removeFromSuperview() }
         starsViews.removeAll()
 
-        // 創建並新增新的星星視圖
+        // 創建並新增新的星星 view
         for _ in 0..<Constants.starsCount {
             let star = makeStarIcon()
             starsViews.append(star)
@@ -67,7 +63,7 @@ class UserCommentTableViewCell: UITableViewCell {
             star.translatesAutoresizingMaskIntoConstraints = false
         }
 
-        // 設置星星的約束條件
+        // 設置星星的layout
             for (index, starView) in starsViews.enumerated() {
                 let leftAnchor = index == 0 ? nameLabel.leadingAnchor : starsViews[index - 1].trailingAnchor
                 NSLayoutConstraint.activate([
@@ -77,7 +73,7 @@ class UserCommentTableViewCell: UITableViewCell {
                     starView.widthAnchor.constraint(equalTo: starView.heightAnchor)
                 ])
                 
-                // 新增最後一顆星星的底部約束
+                // 新增最後一顆星星的底部 layout
                 if index == Constants.starsCount - 1 {
                     NSLayoutConstraint.activate([
                         starView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
@@ -108,5 +104,3 @@ class UserCommentTableViewCell: UITableViewCell {
         static let starContainerHeight: CGFloat = 40
     }
 }
-
-

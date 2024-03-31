@@ -8,7 +8,12 @@
 
 import UIKit
 
+protocol AddCommentViewControllerDelegate: AnyObject {
+    func didFinishAddingComment(rating: Int, comment: String, username: String)
+}
+
 class AddCommentViewController: UIViewController {
+    weak var delegate: AddCommentViewControllerDelegate?
 
     // MARK: - Properties
     
@@ -86,6 +91,7 @@ class AddCommentViewController: UIViewController {
         super.viewDidLoad()
         createStars()
         setupUI()
+        
     }
     
     // MARK: - User Action
@@ -117,6 +123,8 @@ class AddCommentViewController: UIViewController {
         
         let okayAction = UIAlertAction(title: "關閉", style: .default)
         
+        delegate?.didFinishAddingComment(rating: selectedRate, comment: commentTextView.text, username: "Lily") 
+
         alert.addAction(okayAction)
         
         present(alert, animated: true)

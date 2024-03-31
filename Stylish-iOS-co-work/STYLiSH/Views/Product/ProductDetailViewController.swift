@@ -74,13 +74,13 @@ class ProductDetailViewController: STBaseViewController {
     
     private func loadFakeComments() {
         userComments = [
-            UserComment(username: "Alice", comment: "非常👍！", rating: 5),
+            UserComment(username: "Alice", comment: "非常👍", rating: 5),
             UserComment(username: "Bob", comment: "沒想到生日活動有整單 5 折！", rating: 5),
             UserComment(username: "Cindy", comment: "下次還會再買～", rating: 4),
             UserComment(username: "David", comment: "Good Good!", rating: 3),
             UserComment(username: "Eva", comment: "我特地買給家人穿", rating: 5),
             UserComment(username: "Frank", comment: "不錯哦", rating: 5),
-            UserComment(username: "Gray", comment: "不買太可惜", rating: 3),
+            UserComment(username: "Gray", comment: "超生火🔥 不買太可惜", rating: 3),
             UserComment(username: "Hunter", comment: "已經回購第 3 件", rating: 5),
             UserComment(username: "Ivy", comment: "朋友送的很喜歡！", rating: 5)
         ]
@@ -289,13 +289,22 @@ extension ProductDetailViewController: ProductPickerControllerDelegate {
 }
 
 extension ProductDetailViewController {
-
     func showCommentViewController() {
         if let addCommentVC = storyboard?.instantiateViewController(withIdentifier: "AddCommentViewController") as? AddCommentViewController {
+            addCommentVC.delegate = self
             present(addCommentVC, animated: true, completion: nil)
         } else {
             print("無法初始化 AddCommentViewController")
         }
     }
-
 }
+
+
+extension ProductDetailViewController: AddCommentViewControllerDelegate {
+    func didFinishAddingComment(rating: Int, comment: String, username: String) {
+        let newComment = UserComment(username: username, comment: comment, rating: rating)
+        userComments.append(newComment)
+        tableView.reloadData()
+    }
+}
+
