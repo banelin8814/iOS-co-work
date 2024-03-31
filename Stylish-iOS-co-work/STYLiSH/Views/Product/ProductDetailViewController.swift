@@ -74,9 +74,9 @@ class ProductDetailViewController: STBaseViewController {
     
     private func loadFakeComments() {
         userComments = [
-            UserComment(username: "用戶1", comment: "非常好的產品！", rating: 5),
-            UserComment(username: "用戶2", comment: "很滿意！", rating: 4),
-            UserComment(username: "用戶3", comment: "下次還會再買！", rating: 5),
+            UserComment(username: "Alice", comment: "非常好的產品！", rating: 5),
+            UserComment(username: "Bob", comment: "很滿意！", rating: 4),
+            UserComment(username: "Cindy", comment: "下次還會再買！", rating: 5)
         ]
 
         tableView.reloadData()
@@ -219,8 +219,10 @@ extension ProductDetailViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             let comment = userComments[commentIndex]
-            // TODO: 缺Comment 和 rating
             commentCell.nameLabel.text = comment.username
+            commentCell.commentLabel.text = comment.comment
+            // 更新星星的顯示
+            commentCell.updateStars(rating: comment.rating)
            
             return commentCell
 
