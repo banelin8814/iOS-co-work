@@ -12,7 +12,8 @@ class UserCommentTableViewCell: UITableViewCell {
     
     let nameLabel = UILabel()
     let commentLabel = UILabel()
-    let starsContainer = UIView()
+    let starsContainer = UIStackView()
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +27,7 @@ class UserCommentTableViewCell: UITableViewCell {
         for index in 1...Constants.starsCount {
             let star = makeStarIcon()
             star.tag = index
-            starsContainer.addArrangedSubview(star)
+            starsContainer.addArrangedSubview(star)//Error: Value of type 'UIView' has no member 'addArrangedSubview'
         }
     }
     
@@ -48,6 +49,11 @@ class UserCommentTableViewCell: UITableViewCell {
         commentLabel.textColor = .lightGray
         commentLabel.numberOfLines = 0 // 允許多行顯示
         
+        // 設定 starsContainer 的屬性
+        starsContainer.axis = .horizontal
+        starsContainer.distribution = .fillEqually
+        starsContainer.spacing = 5 // 根據需要調整間距
+        
         // 添加元件到 contentView
         contentView.addSubview(nameLabel)
         contentView.addSubview(commentLabel)
@@ -57,6 +63,7 @@ class UserCommentTableViewCell: UITableViewCell {
         setupConstraints()
         createStars()
     }
+
     
     private func setupConstraints() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +87,14 @@ class UserCommentTableViewCell: UITableViewCell {
 
     }
     
+    // MARK: - Constants {
     
+    private struct Constants {
+        static let starsCount: Int = 5
+        
+        static let sendButtonHeight: CGFloat = 50
+        static let containerHorizontalInsets: CGFloat = 30
+        static let starContainerHeight: CGFloat = 40
+    }
 }
 
