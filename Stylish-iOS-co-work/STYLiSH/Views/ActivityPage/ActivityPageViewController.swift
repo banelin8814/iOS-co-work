@@ -57,8 +57,8 @@ extension ActivityPageViewController {
     
     func fetchMainData(color: String, gender: String) {
         APIManager.shared.sendRequest(
-            urlString: "http://13.214.22.170/api/1.0/recommendation?color=\(color)&gender=\(gender)",
-            method: .get,
+            urlString: "https://traviss.beauty/api/1.0/recommendation?color=\(color)&gender=\(gender)",
+            method: .post,
             parameters: ["key": "value"]
         ) { data, response, error in
             if let error = error {
@@ -83,6 +83,9 @@ extension ActivityPageViewController {
                     let recommendedData = try decoder.decode(RecommendProduct.self, from: data)
                     self.recommendProduct = recommendedData.data
                     print("成功：\(recommendedData)")
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
@@ -93,8 +96,8 @@ extension ActivityPageViewController {
     //TODO: -
     func fetchMatchData() {
         APIManager.shared.sendRequest(
-            urlString: "http://13.214.22.170/api/1.0",
-            method: .get,
+            urlString: "https://13.214.22.170/api/1.0",
+            method: .post,
             parameters: ["key": "value"]
         ) { data, response, error in
             if let error = error {
@@ -164,10 +167,6 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
             mainProductCell.mainImage.contentMode = .scaleAspectFill
             mainProductCell.titleLabel.text = recommendProduct?.title
             mainProductCell.descriptionLabel.text = recommendProduct?.description
-//            mainProductCell.mainImage.image = UIImage(named: "Image_Placeholder")
-//            mainProductCell.mainImage.contentMode = .scaleAspectFill
-//            mainProductCell.titleLabel.text = "Title"
-//            mainProductCell.descriptionLabel.text = "Description"
             return mainProductCell
             
         case 2:
