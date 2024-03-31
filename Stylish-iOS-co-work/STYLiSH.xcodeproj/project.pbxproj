@@ -13,6 +13,10 @@
 		27BE61D02BB7E65200D2D935 /* UIView + PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */; };
 		27BE61D92BB800ED00D2D935 /* ProductDetailButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61D72BB800ED00D2D935 /* ProductDetailButtonCell.swift */; };
 		27BE61DA2BB800ED00D2D935 /* ProductDetailButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61D82BB800ED00D2D935 /* ProductDetailButtonCell.xib */; };
+		0E7B270F2BB6DB78001628E6 /* LobbyBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */; };
+		0E7B27112BB6ED90001628E6 /* ActivityPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */; };
+		0E7B27142BB6F259001628E6 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27132BB6F259001628E6 /* TableViewCells.swift */; };
+		0E9B7F3D2BB82D1300770DC3 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9B7F3C2BB82D1300770DC3 /* APIManager.swift */; };
 		30C2E5FF28B87D4700DD2939 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C2E5FE28B87D4700DD2939 /* TPDirect.framework */; };
 		3C09F5122211435B00C5B3E2 /* Lobby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C09F5112211435B00C5B3E2 /* Lobby.storyboard */; };
 		3C09F51C22114A0100C5B3E2 /* STTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */; };
@@ -156,6 +160,10 @@
 		27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + PulseAnimation.swift"; sourceTree = "<group>"; };
 		27BE61D72BB800ED00D2D935 /* ProductDetailButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailButtonCell.swift; sourceTree = "<group>"; };
 		27BE61D82BB800ED00D2D935 /* ProductDetailButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailButtonCell.xib; sourceTree = "<group>"; };
+		0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyBanner.swift; sourceTree = "<group>"; };
+		0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPageViewController.swift; sourceTree = "<group>"; };
+		0E7B27132BB6F259001628E6 /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
+		0E9B7F3C2BB82D1300770DC3 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		30C2E5FE28B87D4700DD2939 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
 		3C09F5112211435B00C5B3E2 /* Lobby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lobby.storyboard; sourceTree = "<group>"; };
 		3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTabBarViewController.swift; sourceTree = "<group>"; };
@@ -338,6 +346,15 @@
 			path = StarRating;
 			sourceTree = "<group>";
 		};
+		0E7B27122BB6F233001628E6 /* ActivityPage */ = {
+			isa = PBXGroup;
+			children = (
+				0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */,
+				0E7B27132BB6F259001628E6 /* TableViewCells.swift */,
+			);
+			path = ActivityPage;
+			sourceTree = "<group>";
+		};
 		3C09F51F22115A9F00C5B3E2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				3C0DD875221348E900F5237E /* LobbyViewController.swift */,
+				0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */,
 				3C0DD87C2213533F00F5237E /* LobbyTableViewCell.swift */,
 				3C8F191A22E5BA9F00EECE90 /* LobbyView.swift */,
 				3C0DD87D2213533F00F5237E /* LobbyTableViewCell.xib */,
@@ -615,6 +633,7 @@
 				3C33690B2226F513008A5A7A /* Trolley */,
 				3CC706132216B32700CAD850 /* Product */,
 				3C1ACFE722152D10005583E2 /* Profile */,
+				0E7B27122BB6F233001628E6 /* ActivityPage */,
 				3C0DD87B2213531400F5237E /* Lobby */,
 				3CD29125221135E3008B8A2D /* LaunchScreen.storyboard */,
 				3CED80922301204200B7DA8E /* Auth.storyboard */,
@@ -769,6 +788,7 @@
 			isa = PBXGroup;
 			children = (
 				3C9EF5332213C5C800DEE152 /* HTTPClient.swift */,
+				0E9B7F3C2BB82D1300770DC3 /* APIManager.swift */,
 				5AE6F62629E3FAD7003764C6 /* APIProviders */,
 				3CE7A51422305E5A009FF003 /* KeyChainManager.swift */,
 				3CEBE076222F718D0064EF82 /* StorageManager.swift */,
@@ -1033,8 +1053,10 @@
 				3C1ACFE422151F50005583E2 /* ProfileViewController.swift in Sources */,
 				3C34794C222E82F600969C30 /* AmountSelectionCell.swift in Sources */,
 				3C75FD0F22F1767D0068FEA5 /* CheckoutResultViewController.swift in Sources */,
+				0E7B270F2BB6DB78001628E6 /* LobbyBanner.swift in Sources */,
 				3CE7A51C223089C3009FF003 /* OrderProvider.swift in Sources */,
 				3C0DD87A221350B300F5237E /* UIColor+Extension.swift in Sources */,
+				0E9B7F3D2BB82D1300770DC3 /* APIManager.swift in Sources */,
 				3CC706162216B34800CAD850 /* ProductTableViewCell.swift in Sources */,
 				3CEBE077222F718D0064EF82 /* StorageManager.swift in Sources */,
 				3C09F51C22114A0100C5B3E2 /* STTabBarViewController.swift in Sources */,
@@ -1048,6 +1070,7 @@
 				3C9EF5342213C5C800DEE152 /* HTTPClient.swift in Sources */,
 				3CEBE07C222F7A210064EF82 /* Int+Extension.swift in Sources */,
 				3CED80AE23012CE400B7DA8E /* NSLocalizedString+Extension.swift in Sources */,
+				0E7B27142BB6F259001628E6 /* TableViewCells.swift in Sources */,
 				3CA25519222A484300B286F6 /* ProductsListProvider.swift in Sources */,
 				27BE61CB2BB7E27F00D2D935 /* UserCommentTableViewCell.swift in Sources */,
 				3C3369162227CE7D008A5A7A /* TrolleyProductBaseView.swift in Sources */,
@@ -1062,6 +1085,7 @@
 				3C1ACFE622152B1F005583E2 /* UIScreen+Extension.swift in Sources */,
 				3C6020DD222B90DF00312958 /* ProductDetailCell.swift in Sources */,
 				3C09F51E22114E1900C5B3E2 /* UIStoryboard+Extension.swift in Sources */,
+				0E7B27112BB6ED90001628E6 /* ActivityPageViewController.swift in Sources */,
 				3C0DD87E2213533F00F5237E /* LobbyTableViewCell.swift in Sources */,
 				3C33690E2226F53E008A5A7A /* TrolleyTableViewCell.swift in Sources */,
 				3CC706122216955900CAD850 /* STBaseNavigationController.swift in Sources */,

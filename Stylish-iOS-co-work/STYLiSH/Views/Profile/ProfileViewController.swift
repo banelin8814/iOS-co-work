@@ -55,8 +55,8 @@ class ProfileViewController: UIViewController {
     private func updateUser(_ user: User) {
         imageProfile.loadImage(user.picture, placeHolder: .asset(.Icons_36px_Profile_Normal))
         
-        labelName.text = user.name
-        labelInfo.text = user.getUserInfo()
+        labelName.text = "Lily"
+        labelInfo.text = "Lily"
         labelInfo.isHidden = false
     }
 }
