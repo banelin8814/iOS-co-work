@@ -8,15 +8,7 @@
 
 import UIKit
 
-//protocol ColorPickerViewDelegate: AnyObject {
-//    func colorPickerView(_ colorPickerView: ColorPickerView, didSelectColor color: UIColor)
-//}
-
 class ColorPickerView: UIView {
-    
-    static let shared = ColorPickerView()
-   
-//    weak var delegate: ColorPickerViewDelegate?
     
     var colorSelectedHandler: ((String, String) -> Void)?
     
@@ -71,7 +63,6 @@ class ColorPickerView: UIView {
         button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.titleLabel?.textColor = .white
         button.backgroundColor = .B1
-        //        chooseButton.frame.width/2
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didChooseColor), for: .touchUpInside)
         button.isEnabled = false
@@ -158,24 +149,6 @@ class ColorPickerView: UIView {
 
         dismissHandler?()
     }
-    
-//    @objc func didChooseColor(sender: UIButton) {
-//        dismissHandler?()
-//        guard let selectedColor = colorPicker.selectedColor else {
-//            return
-//        }
-//        let activityPageVC = ActivityPageViewController()
-//        let color = selectedColor.toHexString
-//        let selectedSegment = genderSegmentedControl.selectedSegmentIndex
-//        let gender = genderSegmentedControl.titleForSegment(at: selectedSegment) ?? "women"
-//        activityPageVC.fetchMainData(color: color, gender: gender) {
-//            print("===selectedColor: \(color), gender: \(gender)")
-//        }
-//        
-//        //2.改個人頁面顏色
-////        delegate?.colorPickerView(self, didSelectColor: selectedColor)
-//        ColorPickerView.shared.colorSelectedHandler?(color, gender)
-//    }
     
     @objc func didChangeColor(sender: CircularColorPickerView) {
         checkRequiredFields()

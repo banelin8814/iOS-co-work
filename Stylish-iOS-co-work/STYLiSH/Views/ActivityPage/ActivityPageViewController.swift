@@ -33,12 +33,7 @@ class ActivityPageViewController: UIViewController {
 
         let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "FFFFFF"
         let gender = UserDefaults.standard.string(forKey: "SelectedGender") ?? "women"
-        
-        fetchMainData(color: color, gender: gender) /*{*/
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
+        fetchMainData(color: color, gender: gender)
     }
     
     @objc private func closeButtonPressed() {
@@ -62,7 +57,7 @@ class ActivityPageViewController: UIViewController {
 
 extension ActivityPageViewController {
     
-    func fetchMainData(color: String, gender: String/*, completion: @escaping () -> Void*/) {
+    func fetchMainData(color: String, gender: String) {
         APIManager.shared.sendRequest(
             urlString: "https://traviss.beauty/api/1.0/recommendation?color=\(color)&gender=\(gender)",
             method: .post,
@@ -97,7 +92,6 @@ extension ActivityPageViewController {
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
-//                completion()
         }
     }
     

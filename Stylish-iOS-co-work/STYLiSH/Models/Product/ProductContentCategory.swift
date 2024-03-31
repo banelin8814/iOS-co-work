@@ -35,9 +35,9 @@ enum ProductContentCategory: String {
         case .color:
             basicCell.layoutCellWithColors(category: rawValue, colors: data.colors.map { $0.code })
         case .size:
-            basicCell.layoutCell(category: rawValue, content: data.size)
+            basicCell.layoutCell(category: rawValue, content: data.size ?? "" )
         case .stock:
-            basicCell.layoutCell(category: rawValue, content: String(data.stock))
+            basicCell.layoutCell(category: rawValue, content: "(\(String(describing: data.stock))")
         case .texture:
             basicCell.layoutCell(category: rawValue, content: data.texture)
         case .washing:
