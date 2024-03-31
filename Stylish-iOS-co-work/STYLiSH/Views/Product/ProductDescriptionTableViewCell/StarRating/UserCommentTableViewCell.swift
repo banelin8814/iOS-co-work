@@ -46,7 +46,7 @@ class UserCommentTableViewCell: UITableViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            commentLabel.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            commentLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
             commentLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             commentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
@@ -68,20 +68,23 @@ class UserCommentTableViewCell: UITableViewCell {
         }
 
         // 設置星星的約束條件
-        for (index, starView) in starsViews.enumerated() {
-            let leftAnchor = index == 0 ? nameLabel.leadingAnchor : starsViews[index - 1].trailingAnchor
-            NSLayoutConstraint.activate([
-                starView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-                starView.leadingAnchor.constraint(equalTo: leftAnchor, constant: index == 0 ? 0 : 5),
-                starView.heightAnchor.constraint(equalToConstant: 20),
-                starView.widthAnchor.constraint(equalTo: starView.heightAnchor)
-            ])
+            for (index, starView) in starsViews.enumerated() {
+                let leftAnchor = index == 0 ? nameLabel.leadingAnchor : starsViews[index - 1].trailingAnchor
+                NSLayoutConstraint.activate([
+                    starView.topAnchor.constraint(equalTo: commentLabel.bottomAnchor, constant: 8),
+                    starView.leadingAnchor.constraint(equalTo: leftAnchor, constant: index == 0 ? 0 : 5),
+                    starView.heightAnchor.constraint(equalToConstant: 20),
+                    starView.widthAnchor.constraint(equalTo: starView.heightAnchor)
+                ])
+                
+                // 新增最後一顆星星的底部約束
+                if index == Constants.starsCount - 1 {
+                    NSLayoutConstraint.activate([
+                        starView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+                    ])
+                }
+            }
         }
-        
-        if let lastStar = starsViews.last {
-            lastStar.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -16).isActive = true
-        }
-    }
     
     private func makeStarIcon() -> UIImageView {
         let imageView = UIImageView(image: UIImage(named: "icon_unfilled_star"), highlightedImage: UIImage(named: "icon_filled_star"))
