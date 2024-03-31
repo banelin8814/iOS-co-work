@@ -41,8 +41,8 @@ class LobbyTableViewCell: UITableViewCell {
 
         leftImgView.loadImage(imgs[0], placeHolder: .asset(.Image_Placeholder))
         middleTopImgView.loadImage(imgs[1], placeHolder: .asset(.Image_Placeholder))
-        middleBottomImgView.loadImage(imgs[2], placeHolder: .asset(.Image_Placeholder))
-        rightImgView.loadImage(imgs[3], placeHolder: .asset(.Image_Placeholder))
+        middleBottomImgView.loadImage(imgs[0], placeHolder: .asset(.Image_Placeholder))
+        rightImgView.loadImage(imgs[1], placeHolder: .asset(.Image_Placeholder))
 
         titleLbl.text = title
         descriptionLbl.text = description
