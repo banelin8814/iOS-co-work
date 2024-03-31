@@ -10,6 +10,9 @@ import UIKit
 
 class ProductDetailViewController: STBaseViewController {
 
+    var userComments: [UserComment] = []
+    var displayedComments = 3  // 一開始顯示 3 條評論
+
     private struct Segue {
         static let picker = "SeguePicker"
     }
@@ -64,6 +67,19 @@ class ProductDetailViewController: STBaseViewController {
 
         guard let product = product else { return }
         galleryView.datas = product.images
+        
+        // 加載假的評論資料
+            loadFakeComments()
+    }
+    
+    private func loadFakeComments() {
+        userComments = [
+            UserComment(username: "用戶1", comment: "非常好的產品！", rating: 5),
+            UserComment(username: "用戶2", comment: "很滿意！", rating: 4),
+            UserComment(username: "用戶3", comment: "下次還會再買！", rating: 5),
+        ]
+
+        tableView.reloadData()
     }
 
     private func setupTableView() {
@@ -80,7 +96,15 @@ class ProductDetailViewController: STBaseViewController {
             bundle: nil
         )
         tableView.lk_registerCellWithNib(
-            identifier: String(describing: ProductDetailButtonCell.self),
+            identifier: String(describing: UserCommentTableViewCell.self),
+            bundle: nil
+        )
+        tableView.lk_registerCellWithNib(
+            identifier: String(describing: SeeMoreCommentsCell.self),
+            bundle: nil
+        )
+        tableView.lk_registerCellWithNib(
+            identifier: String(describing: ProductDetailAddCommentButtonCell.self),
             bundle: nil
         )
     }
@@ -152,44 +176,63 @@ class ProductDetailViewController: STBaseViewController {
             addToCarBtn.backgroundColor = .B4
         }
     }
+    
+    func loadMoreComments() {
+        // 增加 displayedComments 的值，然後刷新 tableView
+        displayedComments = min(userComments.count, displayedComments + 3)
+        tableView.reloadData()
+    }
+
 }
 
 // MARK: - UITableViewDataSource
 extension ProductDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard product != nil else { return 0 }
-        return datas.count + 1
+        let commentCount = min(userComments.count, 3)
+        return datas.count + 1 + commentCount + (userComments.count > 3 ? 1 : 0)
     }
+
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // 確認 product 是否存在
-        guard let product = product else { return UITableViewCell() }
-
-        // 確認 indexPath 是否對應於原有的產品資訊
-        if indexPath.row < datas.count {
-            // 是，就用原來的資料來設定 cell
-            return datas[indexPath.row].cellForIndexPath(indexPath, tableView: tableView, data: product)
-        } else {
-            // 不是，代表最後一個 cell
-            guard let buttonCell = tableView.dequeueReusableCell(
-                withIdentifier: String(describing: ProductDetailButtonCell.self),
-                for: indexPath
-            ) as? ProductDetailButtonCell else {
-                // 如果轉型失敗，輸出錯誤訊息並終止程式
-                fatalError("無法取得 ProductDetailButtonCell")
+        switch indexPath.row {
+        case 0..<datas.count:
+            // 處理產品詳情相關的 cell
+            guard let productDetail = product else {
+                return UITableViewCell() // 如果 product 為 nil，則回傳一個基本的 cell
             }
-            
-            // 為按鈕新增點擊事件的 Closure
-            buttonCell.onWriteCommentButtonTapped = { [weak self] in
+            return datas[indexPath.row].cellForIndexPath(indexPath, tableView: tableView, data: productDetail)
+
+        case datas.count:
+            // 「撰寫評論」按鈕的 cell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailAddCommentButtonCell", for: indexPath) as? ProductDetailAddCommentButtonCell else {
+                return UITableViewCell() // 如果轉型失敗，則回傳一個基本的 cell
+            }
+            cell.onWriteCommentButtonTapped = { [weak self] in
                 self?.showCommentViewController()
             }
-            
-            return buttonCell
+            return cell
+
+        case (datas.count + 1)...(datas.count + min(userComments.count, displayedComments)):
+            let commentIndex = indexPath.row - datas.count - 1
+            guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "UserCommentTableViewCell", for: indexPath) as? UserCommentTableViewCell else {
+                return UITableViewCell()
+            }
+            let comment = userComments[commentIndex]
+            // TODO: 缺Comment 和 rating
+            commentCell.nameLabel.text = comment.username
+           
+            return commentCell
+
+
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreCommentsCell", for: indexPath) as? SeeMoreCommentsCell ?? SeeMoreCommentsCell()
+            cell.onSeeMoreTapped = { [weak self] in
+                self?.loadMoreComments() // 這裡調用一個方法來加載更多評論
+            }
+            return cell
         }
     }
-
-    
 }
 
 extension ProductDetailViewController: LKGalleryViewDelegate {

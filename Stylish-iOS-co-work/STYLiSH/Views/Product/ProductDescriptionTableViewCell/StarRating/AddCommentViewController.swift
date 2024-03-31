@@ -1,5 +1,5 @@
 //
-//  addCommentViewController.swift
+//  AddCommentViewController.swift
 //  STYLiSH
 //
 //  Created by Kyle Lu on 2024/3/30.

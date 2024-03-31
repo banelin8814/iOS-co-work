@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductDetailButtonCell: UITableViewCell {
+class ProductDetailAddCommentButtonCell: UITableViewCell {
     
     var onWriteCommentButtonTapped: (() -> Void)?
     
