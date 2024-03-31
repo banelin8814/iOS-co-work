@@ -9,6 +9,15 @@
 import UIKit
 
 class LobbyViewController: STBaseViewController {
+    
+    //colorpicker
+    private let dimmedBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.alpha = 0 // 初始时设置为完全透明
+        return view
+    }()
+    let colorPickerView = ColorPickerView(frame: .zero)
 
     @IBOutlet weak var lobbyView: LobbyView! {
         didSet {
@@ -31,6 +40,16 @@ class LobbyViewController: STBaseViewController {
         navigationItem.titleView = UIImageView(image: .asset(.Image_Logo02))
         
         lobbyView.beginHeaderRefresh()
+        
+        //colorpicker
+        view.addSubview(dimmedBackgroundView)
+        view.addSubview(colorPickerView)
+        
+        popUpView()
+        colorPickerView.dismissHandler = {[weak self] in
+            self?.colorPickerView.isHidden = true
+            self?.dimmedBackgroundView.isHidden = true
+        }
     }
 
     // MARK: - Action
@@ -43,6 +62,27 @@ class LobbyViewController: STBaseViewController {
                 LKProgressHUD.showFailure(text: "讀取資料失敗！")
             }
         })
+    }
+    
+    func popUpView(){
+        self.colorPickerView.isHidden = false
+        //        self.colorPickerView.frame.origin.y = self.view.frame.height / 3
+        //        self.colorPickerView.frame.origin.x = self.view.frame.width
+        colorPickerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            colorPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            colorPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            colorPickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
+        ])
+        dimmedBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dimmedBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dimmedBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dimmedBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            dimmedBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        dimmedBackgroundView.alpha = 1
     }
     
     func presentActivityPageViewController() {

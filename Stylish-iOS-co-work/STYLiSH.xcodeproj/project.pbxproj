@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E2F5E732BB920F0001B46D9 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F5E722BB920F0001B46D9 /* ColorPickerView.swift */; };
+		0E2F5E752BB9212C001B46D9 /* CircularColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F5E742BB9212C001B46D9 /* CircularColorPickerView.swift */; };
 		0E7B270F2BB6DB78001628E6 /* LobbyBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */; };
 		0E7B27112BB6ED90001628E6 /* ActivityPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */; };
 		0E7B27142BB6F259001628E6 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27132BB6F259001628E6 /* TableViewCells.swift */; };
@@ -148,6 +150,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E2F5E722BB920F0001B46D9 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		0E2F5E742BB9212C001B46D9 /* CircularColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorPickerView.swift; sourceTree = "<group>"; };
 		0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyBanner.swift; sourceTree = "<group>"; };
 		0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPageViewController.swift; sourceTree = "<group>"; };
 		0E7B27132BB6F259001628E6 /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
@@ -322,6 +326,15 @@
 				E921004E251C9FC3CBC174F5 /* Pods-STYLiSH.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		0E2F5E712BB920CF001B46D9 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				0E2F5E722BB920F0001B46D9 /* ColorPickerView.swift */,
+				0E2F5E742BB9212C001B46D9 /* CircularColorPickerView.swift */,
+			);
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 		0E7B27122BB6F233001628E6 /* ActivityPage */ = {
@@ -601,6 +614,7 @@
 		3CD2912E22113CE4008B8A2D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0E2F5E712BB920CF001B46D9 /* ColorPicker */,
 				3C3369102227CDAF008A5A7A /* Base */,
 				5AE6F61E29E3F94A003764C6 /* Auth */,
 				5AE6F62029E3F954003764C6 /* TapPay */,
@@ -1036,6 +1050,7 @@
 				3CED4C0F2214222A00121D4B /* STParser.swift in Sources */,
 				3CED4C0A2214192100121D4B /* Product.swift in Sources */,
 				3C33691A2227D20B008A5A7A /* UIView+Extension.swift in Sources */,
+				0E2F5E732BB920F0001B46D9 /* ColorPickerView.swift in Sources */,
 				3CB8011E22299B460029A552 /* STCompondViewController.swift in Sources */,
 				3CCB3BC4222AA8FD00976A1C /* ProductDetailViewController.swift in Sources */,
 				3C9EF5342213C5C800DEE152 /* HTTPClient.swift in Sources */,
@@ -1075,6 +1090,7 @@
 				3CEBE07E222F979F0064EF82 /* JGProgressHUDWrapper.swift in Sources */,
 				3CCB3BC6222AAC8300976A1C /* LKGalleryView.swift in Sources */,
 				3C9C0D552215443900595689 /* ProfileManager.swift in Sources */,
+				0E2F5E752BB9212C001B46D9 /* CircularColorPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

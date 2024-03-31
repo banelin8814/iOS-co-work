@@ -12,6 +12,16 @@ class ActivityPageViewController: UIViewController {
     
     var recommendProduct: Product?
     var matchingProducts: [Product] = []
+//    var productImage: Product? {
+//        didSet {
+//            let storyboard = UIStoryboard(name: "Product", bundle: nil)
+//            guard let productDetailVC = storyboard.instantiateViewController(
+//                withIdentifier: "ProductDetailViewController"
+//            ) as? ProductDetailViewController else { return }
+//            guard let product = recommendProduct, let galleryView = productDetailVC.galleryView else { return }
+//            galleryView.datas = product.images
+//        }
+//    }
     
     lazy var closeButton: UIButton = {
         let close = UIButton()
@@ -30,7 +40,7 @@ class ActivityPageViewController: UIViewController {
         tableView.separatorStyle = .none
         view.addSubview(tableView)
         setupCloseButton()
-        fetchMainData(color: "FFFFFF", gender: "women")
+//        fetchMainData(color: "FFFFFF", gender: "women")
         fetchMatchData()
     }
     
@@ -72,7 +82,7 @@ extension ActivityPageViewController {
                 return
             }
             
-            guard let recommendedData = data else {
+            guard data != nil else {
                 print("Error: No data received")
                 return
             }
@@ -236,6 +246,11 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
             withIdentifier: "ProductDetailViewController"
         ) as? ProductDetailViewController else { return }
         productDetailVC.product = recommendProduct
+//        guard let product = recommendProduct, let galleryView = productDetailVC.galleryView else { return }
+//        guard let images = productImage?.images else { return }
+//        productDetailVC.galleryView.datas = images
+//        guard let images = recommendProduct?.images else { return }
+//        productDetailVC.galleryView.datas = images
         productDetailVC.backButtonAction = { [weak self] in
             self?.dismiss(animated: false, completion: nil)
         }
