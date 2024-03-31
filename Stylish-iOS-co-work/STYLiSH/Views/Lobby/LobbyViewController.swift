@@ -64,10 +64,8 @@ class LobbyViewController: STBaseViewController {
         })
     }
     
-    func popUpView(){
+    func popUpView() {
         self.colorPickerView.isHidden = false
-        //        self.colorPickerView.frame.origin.y = self.view.frame.height / 3
-        //        self.colorPickerView.frame.origin.x = self.view.frame.width
         colorPickerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             colorPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -91,6 +89,7 @@ class LobbyViewController: STBaseViewController {
             withIdentifier: String(describing: ActivityPageViewController.self)
         ) as? ActivityPageViewController else { return }
         viewController.modalPresentationStyle = .fullScreen
+        
         self.present(viewController, animated: true)
     }
 }

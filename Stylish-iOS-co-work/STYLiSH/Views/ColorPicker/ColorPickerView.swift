@@ -8,11 +8,21 @@
 
 import UIKit
 
+//protocol ColorPickerViewDelegate: AnyObject {
+//    func colorPickerView(_ colorPickerView: ColorPickerView, didSelectColor color: UIColor)
+//}
+
 class ColorPickerView: UIView {
+    
+    static let shared = ColorPickerView()
+   
+//    weak var delegate: ColorPickerViewDelegate?
+    
+    var colorSelectedHandler: ((String, String) -> Void)?
+    
     let titleLabel1: UILabel = {
         let label = UILabel()
         label.text = "Pick Your"
-        //        label.font = UIFont.regular(size: 22)
         label.font = UIFont.systemFont(ofSize: 27, weight: .heavy)
         
         label.tintColor = .B2
@@ -24,7 +34,6 @@ class ColorPickerView: UIView {
     let titleLabel2: UILabel = {
         let label = UILabel()
         label.text = "Favorite Color!!"
-        //        label.font = UIFont.boldSystemFont(ofSize: 27)
         label.font = UIFont.systemFont(ofSize: 27, weight: .black)
         label.tintColor = .B1
         label.textColor = .B1
@@ -33,7 +42,7 @@ class ColorPickerView: UIView {
     }()
     // 性別選擇器
     let genderSegmentedControl: UISegmentedControl = {
-        let segments = ["men", "women", "both"]
+        let segments = ["men", "women", "non-binary"]
         let control = UISegmentedControl(items: segments)
         control.addTarget(self, action: #selector(didChangeSegment), for: .valueChanged)
         control.translatesAutoresizingMaskIntoConstraints = false
@@ -135,19 +144,38 @@ class ColorPickerView: UIView {
     }
     
     @objc func didChooseColor(sender: UIButton) {
-        dismissHandler?()
         guard let selectedColor = colorPicker.selectedColor else {
             return
         }
-        let activityPageVC = ActivityPageViewController()
         let color = selectedColor.toHexString
         let selectedSegment = genderSegmentedControl.selectedSegmentIndex
         let gender = genderSegmentedControl.titleForSegment(at: selectedSegment) ?? "women"
         print("===selectedColor: \(color), gender: \(gender)")
-        activityPageVC.fetchMainData(color: color, gender: gender)
-        
-        //2.改個人頁面顏色
+
+        // Save to UserDefaults
+        UserDefaults.standard.set(color, forKey: "SelectedColor")
+        UserDefaults.standard.set(gender, forKey: "SelectedGender")
+
+        dismissHandler?()
     }
+    
+//    @objc func didChooseColor(sender: UIButton) {
+//        dismissHandler?()
+//        guard let selectedColor = colorPicker.selectedColor else {
+//            return
+//        }
+//        let activityPageVC = ActivityPageViewController()
+//        let color = selectedColor.toHexString
+//        let selectedSegment = genderSegmentedControl.selectedSegmentIndex
+//        let gender = genderSegmentedControl.titleForSegment(at: selectedSegment) ?? "women"
+//        activityPageVC.fetchMainData(color: color, gender: gender) {
+//            print("===selectedColor: \(color), gender: \(gender)")
+//        }
+//        
+//        //2.改個人頁面顏色
+////        delegate?.colorPickerView(self, didSelectColor: selectedColor)
+//        ColorPickerView.shared.colorSelectedHandler?(color, gender)
+//    }
     
     @objc func didChangeColor(sender: CircularColorPickerView) {
         checkRequiredFields()

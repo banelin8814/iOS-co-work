@@ -12,16 +12,6 @@ class ActivityPageViewController: UIViewController {
     
     var recommendProduct: Product?
     var matchingProducts: [Product] = []
-//    var productImage: Product? {
-//        didSet {
-//            let storyboard = UIStoryboard(name: "Product", bundle: nil)
-//            guard let productDetailVC = storyboard.instantiateViewController(
-//                withIdentifier: "ProductDetailViewController"
-//            ) as? ProductDetailViewController else { return }
-//            guard let product = recommendProduct, let galleryView = productDetailVC.galleryView else { return }
-//            galleryView.datas = product.images
-//        }
-//    }
     
     lazy var closeButton: UIButton = {
         let close = UIButton()
@@ -40,8 +30,15 @@ class ActivityPageViewController: UIViewController {
         tableView.separatorStyle = .none
         view.addSubview(tableView)
         setupCloseButton()
-//        fetchMainData(color: "FFFFFF", gender: "women")
-        fetchMatchData()
+
+        let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "FFFFFF"
+        let gender = UserDefaults.standard.string(forKey: "SelectedGender") ?? "women"
+        
+        fetchMainData(color: color, gender: gender) /*{*/
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     
     @objc private func closeButtonPressed() {
@@ -65,7 +62,7 @@ class ActivityPageViewController: UIViewController {
 
 extension ActivityPageViewController {
     
-    func fetchMainData(color: String, gender: String) {
+    func fetchMainData(color: String, gender: String/*, completion: @escaping () -> Void*/) {
         APIManager.shared.sendRequest(
             urlString: "https://traviss.beauty/api/1.0/recommendation?color=\(color)&gender=\(gender)",
             method: .post,
@@ -100,6 +97,7 @@ extension ActivityPageViewController {
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
+//                completion()
         }
     }
     
@@ -136,6 +134,7 @@ extension ActivityPageViewController {
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
+            
         }
     }
     
@@ -247,7 +246,7 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
         ) as? ProductDetailViewController else { return }
         productDetailVC.product = recommendProduct
 //        guard let product = recommendProduct, let galleryView = productDetailVC.galleryView else { return }
-//        guard let images = productImage?.images else { return }
+//        guard let images = recommendProduct?.images else { return }
 //        productDetailVC.galleryView.datas = images
 //        guard let images = recommendProduct?.images else { return }
 //        productDetailVC.galleryView.datas = images
