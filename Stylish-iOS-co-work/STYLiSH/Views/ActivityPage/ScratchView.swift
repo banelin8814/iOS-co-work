@@ -1,0 +1,156 @@
+//
+//  ScratchCardView.swift
+//  STYLiSH
+//
+//  Created by NY on 2024/4/1.
+//  Copyright © 2024 AppWorks School. All rights reserved.
+//
+
+import UIKit
+
+@objc public protocol JXScratchViewDelegate {
+    //目前刮了多少百分比
+    func scratchView(scratchView: ScratchView, didScratched percent: Float)
+}
+
+open class ScratchView: UIView {
+    open weak var delegate: JXScratchViewDelegate?
+    open var scratchContentView: UIView!
+    open var scratchMaskView: UIView!
+    open var strokeLineCap: CAShapeLayerLineCap = .round {
+        didSet {
+            maskLayer.lineCap = strokeLineCap
+        }
+    }
+    open var strokeLineWidth: CGFloat = 20 {
+        didSet {
+            maskLayer.lineWidth = strokeLineWidth
+        }
+    }
+    private var maskLayer: CAShapeLayer!
+    private var maskPath: UIBezierPath!
+
+    /// 指定初始化器
+    ///
+    /// - Parameters:
+    ///   - contentView: 内容视图，比如彩票的奖品详情内容。（需要隐藏起来的内容）
+    ///   - maskView: 遮罩视图
+    public init(contentView: UIView, maskView: UIView) {
+        super.init(frame: CGRect.zero)
+
+        scratchMaskView = maskView
+        self.addSubview(scratchMaskView)
+
+        scratchContentView = contentView
+        self.addSubview(scratchContentView)
+
+        maskLayer = CAShapeLayer()
+        maskLayer.strokeColor = UIColor.red.cgColor
+        maskLayer.lineWidth = strokeLineWidth
+        maskLayer.lineCap = strokeLineCap
+        scratchContentView?.layer.mask = maskLayer
+
+        maskPath = UIBezierPath()
+
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(processPanGesture(gesture:)))
+        self.addGestureRecognizer(pan)
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+
+        scratchContentView?.frame = self.bounds
+        scratchMaskView?.frame = self.bounds
+    }
+
+    //展示全部
+    open func showContentView() {
+        self.scratchContentView.layer.mask = nil
+    }
+
+    open func resetState() {
+        self.maskPath.removeAllPoints()
+        self.maskLayer.path = nil
+        self.scratchContentView.layer.mask = maskLayer
+    }
+
+    @objc func processPanGesture(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            let point = gesture.location(in: scratchContentView)
+            maskPath.move(to: point)
+        case .changed:
+            let point = gesture.location(in: scratchContentView)
+            maskPath.addLine(to: point)
+            maskPath.move(to: point)
+            maskLayer.path = maskPath.cgPath
+
+            if self.delegate != nil {
+                updateScratchScopePercent()
+            }
+        default:
+            break
+        }
+    }
+
+    private func updateScratchScopePercent() {
+        let image = self.getImageFromContentView()
+        var percent = 1 - self.getAlphaPixelPercent(img: image)
+        percent = max(0, min(1, percent))
+        self.delegate?.scratchView(scratchView: self, didScratched: percent)
+    }
+
+    //获取透明像素占总像素的百分比
+    private func getAlphaPixelPercent(img: UIImage) -> Float {
+        //计算像素总个数
+        let width = Int(img.size.width)
+        let height = Int(img.size.height)
+        let bitmapByteCount = width * height
+
+        //得到所有像素数据
+        let pixelData = UnsafeMutablePointer<UInt8>.allocate(capacity: bitmapByteCount)
+        let colorSpace = CGColorSpaceCreateDeviceGray()
+        let context = CGContext(data: pixelData,
+                                width: width,
+                                height: height,
+                                bitsPerComponent: 8,
+                                bytesPerRow: width,
+                                space: colorSpace,
+                                bitmapInfo: CGBitmapInfo(rawValue:
+                                    CGImageAlphaInfo.alphaOnly.rawValue).rawValue)!
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        context.clear(rect)
+        context.draw(img.cgImage!, in: rect)
+
+
+        //计算透明像素个数
+        var alphaPixelCount = 0
+        for xPixel in 0...Int(width) {
+            for yPixel in 0...Int(height) {
+                if pixelData[yPixel * width + xPixel] == 0 {
+                    alphaPixelCount += 1
+                }
+            }
+        }
+
+        free(pixelData)
+
+        return Float(alphaPixelCount) / Float(bitmapByteCount)
+    }
+
+    private func getImageFromContentView() -> UIImage {
+        let size = scratchContentView.bounds.size
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+        let context = UIGraphicsGetCurrentContext()
+        scratchContentView.layer.render(in: context!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+
+}
+

@@ -34,6 +34,8 @@ class ActivityPageViewController: UIViewController {
         let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "FFFFFF"
         let gender = UserDefaults.standard.string(forKey: "SelectedGender") ?? "women"
         fetchMainData(color: color, gender: gender)
+        
+        setupScratchCard()
     }
     
     @objc private func closeButtonPressed() {
@@ -250,6 +252,26 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
         let navController = UINavigationController(rootViewController: productDetailVC)
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: false, completion: nil)
+    }
+    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        guard section == 3 else { return UITableViewCell() }
+//        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300))
+//        let scratchView = ScratchCardView(frame: CGRect(x: 20, y: 0, width: footerView.frame.width - 40, height: 280))
+//        footerView.addSubview(scratchView)
+//        return footerView
+//    }
+    
+    func setupScratchCard() {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300))
+        let scratchView = ScratchCardView(frame: CGRect(x: 20, y: 0, width: footerView.frame.width - 40, height: 280))
+        let label = UILabel(frame: CGRect(x: 20, y: 30, width: footerView.frame.width - 40, height: 30))
+        label.text = "刮刮樂"
+        label.textColor = UIColor.darkGray
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        footerView.addSubview(scratchView)
+        footerView.addSubview(label)
+        tableView.tableFooterView = footerView
     }
     
 }
