@@ -141,11 +141,14 @@ class ColorPickerView: UIView {
         let color = selectedColor.toHexString
         let selectedSegment = genderSegmentedControl.selectedSegmentIndex
         let gender = genderSegmentedControl.titleForSegment(at: selectedSegment) ?? "women"
-        print("===selectedColor: \(color), gender: \(gender)")
+        let selectedDate = birthdatePicker.date
+        let birthMonth = Calendar.current.component(.month, from: selectedDate)
+        print("===selectedColor: \(color), gender: \(gender), selectedDate: \(selectedDate)")
 
         // Save to UserDefaults
         UserDefaults.standard.set(color, forKey: "SelectedColor")
         UserDefaults.standard.set(gender, forKey: "SelectedGender")
+        UserDefaults.standard.set(birthMonth, forKey: "SelectedBirthMonth")
 
         dismissHandler?()
     }

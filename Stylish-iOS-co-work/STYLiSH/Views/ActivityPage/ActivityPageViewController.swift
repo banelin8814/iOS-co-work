@@ -36,13 +36,23 @@ class ActivityPageViewController: UIViewController {
         let gender = UserDefaults.standard.string(forKey: "SelectedGender") ?? "women"
         fetchMainData(color: color, gender: gender)
         
-        setupScratchCard()
-        setupNewsTicker()
+        // Check if the current month matches the stored month in UserDefaults
+        if let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
+           let currentMonth = Calendar.current.dateComponents([.month], from: Date()).month,
+           currentMonth == storedMonth {
+            // Call the functions to setup scratch card and news ticker
+            setupScratchCard()
+            setupNewsTicker()
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupNewsTicker()
+        if let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
+           let currentMonth = Calendar.current.dateComponents([.month], from: Date()).month,
+           currentMonth == storedMonth {
+            setupNewsTicker()
+        }
     }
     
     @objc private func closeButtonPressed() {
@@ -56,7 +66,7 @@ class ActivityPageViewController: UIViewController {
             closeButton.widthAnchor.constraint(equalToConstant: 24),
             closeButton.heightAnchor.constraint(equalToConstant: 24),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
     }
 
@@ -327,8 +337,8 @@ extension ActivityPageViewController {
     }
     
     func setupNewsTicker() {
-        var lengthyLabel = MarqueeLabel(frame: CGRect(x: 0, y: 20, width: 0, height: 0), duration: 12.0, fadeLength: 0)
-        lengthyLabel.frame = CGRect(x: 0, y: 100, width: view.bounds.width, height: 32)
+        let lengthyLabel = MarqueeLabel(frame: CGRect(x: 0, y: 10, width: 0, height: 0), duration: 12.0, fadeLength: 0)
+        lengthyLabel.frame = CGRect(x: 0, y: 85, width: view.bounds.width, height: 32)
         lengthyLabel.textColor = .white
         lengthyLabel.font = UIFont.systemFont(ofSize: 16)
         lengthyLabel.text = "🎉本日牡羊座運勢🎉 今天，星星閃爍著神秘的光芒，預示著你將迎來許多機遇和挑戰。勇敢地面對這些挑戰，並抓住機遇，因為它們將帶給你成長和成功的機會。🎁"

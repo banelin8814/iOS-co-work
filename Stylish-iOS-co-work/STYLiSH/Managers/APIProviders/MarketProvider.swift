@@ -38,7 +38,6 @@ class MarketProvider {
                         from: data
                     )
                     completion(.success(products.data))
-                    print("\(products)")
                 } catch {
                     completion(.failure(error))
                     print("Error: \(error.localizedDescription)")
