@@ -26,7 +26,7 @@ class ColorPickerView: UIView {
     let titleLabel2: UILabel = {
         let label = UILabel()
         label.text = "Favorite Color!!"
-        label.font = UIFont.systemFont(ofSize: 31, weight: .black)
+        label.font = UIFont.systemFont(ofSize: 28, weight: .black)
         label.tintColor = .B1
         label.textColor = .B1
         label.translatesAutoresizingMaskIntoConstraints = false
