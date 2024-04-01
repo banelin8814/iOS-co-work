@@ -13,7 +13,7 @@ struct CommentsResponse: Decodable {
 }
 
 struct CommentForm: Decodable {
-    let id: Int64
+    let id: Int64?
     let name: String
     let rate: Int
     let comment: String

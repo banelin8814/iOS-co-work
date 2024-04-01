@@ -50,6 +50,7 @@ class UserCommentTableViewCell: UITableViewCell {
         setupStars()
     }
     
+    // 將星星按照迴圈依序排列
     private func setupStars() {
         // 清除舊的星星 view
         starsViews.forEach { $0.removeFromSuperview() }
@@ -82,25 +83,28 @@ class UserCommentTableViewCell: UITableViewCell {
             }
         }
     
+    // 創造實心和空心的星星
     private func makeStarIcon() -> UIImageView {
         let imageView = UIImageView(image: UIImage(named: "icon_unfilled_star"), highlightedImage: UIImage(named: "icon_filled_star"))
         imageView.contentMode = .scaleAspectFit
         return imageView
     }
     
+    // 根據 rating 更新星星的顯示狀態
     func updateStars(rating: Int) {
         setupStars()
+        // enumerated() 提供每個元素的 index 和 value
         for (index, starView) in starsViews.enumerated() {
+            // 如果星星的 index 小於傳入的 rating，則設為實心星星；如果 rating 是 3，則前三個星星是實心
             starView.isHighlighted = index < rating
         }
     }
     
     func configureCell(with comment: CommentForm) {
-           nameLabel.text = comment.name // 使用 CommentForm 中的 name
-           commentLabel.text = comment.comment // 使用 CommentForm 中的 comment
-           updateStars(rating: comment.rate) // 根據 CommentForm 中的 rate 更新星星顯示
+           nameLabel.text = comment.name
+           commentLabel.text = comment.comment
+           updateStars(rating: comment.rate)
        }
-
     
     // MARK: - Constants
     

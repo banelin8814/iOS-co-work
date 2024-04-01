@@ -133,13 +133,13 @@ class AddCommentViewController: UIViewController {
         }
         
         // 使用 APIManager 發送評論
-        APIManager.shared.postComment(userId: 14486, productId: productId, rate: selectedRate, comment: commentText) { success, error in
+        APIManager.shared.postComment(userId: 14486, productId: productId, rate: selectedRate, comment: commentText) { [weak self] success, error in
             DispatchQueue.main.async {
                 if success {
-                    // 顯示成功提示
-                    print("評論成功發送")
+                    self?.delegate?.didFinishAddingComment(rating: self?.selectedRate ?? 0, comment: commentText, username: "Lily")
+                    self?.dismiss(animated: true, completion: nil)
                 } else if let error = error {
-                    // 處理並顯示錯誤
+                    // 處理錯誤
                     print("發送評論時發生錯誤: \(error.localizedDescription)")
                 }
             }

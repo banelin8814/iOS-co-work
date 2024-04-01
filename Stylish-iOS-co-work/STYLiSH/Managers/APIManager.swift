@@ -122,7 +122,7 @@ class APIManager {
 //}
 //
 
-// TODO: 待確認 API 是否有作用？
+// MARK: - 抓 API 上的用戶留言
 extension APIManager {
     func fetchComments(forProductId productId: String, completion: @escaping ([CommentForm]?, Error?) -> Void) {
         let urlString = "https://chouyu.site/api/1.0/comments?id=\(productId)"
