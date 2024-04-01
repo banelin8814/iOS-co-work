@@ -10,10 +10,16 @@ import UIKit
 
 class ProductDescriptionTableViewCell: ProductBasicCell {
     
+    
+    //for fetchStar Top
     private struct Constants {
         static let starsCount: Int = 5
         static let starContainerHeight: CGFloat = 40
     }
+    var numberOfStars: Float = 0.0
+    //for fetchStar bottom
+
+    
     
     @IBOutlet weak var titleLbl: UILabel!
     
@@ -48,8 +54,9 @@ class ProductDescriptionTableViewCell: ProductBasicCell {
 //        updateStarIcons()
     }
     private func setupUI() {
+        
             createStars()
-            
+        
             contentView.addSubview(starsContainer)
             starsContainer.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
@@ -77,12 +84,12 @@ class ProductDescriptionTableViewCell: ProductBasicCell {
         imageView.isUserInteractionEnabled = false
         return imageView
     }
-//    private func updateStarIcons() {
-//        for (index, starView) in starsContainer.arrangedSubviews.enumerated() {
-//            guard let starImageView = starView as? UIImageView else {
-//                return
-//            }
-//            starImageView.isHighlighted = index < selectedRate
-//        }
-//    }
+    private func updateStarIcons() {
+        for (index, starView) in starsContainer.arrangedSubviews.enumerated() {
+            guard let starImageView = starView as? UIImageView else {
+                return
+            }
+            starImageView.isHighlighted = index < selectedRate
+        }
+    }
 }

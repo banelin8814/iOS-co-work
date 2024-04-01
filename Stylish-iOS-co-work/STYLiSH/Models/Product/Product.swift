@@ -33,7 +33,8 @@ struct Product: Codable {
     let variants: [Variant]
     let mainImage: String
     let images: [String]
-
+    let rating: Float?
+    
     var size: String {
         return (sizes.first ?? "") + " - " + (sizes.last ?? "")
     }
@@ -60,6 +61,7 @@ struct Product: Codable {
         case variants
         case mainImage = "main_image"
         case images
+        case rating
     }
 }
 
