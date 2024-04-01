@@ -13,12 +13,42 @@ class LobbyViewController: STBaseViewController {
     //colorpicker
     private let dimmedBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         view.alpha = 0 // 初始时设置为完全透明
         return view
     }()
     let colorPickerView = ColorPickerView(frame: .zero)
 
+    let titleLabel3: UILabel = {
+        let label = UILabel()
+        label.text = "1.選擇性別和顏色，推薦適合您的服飾"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.tintColor = .white
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 3.0
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 1, height: 1)
+        label.layer.masksToBounds = false
+        return label
+    }()
+    let titleLabel4: UILabel = {
+        let label = UILabel()
+        label.text = "2.選擇出生日期，參加生日月活動"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.tintColor = .white
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 3.0
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 1, height: 1)
+        label.layer.masksToBounds = false
+
+        return label
+    }()
+    
     @IBOutlet weak var lobbyView: LobbyView! {
         didSet {
             lobbyView.delegate = self
@@ -44,6 +74,8 @@ class LobbyViewController: STBaseViewController {
         //colorpicker
         view.addSubview(dimmedBackgroundView)
         view.addSubview(colorPickerView)
+        view.addSubview(titleLabel3)
+        view.addSubview(titleLabel4)
         
         popUpView()
         colorPickerView.dismissHandler = {[weak self] in
@@ -81,6 +113,12 @@ class LobbyViewController: STBaseViewController {
             dimmedBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         dimmedBackgroundView.alpha = 1
+        NSLayoutConstraint.activate([
+            titleLabel3.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant:  -45),
+            titleLabel3.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            titleLabel4.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant:  -22),
+            titleLabel4.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
+        ])
     }
     
     func presentActivityPageViewController() {

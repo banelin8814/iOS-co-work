@@ -34,27 +34,9 @@ class ColorPickerView: UIView {
     let titleLabel2: UILabel = {
         let label = UILabel()
         label.text = "Favorite Color!!"
-        label.font = UIFont.systemFont(ofSize: 29, weight: .black)
+        label.font = UIFont.systemFont(ofSize: 31, weight: .black)
         label.tintColor = .B1
         label.textColor = .B1
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    let titleLabel3: UILabel = {
-        let label = UILabel()
-        label.text = "選擇性別和顏色，推薦適合您的服飾"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.tintColor = .B2
-        label.textColor = .B2
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    let titleLabel4: UILabel = {
-        let label = UILabel()
-        label.text = "選擇出生日期，參加生日月活動"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.tintColor = .B2
-        label.textColor = .B2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -90,7 +72,6 @@ class ColorPickerView: UIView {
         button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.titleLabel?.textColor = .white
         button.backgroundColor = .B1
-        //        chooseButton.frame.width/2
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didChooseColor), for: .touchUpInside)
         button.isEnabled = false
@@ -124,35 +105,25 @@ class ColorPickerView: UIView {
         addSubview(colorPicker)
         addSubview(titleLabel1)
         addSubview(titleLabel2)
-        addSubview(titleLabel3)
-        addSubview(titleLabel4)
-        
+
         addSubview(genderSegmentedControl)
         addSubview(birthdatePicker)
         addSubview(chooseButton)
         
         // 添加佈局約束
         NSLayoutConstraint.activate([
-            titleLabel3.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            titleLabel3.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             
             titleLabel1.topAnchor.constraint(equalTo: topAnchor, constant: 28),
             titleLabel1.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            
-            titleLabel4.topAnchor.constraint(equalTo: titleLabel1.bottomAnchor, constant: 3),
-            titleLabel4.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            
-            titleLabel2.topAnchor.constraint(equalTo: titleLabel1.bottomAnchor, constant: 12),
+ 
+            titleLabel2.topAnchor.constraint(equalTo: titleLabel1.bottomAnchor, constant: 18),
             titleLabel2.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            
-            
-            
-            
+
             genderSegmentedControl.topAnchor.constraint(equalTo: topAnchor, constant: 28),
             genderSegmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             genderSegmentedControl.widthAnchor.constraint(equalToConstant: 250),
             
-            birthdatePicker.topAnchor.constraint(equalTo: genderSegmentedControl.bottomAnchor, constant: 22),
+            birthdatePicker.topAnchor.constraint(equalTo: genderSegmentedControl.bottomAnchor, constant: 15),
             birthdatePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             
             colorPicker.centerXAnchor.constraint(equalTo: centerXAnchor),
