@@ -17,6 +17,8 @@ class AddCommentViewController: UIViewController {
 
     // MARK: - Properties
     
+    var productId: Int?
+    
     /// 儲存選擇的星級
     private var selectedRate: Int = 0
     
@@ -117,19 +119,33 @@ class AddCommentViewController: UIViewController {
     }
     
     @objc private func showAlertAction() {
-        let alert = UIAlertController(title: "感謝您的評論",
-                                      message: "我們會提供您更美好的穿搭體驗！",
-                                      preferredStyle: .alert)
+        // 確保 productId 不是 nil
+        guard let productId = self.productId else {
+            print("產品ID為nil，無法發送評論。")
+            return
+        }
         
-        let okayAction = UIAlertAction(title: "關閉", style: .default)
+        // 確保評論不是空白
+        let commentText = commentTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if commentText.isEmpty {
+            print("評論不能為空。")
+            return
+        }
         
-        delegate?.didFinishAddingComment(rating: selectedRate, comment: commentTextView.text, username: "Lily") 
-
-        alert.addAction(okayAction)
-        
-        present(alert, animated: true)
+        // 使用 APIManager 發送評論
+        APIManager.shared.postComment(userId: 14486, productId: productId, rate: selectedRate, comment: commentText) { success, error in
+            DispatchQueue.main.async {
+                if success {
+                    // 顯示提示，告知用戶評論已成功發送
+                    print("評論成功發送")
+                } else if let error = error {
+                    // 處理並顯示錯誤
+                    print("發送評論時發生錯誤: \(error.localizedDescription)")
+                }
+            }
+        }
     }
-    
+
     // MARK: - Private methods
     
     private func createStars() {

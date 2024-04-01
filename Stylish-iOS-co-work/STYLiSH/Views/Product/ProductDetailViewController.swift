@@ -309,12 +309,21 @@ extension ProductDetailViewController: ProductPickerControllerDelegate {
 extension ProductDetailViewController {
     func showCommentViewController() {
         if let addCommentVC = storyboard?.instantiateViewController(withIdentifier: "AddCommentViewController") as? AddCommentViewController {
+            // 設置代理
             addCommentVC.delegate = self
+            
+            // 設置產品ID
+            if let productId = self.product?.id {
+                addCommentVC.productId = productId
+            }
+            
+            // 展示AddCommentViewController
             present(addCommentVC, animated: true, completion: nil)
         } else {
             print("無法初始化 AddCommentViewController")
         }
     }
+
 }
 
 
