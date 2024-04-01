@@ -43,6 +43,7 @@ class LobbyTableViewCell: UITableViewCell {
             return
         }
 
+        // TODO: 要把 middle和 right imgs 改為 [1]
         leftImgView.loadImage(imgs[0], placeHolder: .asset(.Image_Placeholder))
         middleTopImgView.loadImage(imgs[1], placeHolder: .asset(.Image_Placeholder))
 

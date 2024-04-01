@@ -96,30 +96,28 @@ extension STTabBarViewController {
     }
 }
 
- // MARK: - UITabBarControllerDelegate
-extension STTabBarViewController: UITabBarControllerDelegate {
-
-    func tabBarController(
-        _ tabBarController: UITabBarController,
-        shouldSelect viewController: UIViewController
-    ) -> Bool {
-        guard
-            let navVC = viewController as? UINavigationController,
-            navVC.viewControllers.first is ProfileViewController
-        else {
-            return true
-        }
-        
-        if KeyChainManager.shared.token == nil {
-
-// MARK: - 關閉 FB 登入視窗
+// MARK: - UITabBarControllerDelegate
+//extension STTabBarViewController: UITabBarControllerDelegate {
+//
+//    func tabBarController(
+//        _ tabBarController: UITabBarController,
+//        shouldSelect viewController: UIViewController
+//    ) -> Bool {
+//        guard
+//            let navVC = viewController as? UINavigationController,
+//            navVC.viewControllers.first is ProfileViewController
+//        else {
+//            return true
+//        }
+//        
+//        if KeyChainManager.shared.token == nil {
 //            if let authVC = UIStoryboard.auth.instantiateInitialViewController() {
 //                authVC.modalPresentationStyle = .overCurrentContext
 //                present(authVC, animated: false, completion: nil)
 //            }
-            return false
-        } else {
-            return true
-        }
-    }
-}
+//            return false
+//        } else {
+//            return true
+//        }
+//    }
+//}

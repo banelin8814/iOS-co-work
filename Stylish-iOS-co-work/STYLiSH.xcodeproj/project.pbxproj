@@ -15,6 +15,16 @@
 		0E7B27112BB6ED90001628E6 /* ActivityPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */; };
 		0E7B27142BB6F259001628E6 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27132BB6F259001628E6 /* TableViewCells.swift */; };
 		0E9B7F3D2BB82D1300770DC3 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9B7F3C2BB82D1300770DC3 /* APIManager.swift */; };
+		27BE61CB2BB7E27F00D2D935 /* UserCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61C92BB7E27F00D2D935 /* UserCommentTableViewCell.swift */; };
+		27BE61CC2BB7E27F00D2D935 /* UserCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61CA2BB7E27F00D2D935 /* UserCommentTableViewCell.xib */; };
+		27BE61CE2BB7E5E500D2D935 /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */; };
+		27BE61D02BB7E65200D2D935 /* UIView + PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */; };
+		27BE61D92BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61D72BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.swift */; };
+		27BE61DA2BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61D82BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.xib */; };
+		27BE61DC2BB933D000D2D935 /* UserComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61DB2BB933D000D2D935 /* UserComment.swift */; };
+		27BE61DF2BB93E1B00D2D935 /* SeeMoreCommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61DE2BB93E1B00D2D935 /* SeeMoreCommentsCell.xib */; };
+		27BE61E02BB93E1B00D2D935 /* SeeMoreCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61DD2BB93E1B00D2D935 /* SeeMoreCommentsCell.swift */; };
+		27BE61E22BBA486500D2D935 /* CommentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61E12BBA486500D2D935 /* CommentForm.swift */; };
 		30C2E5FF28B87D4700DD2939 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C2E5FE28B87D4700DD2939 /* TPDirect.framework */; };
 		3C09F5122211435B00C5B3E2 /* Lobby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C09F5112211435B00C5B3E2 /* Lobby.storyboard */; };
 		3C09F51C22114A0100C5B3E2 /* STTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */; };
@@ -160,6 +170,16 @@
 		0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPageViewController.swift; sourceTree = "<group>"; };
 		0E7B27132BB6F259001628E6 /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
 		0E9B7F3C2BB82D1300770DC3 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		27BE61C92BB7E27F00D2D935 /* UserCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentTableViewCell.swift; sourceTree = "<group>"; };
+		27BE61CA2BB7E27F00D2D935 /* UserCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCommentTableViewCell.xib; sourceTree = "<group>"; };
+		27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentViewController.swift; sourceTree = "<group>"; };
+		27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + PulseAnimation.swift"; sourceTree = "<group>"; };
+		27BE61D72BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailAddCommentButtonCell.swift; sourceTree = "<group>"; };
+		27BE61D82BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailAddCommentButtonCell.xib; sourceTree = "<group>"; };
+		27BE61DB2BB933D000D2D935 /* UserComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserComment.swift; sourceTree = "<group>"; };
+		27BE61DD2BB93E1B00D2D935 /* SeeMoreCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreCommentsCell.swift; sourceTree = "<group>"; };
+		27BE61DE2BB93E1B00D2D935 /* SeeMoreCommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeeMoreCommentsCell.xib; sourceTree = "<group>"; };
+		27BE61E12BBA486500D2D935 /* CommentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentForm.swift; sourceTree = "<group>"; };
 		30C2E5FE28B87D4700DD2939 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
 		3C09F5112211435B00C5B3E2 /* Lobby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lobby.storyboard; sourceTree = "<group>"; };
 		3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTabBarViewController.swift; sourceTree = "<group>"; };
@@ -352,6 +372,18 @@
 			path = ActivityPage;
 			sourceTree = "<group>";
 		};
+		27BE61C42BB7E17F00D2D935 /* StarRating */ = {
+			isa = PBXGroup;
+			children = (
+				27BE61C92BB7E27F00D2D935 /* UserCommentTableViewCell.swift */,
+				27BE61CA2BB7E27F00D2D935 /* UserCommentTableViewCell.xib */,
+				27BE61CD2BB7E5E500D2D935 /* AddCommentViewController.swift */,
+				27BE61DD2BB93E1B00D2D935 /* SeeMoreCommentsCell.swift */,
+				27BE61DE2BB93E1B00D2D935 /* SeeMoreCommentsCell.xib */,
+			);
+			path = StarRating;
+			sourceTree = "<group>";
+		};
 		3C09F51F22115A9F00C5B3E2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +401,7 @@
 				3CB80E77222FCCC20095F18C /* Bundle+Extension.swift */,
 				3CFAC67222EEF71C00785FAB /* String+Extension.swift */,
 				58A77A9F262F3CC800B88679 /* LSColor+Extension.swift */,
+				27BE61CF2BB7E65200D2D935 /* UIView + PulseAnimation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -505,6 +538,7 @@
 			children = (
 				3C6020D6222B883600312958 /* ProductDescriptionTableViewCell.swift */,
 				3C6020D7222B883600312958 /* ProductDescriptionTableViewCell.xib */,
+				27BE61C42BB7E17F00D2D935 /* StarRating */,
 			);
 			path = ProductDescriptionTableViewCell;
 			sourceTree = "<group>";
@@ -515,6 +549,8 @@
 				3C6020DB222B90DF00312958 /* ProductDetailCell.swift */,
 				3C6020DC222B90DF00312958 /* ProductDetailLabelCell.xib */,
 				3C6020DF222B937F00312958 /* ProductDetailColorCell.xib */,
+				27BE61D82BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.xib */,
+				27BE61D72BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.swift */,
 			);
 			path = ProductDetailCell;
 			sourceTree = "<group>";
@@ -703,6 +739,8 @@
 			children = (
 				3CE7A518223064C7009FF003 /* UserObject.swift */,
 				3CE7A516223061A9009FF003 /* UserRequest.swift */,
+				27BE61DB2BB933D000D2D935 /* UserComment.swift */,
+				27BE61E12BBA486500D2D935 /* CommentForm.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -913,6 +951,7 @@
 				3C4B10D722292732009942B7 /* card_unknown.png in Resources */,
 				3C4B10D822292732009942B7 /* card_mastercard@3x.png in Resources */,
 				3CD29124221135E3008B8A2D /* Assets.xcassets in Resources */,
+				27BE61DF2BB93E1B00D2D935 /* SeeMoreCommentsCell.xib in Resources */,
 				3C4B10D222292732009942B7 /* card_unknown@3x.png in Resources */,
 				3CD29122221135E2008B8A2D /* Main.storyboard in Resources */,
 				3CC706172216B34800CAD850 /* ProductTableViewCell.xib in Resources */,
@@ -927,6 +966,7 @@
 				3C34794D222E82F600969C30 /* AmountSelectionCell.xib in Resources */,
 				3C4B10D422292732009942B7 /* card_jcb@2x.png in Resources */,
 				3C4B10DB22292732009942B7 /* card_mastercard@2x.png in Resources */,
+				27BE61CC2BB7E27F00D2D935 /* UserCommentTableViewCell.xib in Resources */,
 				3CED8086230112C400B7DA8E /* InfoPlist.strings in Resources */,
 				3C4B10CD22292732009942B7 /* card_jcb.png in Resources */,
 				3C33690F2226F53E008A5A7A /* TrolleyTableViewCell.xib in Resources */,
@@ -934,6 +974,7 @@
 				3C4B10DA22292732009942B7 /* card_visa@3x.png in Resources */,
 				3C6020D9222B883600312958 /* ProductDescriptionTableViewCell.xib in Resources */,
 				3C6020E0222B937F00312958 /* ProductDetailColorCell.xib in Resources */,
+				27BE61DA2BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.xib in Resources */,
 				3C831C6522E9AF8F00112298 /* STOrderUserInputCell.xib in Resources */,
 				3C4B10D922292732009942B7 /* card_visa@2x.png in Resources */,
 			);
@@ -1034,6 +1075,7 @@
 				3C0DD876221348E900F5237E /* LobbyViewController.swift in Sources */,
 				3C33691F2227DC7B008A5A7A /* TrolleySelectionView.swift in Sources */,
 				3C831C6422E9AF8F00112298 /* STOrderUserInputCell.swift in Sources */,
+				27BE61D02BB7E65200D2D935 /* UIView + PulseAnimation.swift in Sources */,
 				3C4B10E222292EBB009942B7 /* STTapPayViewController.swift in Sources */,
 				3C831C8A22EAAF7A00112298 /* STPaymentInfoTableViewCell.swift in Sources */,
 				0E2F5E7B2BB9E781001B46D9 /* ScratchCardView.swift in Sources */,
@@ -1066,6 +1108,7 @@
 				3CED80AE23012CE400B7DA8E /* NSLocalizedString+Extension.swift in Sources */,
 				0E7B27142BB6F259001628E6 /* TableViewCells.swift in Sources */,
 				3CA25519222A484300B286F6 /* ProductsListProvider.swift in Sources */,
+				27BE61CB2BB7E27F00D2D935 /* UserCommentTableViewCell.swift in Sources */,
 				3C3369162227CE7D008A5A7A /* TrolleyProductBaseView.swift in Sources */,
 				3CE7A50222302354009FF003 /* ProductContentCategory.swift in Sources */,
 				3C6020E8222BBA3C00312958 /* ProductBasicCell.swift in Sources */,
@@ -1084,13 +1127,18 @@
 				3CC706122216955900CAD850 /* STBaseNavigationController.swift in Sources */,
 				3C8F191922E5997B00EECE90 /* LobbyTableViewHeaderView.swift in Sources */,
 				3CE7A517223061A9009FF003 /* UserRequest.swift in Sources */,
+				27BE61E22BBA486500D2D935 /* CommentForm.swift in Sources */,
+				27BE61DC2BB933D000D2D935 /* UserComment.swift in Sources */,
 				3C09F52122115AB700C5B3E2 /* UIImage+Extension.swift in Sources */,
 				3C6B8FE8222CE53100804EFE /* BasicSelectionCell.swift in Sources */,
 				3C41B8472216667000112F94 /* ProductViewController.swift in Sources */,
+				27BE61CE2BB7E5E500D2D935 /* AddCommentViewController.swift in Sources */,
 				3CE7A51322305916009FF003 /* UserProvider.swift in Sources */,
 				3CE7A51E22308D34009FF003 /* OrderObject.swift in Sources */,
 				3CD9BB35223B882C0012C00D /* AuthViewController.swift in Sources */,
 				58A77AA0262F3CC800B88679 /* LSColor+Extension.swift in Sources */,
+				27BE61D92BB800ED00D2D935 /* ProductDetailAddCommentButtonCell.swift in Sources */,
+				27BE61E02BB93E1B00D2D935 /* SeeMoreCommentsCell.swift in Sources */,
 				3CB801212229A0970029A552 /* KingFisherWrapper.swift in Sources */,
 				3CFAC67322EEF71C00785FAB /* String+Extension.swift in Sources */,
 				3C33863F221BB2B800ED97E4 /* ProductListViewController.swift in Sources */,

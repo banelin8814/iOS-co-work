@@ -10,14 +10,14 @@ import UIKit
 
 class ProductDescriptionTableViewCell: ProductBasicCell {
     
-    
-    //for fetchStar Top
     private struct Constants {
         static let starsCount: Int = 5
         static let starContainerHeight: CGFloat = 40
     }
+
     var numberOfStars: Float = 0.0
-    //for fetchStar bottom
+
+
 
     
     

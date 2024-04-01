@@ -121,3 +121,60 @@ class APIManager {
 //    }
 //}
 //
+
+// MARK: - 抓 API 上的用戶留言
+extension APIManager {
+    func fetchComments(forProductId productId: String, completion: @escaping ([CommentForm]?, Error?) -> Void) {
+        let urlString = "https://chouyu.site/api/1.0/comments?id=\(productId)"
+        sendRequest(urlString: urlString, method: .get, parameters: nil) { data, response, error in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let data = data, let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("Error: Invalid response or no data")
+                completion(nil, error)
+                return
+            }
+            
+            do {
+                // 使用 CommentsResponse 來解析 JSON 數據
+                let commentsResponse = try JSONDecoder().decode(CommentsResponse.self, from: data)
+                completion(commentsResponse.data, nil)  // 現在使用 commentsResponse.data 來獲取評論數據
+            } catch {
+                print("Error parsing JSON: \(error.localizedDescription)")
+                completion(nil, error)
+            }
+        }
+    }
+}
+
+
+// MARK: - 上傳 App 使用者留言
+extension APIManager {
+    func postComment(userId: Int, productId: Int, rate: Int, comment: String, completion: @escaping (Bool, Error?) -> Void) {
+        let urlString = "https://chouyu.site/api/1.0/comment/create"
+        let parameters = [
+            "userId": userId,
+            "productId": productId,
+            "rate": rate,
+            "comment": comment
+        ] as [String : Any]
+        
+        sendRequest(urlString: urlString, method: .post, parameters: parameters) { data, response, error in
+            guard error == nil else {
+                completion(false, error)
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                print("Error: Invalid response")
+                completion(false, nil)
+                return
+            }
+            
+            completion(true, nil)
+        }
+    }
+}
