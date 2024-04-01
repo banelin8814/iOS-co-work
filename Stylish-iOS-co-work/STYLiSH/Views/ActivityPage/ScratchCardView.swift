@@ -13,16 +13,22 @@ class ScratchCardView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        let textIndex = Int.random(in: 0..<2)
+        let text: String
+        if textIndex == 0 {
+            text = "再接再厲! \n 可悲仔～～"
+        } else {
+            text = "恭喜中獎！ \n 全館商品5折"
+        }
 
         let contentView = UILabel()
         contentView.backgroundColor = .systemYellow
         contentView.textAlignment = .center
-        contentView.text = "再接再厲，可悲仔～～"
+        contentView.text = text
         contentView.font = .systemFont(ofSize: 25, weight: .black)
         contentView.textColor = .systemBrown
         contentView.numberOfLines = 0
-
-      
 
         let maskView = UIView()
         maskView.backgroundColor = UIColor.lightGray

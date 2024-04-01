@@ -55,51 +55,51 @@ class LobbyViewController: STBaseViewController {
     }
 
     // MARK: - Action
-//    private func fetchData() {
-//        marketProvider.fetchHots(completion: { [weak self] result in
-//            switch result {
-//            case .success(let products):
-//                self?.datas = products
-//            case .failure:
-//                LKProgressHUD.showFailure(text: "讀取資料失敗！")
-//            }
-//        })
-//    }
-    
-    func fetchLobbyData() {
-        APIManager.shared.sendRequest(
-            urlString: "https://chouyu.site/api/1.0/products/all",
-            method: .get,
-            parameters: ["key": "value"]
-        ) { data, response, error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                return
+    private func fetchData() {
+        marketProvider.fetchHots(completion: { [weak self] result in
+            switch result {
+            case .success(let products):
+                self?.datas = products
+            case .failure:
+                LKProgressHUD.showFailure(text: "讀取資料失敗！")
             }
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                print("Error: Invalid response")
-                return
-            }
-            
-            guard data != nil else {
-                print("Error: No data received")
-                return
-            }
-            
-            do {
-                if let data = data {
-                    let decoder = JSONDecoder()
-                    let lobbyData = try decoder.decode(PromotedProducts.self, from: data)
-                    self.datas = [lobbyData]
-                    print("成功：\(lobbyData)")
-                }
-            } catch {
-                print("Error parsing JSON: \(error.localizedDescription)")
-            }
-        }
+        })
     }
+    
+//    func fetchLobbyData() {
+//        APIManager.shared.sendRequest(
+//            urlString: "https://chouyu.site/api/1.0/products/all",
+//            method: .get,
+//            parameters: ["key": "value"]
+//        ) { data, response, error in
+//            if let error = error {
+//                print("Error: \(error.localizedDescription)")
+//                return
+//            }
+//            
+//            guard let httpResponse = response as? HTTPURLResponse,
+//                  (200...299).contains(httpResponse.statusCode) else {
+//                print("Error: Invalid response")
+//                return
+//            }
+//            
+//            guard data != nil else {
+//                print("Error: No data received")
+//                return
+//            }
+//            
+//            do {
+//                if let data = data {
+//                    let decoder = JSONDecoder()
+//                    let lobbyData = try decoder.decode(PromotedProducts.self, from: data)
+//                    self.datas = [lobbyData]
+//                    print("成功：\(lobbyData)")
+//                }
+//            } catch {
+//                print("Error parsing JSON: \(error.localizedDescription)")
+//            }
+//        }
+//    }
     
 //    func fetchDetailData(id: String) {
 //        APIManager.shared.sendRequest(
@@ -169,7 +169,7 @@ class LobbyViewController: STBaseViewController {
 extension LobbyViewController: LobbyViewDelegate {
     
     func triggerRefresh(_ lobbyView: LobbyView) {
-        fetchLobbyData()
+        fetchData()
     }
 
     // MARK: - UITableViewDataSource and UITableViewDelegate

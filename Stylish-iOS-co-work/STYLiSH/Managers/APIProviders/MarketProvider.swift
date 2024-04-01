@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias PromotionHanlder = (Result<[Product], Error>) -> Void
+typealias PromotionHanlder = (Result<[PromotedProducts], Error>) -> Void
 typealias ProductsResponseWithPaging = (Result<STSuccessParser<[Product]>, Error>) -> Void
 
 class MarketProvider {
@@ -34,7 +34,7 @@ class MarketProvider {
             case .success(let data):
                 do {
                     let products = try self.decoder.decode(
-                        STSuccessParser<[Product]>.self,
+                        STSuccessParser<[PromotedProducts]>.self,
                         from: data
                     )
                     completion(.success(products.data))

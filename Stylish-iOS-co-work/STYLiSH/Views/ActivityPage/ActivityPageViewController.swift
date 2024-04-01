@@ -254,14 +254,6 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
         self.present(navController, animated: false, completion: nil)
     }
     
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        guard section == 3 else { return UITableViewCell() }
-//        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300))
-//        let scratchView = ScratchCardView(frame: CGRect(x: 20, y: 0, width: footerView.frame.width - 40, height: 280))
-//        footerView.addSubview(scratchView)
-//        return footerView
-//    }
-    
     func setupScratchCard() {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300))
         let scratchView = ScratchCardView(frame: CGRect(x: 20, y: 0, width: footerView.frame.width - 40, height: 280))
