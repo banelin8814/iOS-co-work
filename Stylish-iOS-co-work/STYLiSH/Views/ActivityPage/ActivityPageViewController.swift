@@ -282,7 +282,6 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
 extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 5
         return matchingProducts.count
     }
     

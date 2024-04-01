@@ -37,8 +37,6 @@ class ProductDetailViewController: STBaseViewController {
     var nubmerOfStars: Float?
     //for fetchStar bottom
     
-    
-    
     private lazy var blurView: UIView = {
         let blurView = UIView(frame: tableView.frame)
         blurView.backgroundColor = .black.withAlphaComponent(0.4)
@@ -51,8 +49,8 @@ class ProductDetailViewController: STBaseViewController {
     
     var product: Product? {
         didSet {
-            guard let product = product, let galleryView = galleryView, let images = product.images else { return }
-            galleryView.datas = images
+            guard let product = product, let galleryView = galleryView else { return }
+            galleryView.datas = product.images
         }
     }
     private var pickerViewController: ProductPickerController?
@@ -67,8 +65,8 @@ class ProductDetailViewController: STBaseViewController {
         
         setupTableView()
         
-        guard let product = product, let images = product.images else { return }
-        galleryView.datas = images
+        guard let product = product else { return }
+        galleryView.datas = product.images
         
         fetchReview(id: product.id) { [weak self] result in
             switch result {
