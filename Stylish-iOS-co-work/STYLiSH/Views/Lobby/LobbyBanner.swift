@@ -82,7 +82,7 @@ class LobbyBanner: UITableViewHeaderFooterView, UIScrollViewDelegate {
             scrollView.addSubview(imageView)
             
             let labelStrings = [
-                "在選擇的瞬間，我想為你描繪一幅色彩斑斕的人生畫卷 \n ----- 閃爍《色彩人生篇》",
+                "選擇 \n 筆下所描繪的是色彩斑斕的人生畫卷 \n ---- 閃爍《色彩人生篇》",
                 "於是 我也想要給你 一個那麼美好的自己 \n -----不朽《與自己和好如初》",
                 "永遠 展現自信與專業 無法抵擋的男人魅力 \n -----復古《再一次經典》",
                 "瞬間 在城市的角落 找到失落多時的記憶 \n -----印象《都會故事集》"

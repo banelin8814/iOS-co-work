@@ -54,6 +54,8 @@ class ColorPickerView: UIView {
     // 色彩選擇器
     let colorPicker: CircularColorPickerView = {
         let picker = CircularColorPickerView()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didChangeColor))
+        picker.addGestureRecognizer(tapGesture)
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
@@ -170,8 +172,8 @@ class ColorPickerView: UIView {
     }
 
     func checkRequiredFields() {
-        if colorPicker.selectedColor != nil 
-            && genderSegmentedControl.selectedSegmentIndex != UISegmentedControl.noSegment {
+        if genderSegmentedControl.selectedSegmentIndex != UISegmentedControl.noSegment 
+            && colorPicker.selectedColor != nil {
             chooseButton.isEnabled = true
         } else {
             chooseButton.isEnabled = false

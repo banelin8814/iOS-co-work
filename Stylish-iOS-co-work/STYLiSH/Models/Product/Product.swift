@@ -17,6 +17,10 @@ struct RecommendProduct: Codable {
     let data: Product
 }
 
+struct MatchingProduct: Codable {
+    let data: [Product]
+}
+
 struct Product: Codable {
     let category: String?
     let id: Int

@@ -15,6 +15,7 @@ class ActivityPageViewController: UIViewController {
     
     var recommendProduct: Product?
     var matchingProducts: [Product] = []
+    var productId: String?
     
     lazy var closeButton: UIButton = {
         let close = UIButton()
@@ -23,6 +24,8 @@ class ActivityPageViewController: UIViewController {
         close.translatesAutoresizingMaskIntoConstraints = false
         return close
     }()
+    
+    var activityIndicator: UIActivityIndicatorView?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,7 +39,13 @@ class ActivityPageViewController: UIViewController {
 
         let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "FFFFFF"
         let gender = UserDefaults.standard.string(forKey: "SelectedGender") ?? "women"
-        fetchMainData(color: color, gender: gender)
+        fetchMainData(color: color, gender: gender) {
+            self.fetchMatchData(id: self.productId ?? "202403300494") {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
         
         // Check if the current month matches the stored month in UserDefaults
         if let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
@@ -71,6 +80,13 @@ class ActivityPageViewController: UIViewController {
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
     }
+    
+    func startIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator?.center = self.tableView.center
+        activityIndicator?.startAnimating()
+        self.view.addSubview(activityIndicator!)
+    }
 
 }
 
@@ -78,7 +94,10 @@ class ActivityPageViewController: UIViewController {
 
 extension ActivityPageViewController {
     
-    func fetchMainData(color: String, gender: String) {
+    func fetchMainData(color: String, gender: String, completion: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            self.startIndicator()
+        }
         APIManager.shared.sendRequest(
             urlString: "https://traviss.beauty/api/1.0/recommendation?color=\(color)&gender=\(gender)",
             method: .post,
@@ -105,6 +124,7 @@ extension ActivityPageViewController {
                     let decoder = JSONDecoder()
                     let recommendedData = try decoder.decode(RecommendProduct.self, from: data)
                     self.recommendProduct = recommendedData.data
+                    self.productId = "\(recommendedData.data.id)"
                     print("成功：\(recommendedData)")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -113,13 +133,13 @@ extension ActivityPageViewController {
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
+            completion()
         }
     }
     
-    //TODO: - stored id
-    func fetchMatchData(id: String) {
+    func fetchMatchData(id: String, completion: @escaping () -> Void) {
         APIManager.shared.sendRequest(
-            urlString: "https://traviss.beauty/api/1.0/recommendation_by_product?product_id=\(id)",
+            urlString: "https://traviss.beauty/api/1.0/recommendationproduct?product_id=\(id)",
             method: .post,
             parameters: ["key": "value"]
         ) { data, response, error in
@@ -142,14 +162,17 @@ extension ActivityPageViewController {
             do {
                 if let data = data {
                     let decoder = JSONDecoder()
-                    let matchingData = try decoder.decode(RecommendProduct.self, from: data)
-                    self.matchingProducts = [matchingData.data]
+                    let matchingData = try decoder.decode(MatchingProduct.self, from: data)
+                    self.matchingProducts = matchingData.data
                     print("成功：\(matchingData)")
                 }
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
-            
+            completion()
+            DispatchQueue.main.async {
+                self.activityIndicator?.stopAnimating()
+            }
         }
     }
     
@@ -205,7 +228,7 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
                 layout.minimumInteritemSpacing = 0
                 layout.minimumLineSpacing = 0
             }
-    
+            matchingProductCell.collectionView.reloadData()
             return matchingProductCell
             
         default:
@@ -274,8 +297,7 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
 extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-//        return matchingProducts.count
+        return matchingProducts.count
     }
     
     func collectionView(
@@ -286,15 +308,11 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
             withReuseIdentifier: String(describing: CollectionViewCell.self),
             for: indexPath)
         guard let collectionViewCell = cell as? CollectionViewCell else { return cell }
-//        let product = matchingProducts[indexPath.row]
-//        collectionViewCell.imageView.kf.setImage(with: URL(string: product.mainImage))
-//        collectionViewCell.imageView.contentMode = .scaleAspectFill
-//        collectionViewCell.titleLabel.text = product.title
-//        collectionViewCell.descriptionLabel.text = product.description
-        collectionViewCell.imageView.image = UIImage(named: "Image_Placeholder")
+        let product = matchingProducts[indexPath.row]
+        collectionViewCell.imageView.kf.setImage(with: URL(string: product.mainImage))
         collectionViewCell.imageView.contentMode = .scaleAspectFill
-        collectionViewCell.titleLabel.text = "Title"
-        collectionViewCell.descriptionLabel.text = "Description"
+        collectionViewCell.titleLabel.text = product.title
+        collectionViewCell.descriptionLabel.text = product.description
         return collectionViewCell
     }
     
@@ -344,7 +362,8 @@ extension ActivityPageViewController {
         lengthyLabel.textColor = .white
         lengthyLabel.font = UIFont.systemFont(ofSize: 16)
         lengthyLabel.text = "🎉本日牡羊座運勢🎉 今天，星星閃爍著神秘的光芒，預示著你將迎來許多機遇和挑戰。勇敢地面對這些挑戰，並抓住機遇，因為它們將帶給你成長和成功的機會。🎁"
-        lengthyLabel.backgroundColor = UIColor.hexStringToUIColor(hex: "6b5c5b")
+        let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "6b5c5b"
+        lengthyLabel.backgroundColor = UIColor.hexStringToUIColor(hex: color)
         lengthyLabel.holdScrolling = false
         lengthyLabel.animationDelay = 1
         view.addSubview(lengthyLabel)
