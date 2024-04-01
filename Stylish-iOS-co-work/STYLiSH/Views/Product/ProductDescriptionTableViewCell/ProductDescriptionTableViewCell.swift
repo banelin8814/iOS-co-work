@@ -17,10 +17,6 @@ class ProductDescriptionTableViewCell: ProductBasicCell {
 
     var numberOfStars: Float = 0.0
 
-
-
-    
-    
     @IBOutlet weak var titleLbl: UILabel!
     
     @IBOutlet weak var priceLbl: UILabel!
@@ -53,7 +49,6 @@ class ProductDescriptionTableViewCell: ProductBasicCell {
     private func setupUI() {
         //:1
             createStars()
-        
             contentView.addSubview(starsContainer)
             starsContainer.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
