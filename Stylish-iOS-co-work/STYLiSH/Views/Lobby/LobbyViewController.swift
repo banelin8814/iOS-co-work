@@ -99,6 +99,9 @@ class LobbyViewController: STBaseViewController {
     }
     
     func popUpView() {
+        self.dimmedBackgroundView.isHidden = false
+        self.titleLabel3.isHidden = false
+        self.titleLabel4.isHidden = false
         self.colorPickerView.isHidden = false
         colorPickerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -116,9 +119,9 @@ class LobbyViewController: STBaseViewController {
         ])
         dimmedBackgroundView.alpha = 1
         NSLayoutConstraint.activate([
-            titleLabel3.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant:  -45),
+            titleLabel3.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -45),
             titleLabel3.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            titleLabel4.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant:  -22),
+            titleLabel4.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -22),
             titleLabel4.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
         ])
     }

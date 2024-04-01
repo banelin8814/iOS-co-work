@@ -153,6 +153,7 @@ class ColorPickerView: UIView {
 
         // Save to UserDefaults
         UserDefaults.standard.set(color, forKey: "SelectedColor")
+        NotificationCenter.default.post(name: NSNotification.Name("SelectedColorChanged"), object: nil)
         UserDefaults.standard.set(gender, forKey: "SelectedGender")
         UserDefaults.standard.set(birthMonth, forKey: "SelectedBirthMonth")
 

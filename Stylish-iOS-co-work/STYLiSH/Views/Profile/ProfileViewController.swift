@@ -44,7 +44,19 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateBackgroundColor),
+            name: NSNotification.Name("SelectedColorChanged"),
+            object: nil
+        )
 //        fetchData()
+    }
+    
+    @objc func updateBackgroundColor() {
+        let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "FFFFFF"
+        self.profileColorView.backgroundColor = UIColor.hexStringToUIColor(hex: color)
     }
 
 //    // MARK: - Action
@@ -158,4 +170,73 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGSize {
         return CGSize(width: UIScreen.width, height: 48.0)
     }
+}
+
+extension ProfileViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = manager.groups[indexPath.section].items[indexPath.row]
+        if indexPath.section == 1 && indexPath.row == 5 {
+            presentColorPickerView()
+        }
+    }
+    
+    private func presentColorPickerView() {
+        let colorPickerView = ColorPickerView(frame: .zero)
+        colorPickerView.birthdatePicker.isHidden = true
+        
+        lazy var dimmedBackgroundView: UIView = {
+            let view = UIView()
+            view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            view.alpha = 0 // 初始时设置为完全透明
+            return view
+        }()
+        
+        lazy var titleLabel3: UILabel = {
+            let label = UILabel()
+            label.text = "選擇性別和顏色，推薦適合您的服飾"
+            label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+            label.tintColor = .white
+            label.textColor = .white
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.layer.shadowColor = UIColor.black.cgColor
+            label.layer.shadowRadius = 3.0
+            label.layer.shadowOpacity = 1.0
+            label.layer.shadowOffset = CGSize(width: 1, height: 1)
+            label.layer.masksToBounds = false
+            return label
+        }()
+        
+        view.addSubview(dimmedBackgroundView)
+        view.addSubview(colorPickerView)
+        view.addSubview(titleLabel3)
+        
+        colorPickerView.isHidden = false
+        colorPickerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            colorPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            colorPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            colorPickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2)
+        ])
+        dimmedBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dimmedBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dimmedBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dimmedBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            dimmedBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        dimmedBackgroundView.alpha = 1
+        NSLayoutConstraint.activate([
+            titleLabel3.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -24),
+            titleLabel3.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+        ])
+        
+        colorPickerView.dismissHandler = { [weak self] in
+            colorPickerView.isHidden = true
+            dimmedBackgroundView.isHidden = true
+            titleLabel3.isHidden = true
+        }
+    }
+    
 }
