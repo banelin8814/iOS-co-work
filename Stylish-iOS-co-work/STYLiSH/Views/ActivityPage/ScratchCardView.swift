@@ -23,11 +23,11 @@ class ScratchCardView: UIView {
         }
 
         let contentView = UILabel()
-        contentView.backgroundColor = .systemYellow
+        contentView.backgroundColor = UIColor.hexStringToUIColor(hex: "6b5c5b")
         contentView.textAlignment = .center
         contentView.text = text
         contentView.font = .systemFont(ofSize: 25, weight: .black)
-        contentView.textColor = .systemBrown
+        contentView.textColor = .white
         contentView.numberOfLines = 0
 
         let maskView = UIView()
