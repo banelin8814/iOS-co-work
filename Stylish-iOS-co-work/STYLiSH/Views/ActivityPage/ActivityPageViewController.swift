@@ -25,6 +25,8 @@ class ActivityPageViewController: UIViewController {
         return close
     }()
     
+    var activityIndicator: UIActivityIndicatorView?
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -78,6 +80,13 @@ class ActivityPageViewController: UIViewController {
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
     }
+    
+    func startIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator?.center = self.tableView.center
+        activityIndicator?.startAnimating()
+        self.view.addSubview(activityIndicator!)
+    }
 
 }
 
@@ -86,6 +95,9 @@ class ActivityPageViewController: UIViewController {
 extension ActivityPageViewController {
     
     func fetchMainData(color: String, gender: String, completion: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            self.startIndicator()
+        }
         APIManager.shared.sendRequest(
             urlString: "https://traviss.beauty/api/1.0/recommendation?color=\(color)&gender=\(gender)",
             method: .post,
@@ -158,6 +170,9 @@ extension ActivityPageViewController {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
             completion()
+            DispatchQueue.main.async {
+                self.activityIndicator?.stopAnimating()
+            }
         }
     }
     
@@ -347,11 +362,11 @@ extension ActivityPageViewController: ScratchCardViewDelegate {
         lengthyLabel.textColor = .white
         lengthyLabel.font = UIFont.systemFont(ofSize: 16)
         lengthyLabel.text = "🎉本日牡羊座運勢🎉 今天，星星閃爍著神秘的光芒，預示著你將迎來許多機遇和挑戰。勇敢地面對這些挑戰，並抓住機遇，因為它們將帶給你成長和成功的機會。🎁"
-        lengthyLabel.backgroundColor = UIColor.hexStringToUIColor(hex: "6b5c5b")
+        let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "6b5c5b"
+        lengthyLabel.backgroundColor = UIColor.hexStringToUIColor(hex: color)
         lengthyLabel.holdScrolling = false
         lengthyLabel.animationDelay = 1
-        view
-            .addSubview(lengthyLabel)
+        view.addSubview(lengthyLabel)
     }
     
     //Coupon
