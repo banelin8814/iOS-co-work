@@ -74,8 +74,6 @@ class ProductDetailViewController: STBaseViewController {
             switch result {
             case .success(let starReview):
                 print("有拿到星星數：\(starReview)")
-                self?.nubmerOfStars = starReview.data.rating
-                
             case .failure(let error):
                 print("Error: \(error)")
             }
@@ -109,7 +107,13 @@ class ProductDetailViewController: STBaseViewController {
             do {
                 let docoder = JSONDecoder()
                 let reponse = try docoder.decode(RecommendProduct.self, from: data)
+                self.nubmerOfStars = reponse.data.rating
                 complition(.success(reponse))
+                DispatchQueue.main.async {
+                    if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProductDescriptionTableViewCell {
+                        cell.updateNumberOfStars(self.nubmerOfStars ?? 0.0)
+                    }
+                }
             } catch {
                 print(error.localizedDescription)
                 complition(.failure(APIError.generalError))
@@ -215,10 +219,6 @@ extension ProductDetailViewController: UITableViewDataSource {
         guard let product = product else { return UITableViewCell() }
         //for fetchStar top
         let cell = datas[indexPath.row].cellForIndexPath(indexPath, tableView: tableView, data: product)
-        if let descriptionCell = cell as? ProductDescriptionTableViewCell {
-            descriptionCell.numberOfStars = nubmerOfStars ?? 0.0
-            print("有傳星星數近到cell\(nubmerOfStars)")
-        }
         return cell
         //for fetchStar bottom
     }

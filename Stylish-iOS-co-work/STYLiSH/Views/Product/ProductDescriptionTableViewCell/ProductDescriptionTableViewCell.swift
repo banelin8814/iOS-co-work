@@ -49,9 +49,6 @@ class ProductDescriptionTableViewCell: ProductBasicCell {
         priceLbl.text = "NT$ \(product.price)"
         idLbl.text = String(product.id)
         detailLbl.text = product.story
-
-
-//        updateStarIcons()
     }
     private func setupUI() {
         
@@ -66,30 +63,67 @@ class ProductDescriptionTableViewCell: ProductBasicCell {
                 starsContainer.heightAnchor.constraint(equalToConstant: 20)
             ])
         }
-    private func createStars() {
-        /// 收集用戶的評分
-        for index in 1...Constants.starsCount {
-            let star = makeStarIcon()
-            star.tag = index
-            starsContainer.addArrangedSubview(star)
-        }
+    private func createStars() { /// 創建星星評分視圖
+       for index in 1...Constants.starsCount { // 迭代星星的總數
+           let star = makeStarIcon() // 創建單個星星圖標
+           star.tag = index // 設置星星圖標的標籤為其索引值
+           starsContainer.addArrangedSubview(star) // 將星星圖標添加到星星容器中
+       }
     }
-    private func makeStarIcon() -> UIImageView {
-        let image1 = UIImage(named: "icon_unfilled_star")
-        let image2 = UIImage(named: "icon_filled_star")
-        let imageView = UIImageView(image: image1, highlightedImage: image2)
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.isUserInteractionEnabled = false
-        return imageView
+
+    private func makeStarIcon() -> UIImageView { // 創建單個星星圖標
+       let image1 = UIImage(named: "icon_unfilled_star") // 加載未填充的星星圖片
+       let image2 = UIImage(named: "icon_filled_star") // 加載填充的星星圖片
+       let imageView = UIImageView(image: image1, highlightedImage: image2) // 創建圖片視圖，設置默認圖片和高亮狀態下的圖片
+       imageView.translatesAutoresizingMaskIntoConstraints = false // 禁用圖片視圖的自動佈局
+       imageView.contentMode = .scaleAspectFit // 設置圖片視圖的內容模式為等比縮放
+       imageView.isUserInteractionEnabled = false // 禁用圖片視圖的用戶交互
+       return imageView // 返回創建的圖片視圖
     }
+
     private func updateStarIcons() {
         for (index, starView) in starsContainer.arrangedSubviews.enumerated() {
             guard let starImageView = starView as? UIImageView else {
                 return
             }
-            starImageView.isHighlighted = index < selectedRate
+            
+            let fillLevel = numberOfStars - Float(index)
+            
+            if fillLevel >= 1 {
+                starImageView.image = UIImage(named: "icon_filled_star")
+            } else if fillLevel > 0 {
+                let partialFillImage = getPartialFillStarImage(fillLevel: fillLevel)
+                starImageView.image = partialFillImage
+            } else {
+                starImageView.image = UIImage(named: "icon_unfilled_star")
+            }
         }
     }
+
+    private func getPartialFillStarImage(fillLevel: Float) -> UIImage? {
+        let size = CGSize(width: 20, height: 20)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        
+        if let context = UIGraphicsGetCurrentContext() {
+            let unfilledStar = UIImage(named: "icon_unfilled_star")
+            unfilledStar?.draw(in: CGRect(origin: .zero, size: size))
+            
+            let filledStar = UIImage(named: "icon_filled_star")
+            let filledRect = CGRect(x: 0, y: 0, width: size.width * CGFloat(fillLevel), height: size.height)
+            let clipRect = CGRect(x: 0, y: 0, width: filledRect.width, height: size.height)
+            context.clip(to: clipRect)
+            filledStar?.draw(in: CGRect(origin: .zero, size: size))
+            
+            let partialFillImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return partialFillImage
+        }
+        
+        return nil
+    }
+    func updateNumberOfStars(_ numberOfStars: Float) {
+           self.numberOfStars = numberOfStars
+           updateStarIcons()
+       }
 }
