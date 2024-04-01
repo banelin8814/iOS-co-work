@@ -68,25 +68,27 @@ class ProductDetailViewController: STBaseViewController {
         guard let product = product else { return }
         galleryView.datas = product.images
         
+        loadRealComments()
+        
         // 加載假的評論資料
-            loadFakeComments()
+//            loadFakeComments()
     }
     
-    private func loadFakeComments() {
-        userComments = [
-            UserComment(username: "Alice", comment: "非常👍", rating: 5),
-            UserComment(username: "Bob", comment: "沒想到生日活動有整單 5 折！", rating: 5),
-            UserComment(username: "Cindy", comment: "下次還會再買～", rating: 4),
-            UserComment(username: "David", comment: "Good Good!", rating: 3),
-            UserComment(username: "Eva", comment: "我特地買給家人穿", rating: 5),
-            UserComment(username: "Frank", comment: "不錯哦", rating: 5),
-            UserComment(username: "Gray", comment: "超生火🔥 不買太可惜", rating: 3),
-            UserComment(username: "Hunter", comment: "已經回購第 3 件", rating: 5),
-            UserComment(username: "Ivy", comment: "朋友送的很喜歡！", rating: 5)
-        ]
-
-        tableView.reloadData()
-    }
+//    private func loadFakeComments() {
+//        userComments = [
+//            UserComment(username: "Alice", comment: "非常👍", rating: 5),
+//            UserComment(username: "Bob", comment: "沒想到生日活動有整單 5 折！", rating: 5),
+//            UserComment(username: "Cindy", comment: "下次還會再買～", rating: 4),
+//            UserComment(username: "David", comment: "Good Good!", rating: 3),
+//            UserComment(username: "Eva", comment: "我特地買給家人穿", rating: 5),
+//            UserComment(username: "Frank", comment: "不錯哦", rating: 5),
+//            UserComment(username: "Gray", comment: "超生火🔥 不買太可惜", rating: 3),
+//            UserComment(username: "Hunter", comment: "已經回購第 3 件", rating: 5),
+//            UserComment(username: "Ivy", comment: "朋友送的很喜歡！", rating: 5)
+//        ]
+//
+//        tableView.reloadData()
+//    }
 
     private func setupTableView() {
         tableView.lk_registerCellWithNib(
@@ -182,6 +184,22 @@ class ProductDetailViewController: STBaseViewController {
             addToCarBtn.backgroundColor = .B4
         }
     }
+    
+    func loadRealComments() {
+        guard let productId = product?.id else { return }
+        APIManager.shared.fetchComments(forProductId: String(productId)) { [weak self] comments, error in
+            DispatchQueue.main.async {
+                guard let self = self, let comments = comments else {
+                    print("Error loading comments: \(error?.localizedDescription ?? "Unknown error")")
+                    return
+                }
+                // 轉換 CommentForm 到 UserComment，這裡假設 UserComment 可以從 CommentForm 初始化
+                self.userComments = comments.map { UserComment(username: "User \($0.userId)", comment: $0.comment, rating: $0.rate) }
+                self.tableView.reloadData()
+            }
+        }
+    }
+
     
     func loadMoreComments() {
         // 計算剩餘未顯示的評論數量

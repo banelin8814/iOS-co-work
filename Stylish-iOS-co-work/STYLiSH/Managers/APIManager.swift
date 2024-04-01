@@ -121,3 +121,28 @@ class APIManager {
 //    }
 //}
 //
+
+extension APIManager {
+    func fetchComments(forProductId productId: String, completion: @escaping ([CommentForm]?, Error?) -> Void) {
+        let urlString = "https://chouyu.site/api/1.0/comments?productId=\(productId)"
+        sendRequest(urlString: urlString, method: .get, parameters: nil) { data, response, error in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let data = data, let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("Error: Invalid response or no data")
+                completion(nil, error)
+                return
+            }
+            
+            do {
+                let comments = try JSONDecoder().decode([CommentForm].self, from: data)
+                completion(comments, nil)
+            } catch {
+                completion(nil, error)
+            }
+        }
+    }
+}

@@ -20,6 +20,7 @@
 		27BE61DC2BB933D000D2D935 /* UserComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61DB2BB933D000D2D935 /* UserComment.swift */; };
 		27BE61DF2BB93E1B00D2D935 /* SeeMoreCommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BE61DE2BB93E1B00D2D935 /* SeeMoreCommentsCell.xib */; };
 		27BE61E02BB93E1B00D2D935 /* SeeMoreCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61DD2BB93E1B00D2D935 /* SeeMoreCommentsCell.swift */; };
+		27BE61E22BBA486500D2D935 /* CommentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE61E12BBA486500D2D935 /* CommentForm.swift */; };
 		30C2E5FF28B87D4700DD2939 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C2E5FE28B87D4700DD2939 /* TPDirect.framework */; };
 		3C09F5122211435B00C5B3E2 /* Lobby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C09F5112211435B00C5B3E2 /* Lobby.storyboard */; };
 		3C09F51C22114A0100C5B3E2 /* STTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */; };
@@ -170,6 +171,7 @@
 		27BE61DB2BB933D000D2D935 /* UserComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserComment.swift; sourceTree = "<group>"; };
 		27BE61DD2BB93E1B00D2D935 /* SeeMoreCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreCommentsCell.swift; sourceTree = "<group>"; };
 		27BE61DE2BB93E1B00D2D935 /* SeeMoreCommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeeMoreCommentsCell.xib; sourceTree = "<group>"; };
+		27BE61E12BBA486500D2D935 /* CommentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentForm.swift; sourceTree = "<group>"; };
 		30C2E5FE28B87D4700DD2939 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
 		3C09F5112211435B00C5B3E2 /* Lobby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lobby.storyboard; sourceTree = "<group>"; };
 		3C09F51B22114A0100C5B3E2 /* STTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTabBarViewController.swift; sourceTree = "<group>"; };
@@ -718,6 +720,7 @@
 				3CE7A518223064C7009FF003 /* UserObject.swift */,
 				3CE7A516223061A9009FF003 /* UserRequest.swift */,
 				27BE61DB2BB933D000D2D935 /* UserComment.swift */,
+				27BE61E12BBA486500D2D935 /* CommentForm.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1101,6 +1104,7 @@
 				3CC706122216955900CAD850 /* STBaseNavigationController.swift in Sources */,
 				3C8F191922E5997B00EECE90 /* LobbyTableViewHeaderView.swift in Sources */,
 				3CE7A517223061A9009FF003 /* UserRequest.swift in Sources */,
+				27BE61E22BBA486500D2D935 /* CommentForm.swift in Sources */,
 				27BE61DC2BB933D000D2D935 /* UserComment.swift in Sources */,
 				3C09F52122115AB700C5B3E2 /* UIImage+Extension.swift in Sources */,
 				3C6B8FE8222CE53100804EFE /* BasicSelectionCell.swift in Sources */,
