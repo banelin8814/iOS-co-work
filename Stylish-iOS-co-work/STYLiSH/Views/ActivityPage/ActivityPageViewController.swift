@@ -350,7 +350,8 @@ extension ActivityPageViewController: ScratchCardViewDelegate {
         lengthyLabel.backgroundColor = UIColor.hexStringToUIColor(hex: "6b5c5b")
         lengthyLabel.holdScrolling = false
         lengthyLabel.animationDelay = 1
-        view.addSubview(lengthyLabel)
+        view
+            .addSubview(lengthyLabel)
     }
     
     //Coupon
