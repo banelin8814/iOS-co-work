@@ -9,6 +9,8 @@
 import UIKit
 
 class CheckoutViewController: STBaseViewController {
+    //coupon
+    private var couponCount: Int = 0
     
     private struct Segue {
         static let success = "SegueSuccess"
@@ -54,6 +56,8 @@ class CheckoutViewController: STBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        couponCount = UserDefaults.standard.integer(forKey: "CouponCount")
     }
     
     private func setupTableView() {
@@ -75,23 +79,23 @@ class CheckoutViewController: STBaseViewController {
     func checkout(_ cell: STPaymentInfoTableViewCell) {
         guard canCheckout() else { return }
         
-        guard KeyChainManager.shared.token != nil else {
-            return onShowLogin()
-        }
+//        guard KeyChainManager.shared.token != nil else {
+//            return onShowLogin()
+//        }
         
         switch orderProvider.order.payment {
         case .credit: checkoutWithTapPay()
         case .cash: checkoutWithCash()
         }
         
-        //Coupon
-        let couponCount = UserDefaults.standard.integer(forKey: "CouponCount")
+        
+        
+        //coupon
+        
         if couponCount > 0 {
-            // Decrement coupon count in UserDefaults
-            UserDefaults.standard.set(couponCount - 1, forKey: "CouponCount")
-            // Update coupon text field
-            let updatedCouponCount = UserDefaults.standard.integer(forKey: "CouponCount")
-            cell.couponTextField.text = "五折優惠卷\(updatedCouponCount)"
+            couponCount -= 1
+            UserDefaults.standard.set(couponCount, forKey: "CouponCount")
+            tableView.reloadData() // Reload table view to update coupon display
         }
     }
     
@@ -126,7 +130,7 @@ class CheckoutViewController: STBaseViewController {
                             // Error Handle
                             print(error)
                         }
-                })
+                    })
             case .failure(let error):
                 LKProgressHUD.dismiss()
                 // Error Handle
@@ -175,7 +179,7 @@ extension CheckoutViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return .empty
     }
-
+    
     // MARK: - Section Row
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch orderProvider.orderCustructor[section] {
@@ -189,7 +193,20 @@ extension CheckoutViewController: UITableViewDataSource, UITableViewDelegate {
         case .products:
             return mappingCellWtih(order: orderProvider.order, at: indexPath)
         case .paymentInfo:
-            return mappingCellWtih(payment: "", at: indexPath)
+            //            return mappingCellWtih(payment: "", at: indexPath)
+            let cell = mappingCellWtih(payment: "", at: indexPath)
+            //coupon
+            if let paymentCell = cell as? STPaymentInfoTableViewCell {
+                // Update coupon text field
+                if couponCount > 0 {
+                    paymentCell.couponTextField.text = "五折優惠卷\(couponCount)張"
+                } else {
+                    paymentCell.couponTextField.text = "目前沒有優惠卷哦！"
+                }
+            }
+            return cell
+            
+            
         case .reciever:
             return mappingCellWtih(reciever: orderProvider.order.reciever, at: indexPath)
         }

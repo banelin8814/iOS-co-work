@@ -324,7 +324,7 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
 }
 
 //MARK: - Birth Month ActivityPage View
-extension ActivityPageViewController: ScratchCardViewDelegate {
+extension ActivityPageViewController {
   
     func setupScratchCard() {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300))
@@ -351,25 +351,25 @@ extension ActivityPageViewController: ScratchCardViewDelegate {
     }
     
     //Coupon
-    func scratchCardDidWin(_ view: ScratchCardView) {
-        guard view.isWinningCard == true else { return }
-        guard let cell = stPaymentInfoCell else {
-            return
-        }
-        // Store coupon information in UserDefaults and track count
-        let couponCount = UserDefaults.standard.integer(forKey: "CouponCount")
-        UserDefaults.standard.set(couponCount + 1, forKey: "CouponCount")
-        UserDefaults.standard.set("CouponInfo", forKey: "Coupon\(couponCount + 1)")
-        
-        let couponText = "五折優惠卷: \(couponCount + 1) 張"
-        cell.couponTextField.text = couponText
-        
-        // Update total price label
-        let productPrice = Int(cell.productPriceLabel.text ?? "") // Example product price
-        let shipPrice = Int(cell.shipPriceLabel.text ?? "") // Example ship price
-        let discountPrice = productPrice! / 2 // Apply 50% discount for coupon
-        let totalPrice = discountPrice + shipPrice!
-        cell.totalPriceLabel.text = "NT$ \(totalPrice)"
-    }
+//    func scratchCardDidWin(_ view: ScratchCardView) {
+//        guard view.isWinningCard == true else { return }
+//        guard let cell = stPaymentInfoCell else {
+//            return
+//        }
+//        // Store coupon information in UserDefaults and track count
+//        let couponCount = UserDefaults.standard.integer(forKey: "CouponCount")
+//        UserDefaults.standard.set(couponCount + 1, forKey: "CouponCount")
+//        UserDefaults.standard.set("CouponInfo", forKey: "Coupon\(couponCount + 1)")
+//        
+//        let couponText = "五折優惠卷: \(couponCount + 1) 張"
+//        cell.couponTextField.text = couponText
+//        
+//        // Update total price label
+//        let productPrice = Int(cell.productPriceLabel.text ?? "") // Example product price
+//        let shipPrice = Int(cell.shipPriceLabel.text ?? "") // Example ship price
+//        let discountPrice = productPrice! / 2 // Apply 50% discount for coupon
+//        let totalPrice = discountPrice + shipPrice!
+//        cell.totalPriceLabel.text = "NT$ \(totalPrice)"
+//    }
     
 }
