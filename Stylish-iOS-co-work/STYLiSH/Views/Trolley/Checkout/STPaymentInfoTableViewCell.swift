@@ -82,9 +82,21 @@ class STPaymentInfoTableViewCell: UITableViewCell {
         payment: String,
         isCheckoutEnable: Bool
     ) {
-        productPriceLabel.text = "NT$ \(productPrice)"
+        var couponCount: Int = 0
+        var newProductPrice: Int = 0
+        //打五折
+        couponCount = UserDefaults.standard.integer(forKey: "CouponCount")
+        if couponCount > 0 {
+            couponCount -= 1
+            UserDefaults.standard.set(couponCount, forKey: "CouponCount")
+            newProductPrice =  productPrice / 2
+        }else{
+            newProductPrice = productPrice
+        }
+        
+        productPriceLabel.text = "NT$ \(newProductPrice)"
         shipPriceLabel.text = "NT$ \(shipPrice)"
-        totalPriceLabel.text = "NT$ \(shipPrice + productPrice)"
+        totalPriceLabel.text = "NT$ \(shipPrice + newProductPrice)"
         productAmountLabel.text = "總計 (\(productCount)樣商品)"
         paymentTextField.text = payment
         updateCheckouttButton(isEnable: isCheckoutEnable)
