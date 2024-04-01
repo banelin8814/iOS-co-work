@@ -37,7 +37,7 @@ class ProductDetailViewController: STBaseViewController {
     @IBOutlet weak var baseView: UIView!
     
     var numberOfStars: Float?
-
+    
     private lazy var blurView: UIView = {
         let blurView = UIView(frame: tableView.frame)
         blurView.backgroundColor = .black.withAlphaComponent(0.4)
@@ -54,7 +54,7 @@ class ProductDetailViewController: STBaseViewController {
             galleryView.datas = product.images
         }
     }
-
+    
     private var pickerViewController: ProductPickerController?
     
     override var isHideNavigationBar: Bool { return true }
@@ -72,8 +72,6 @@ class ProductDetailViewController: STBaseViewController {
         
         loadRealComments()
         
-    }
-    
         fetchReview(id: product.id) { [weak self] result in
             switch result {
             case .success(let starReview):
@@ -82,7 +80,10 @@ class ProductDetailViewController: STBaseViewController {
                 print("Error: \(error)")
             }
         }
+        
     }
+    
+    
     
     //for fetchStar Top
     enum APIError:Error {
@@ -236,7 +237,6 @@ class ProductDetailViewController: STBaseViewController {
             }
         }
     }
-    
     func loadMoreComments() {
         // 計算剩餘未顯示的評論數量
         let remainingComments = comments.count - displayedComments
@@ -246,8 +246,8 @@ class ProductDetailViewController: STBaseViewController {
         }
         tableView.reloadData()
     }
+    
 }
-
 // MARK: - UITableViewDataSource
 extension ProductDetailViewController: UITableViewDataSource {
     
@@ -264,8 +264,8 @@ extension ProductDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-//         guard let product = product else { return UITableViewCell() }
+        
+        //         guard let product = product else { return UITableViewCell() }
         switch indexPath.row {
         case 0..<datas.count:
             // 處理產品詳情相關的 cell
@@ -312,10 +312,10 @@ extension ProductDetailViewController: UITableViewDataSource {
         
         // 預設返回一個空的 UITableViewCell
         return UITableViewCell()
-       
+        
         //for fetchStar top
-//         let cell = datas[indexPath.row].cellForIndexPath(indexPath, tableView: tableView, data: product)
-//         return cell
+        //         let cell = datas[indexPath.row].cellForIndexPath(indexPath, tableView: tableView, data: product)
+        //         return cell
         //for fetchStar bottom
     }
 }
