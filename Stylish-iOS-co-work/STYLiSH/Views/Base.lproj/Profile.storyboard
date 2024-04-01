@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q6d-iX-ijm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q6d-iX-ijm">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +12,7 @@
         <!--個人-->
         <scene sceneID="806-ur-kqq">
             <objects>
-                <viewController id="jmF-8q-0Gj" customClass="ProfileViewController" customModule="STYLiSH" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="jmF-8q-0Gj" customClass="ProfileViewController" customModule="STYLiSH" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g0V-be-ccK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -153,6 +153,7 @@
                         <outlet property="imageProfile" destination="n54-dD-RdY" id="9Ad-tH-pFQ"/>
                         <outlet property="labelInfo" destination="lfu-2b-3uF" id="PVp-Wg-s50"/>
                         <outlet property="labelName" destination="yNj-wu-sFn" id="Aje-d3-pVE"/>
+                        <outlet property="profileColorView" destination="4fb-Kk-nRw" id="JEF-NE-Tb8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgO-tk-LoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -36,6 +36,8 @@ class ProductDetailViewController: STBaseViewController {
     
     @IBOutlet weak var baseView: UIView!
     
+    var numberOfStars: Float?
+
     private lazy var blurView: UIView = {
         let blurView = UIView(frame: tableView.frame)
         blurView.backgroundColor = .black.withAlphaComponent(0.4)
@@ -52,7 +54,7 @@ class ProductDetailViewController: STBaseViewController {
             galleryView.datas = product.images
         }
     }
-    
+
     private var pickerViewController: ProductPickerController?
     
     override var isHideNavigationBar: Bool { return true }
@@ -71,6 +73,59 @@ class ProductDetailViewController: STBaseViewController {
         loadRealComments()
         
     }
+    
+        fetchReview(id: product.id) { [weak self] result in
+            switch result {
+            case .success(let starReview):
+                print("有拿到星星數：\(starReview)")
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    //for fetchStar Top
+    enum APIError:Error {
+        case urlError
+        case responseError
+        case generalError
+        case noDataError
+    }
+    func fetchReview(id: Int, complition: @escaping (Result<RecommendProduct, Error>) -> Void) {
+        guard let apiURL = URL(string: "https://chouyu.site/api/1.0/products/details?id=\(id)") else { return }
+        let task = URLSession.shared.dataTask(with: URLRequest(url: apiURL)) { data, httpResponse, error in
+            if let error = error {
+                print(error.localizedDescription)
+                complition(.failure(APIError.generalError))
+                return
+            }
+            guard let httpResponse = httpResponse as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                complition(.failure(APIError.responseError))
+                return
+            }
+            print(httpResponse.statusCode)
+            guard let data = data else {
+                complition(.failure(APIError.noDataError))
+                return
+            }
+            do {
+                let docoder = JSONDecoder()
+                let reponse = try docoder.decode(RecommendProduct.self, from: data)
+                self.numberOfStars = reponse.data.rating
+                complition(.success(reponse))
+                DispatchQueue.main.async {
+                    if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProductDescriptionTableViewCell {
+                        cell.updateNumberOfStars(self.numberOfStars ?? 0.0)
+                    }
+                }
+            } catch {
+                print(error.localizedDescription)
+                complition(.failure(APIError.generalError))
+            }
+        }
+        task.resume()
+    }
+    //for fetchStar bottom
     
     private func setupTableView() {
         tableView.lk_registerCellWithNib(
@@ -209,6 +264,8 @@ extension ProductDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+//         guard let product = product else { return UITableViewCell() }
         switch indexPath.row {
         case 0..<datas.count:
             // 處理產品詳情相關的 cell
@@ -255,6 +312,11 @@ extension ProductDetailViewController: UITableViewDataSource {
         
         // 預設返回一個空的 UITableViewCell
         return UITableViewCell()
+       
+        //for fetchStar top
+//         let cell = datas[indexPath.row].cellForIndexPath(indexPath, tableView: tableView, data: product)
+//         return cell
+        //for fetchStar bottom
     }
 }
 

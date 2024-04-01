@@ -9,7 +9,14 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
+    @IBOutlet weak var profileColorView: UIView! {
+        didSet {
+            let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "FFFFFF"
+            self.profileColorView.backgroundColor = UIColor.hexStringToUIColor(hex: color)
+        }
+    }
+    
     @IBOutlet weak var imageProfile: UIImageView!
     
     @IBOutlet weak var labelName: UILabel!

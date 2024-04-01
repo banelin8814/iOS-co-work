@@ -40,6 +40,7 @@ class MarketProvider {
                     completion(.success(products.data))
                 } catch {
                     completion(.failure(error))
+                    print("Error: \(error.localizedDescription)")
                 }
             case .failure(let error):
                 completion(.failure(error))
