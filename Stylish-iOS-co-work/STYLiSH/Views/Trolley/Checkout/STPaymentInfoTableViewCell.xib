@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,34 +18,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nue-Rk-3kZ">
-                        <rect key="frame" x="0.0" y="76" width="474" height="70"/>
+                        <rect key="frame" x="0.0" y="148" width="474" height="70"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="ipR-4H-npb"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品總金額" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvu-dx-COl">
-                        <rect key="frame" x="16" y="100" width="80" height="22.666666666666671"/>
+                        <rect key="frame" x="16" y="212" width="80" height="22.666666666666657"/>
                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
                         <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="運費總金額" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPR-LJ-9ws">
-                        <rect key="frame" x="16" y="138.66666666666666" width="80" height="22.333333333333343"/>
+                        <rect key="frame" x="16" y="250.66666666666666" width="80" height="22.333333333333343"/>
                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
                         <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="付款方式" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="da4-NM-yrP" customClass="STOrderUserInputTextField" customModule="STYLiSH" customModuleProvider="target">
-                        <rect key="frame" x="16" y="0.0" width="442" height="56"/>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="56" id="BG9-wQ-TDb"/>
-                        </constraints>
-                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gP-45-wOA">
                         <rect key="frame" x="16" y="55" width="442" height="1"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,19 +44,19 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NT$ 8470" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umo-U6-mXM">
-                        <rect key="frame" x="384" y="100" width="74" height="22.666666666666671"/>
+                        <rect key="frame" x="384" y="212" width="74" height="22.666666666666657"/>
                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
                         <color key="textColor" red="0.24705882352941178" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NT$ 60" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vX3-QS-RG3">
-                        <rect key="frame" x="402" y="138.66666666666666" width="56" height="22.333333333333343"/>
+                        <rect key="frame" x="402" y="250.66666666666666" width="56" height="22.333333333333343"/>
                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
                         <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmE-zR-aH4">
-                        <rect key="frame" x="0.0" y="185" width="474" height="56"/>
+                        <rect key="frame" x="0.0" y="297" width="474" height="56"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="總計 (4樣商品)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ov-ov-dSM">
                                 <rect key="frame" x="16" y="16" width="106" height="22.666666666666671"/>
@@ -91,7 +81,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jg8-e7-47O">
-                        <rect key="frame" x="16" y="257" width="442" height="48"/>
+                        <rect key="frame" x="16" y="369" width="442" height="48"/>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="Tpg-rx-aeG"/>
@@ -104,16 +94,38 @@
                             <action selector="checkout" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UOr-T6-Rh9"/>
                         </connections>
                     </button>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="目前沒有折價卷！" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="46s-Ut-T8I" customClass="STOrderUserInputTextField" customModule="STYLiSH" customModuleProvider="target">
+                        <rect key="frame" x="16" y="72" width="442" height="56"/>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="56" id="akO-1Q-Zo0"/>
+                        </constraints>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="付款方式" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="da4-NM-yrP" customClass="STOrderUserInputTextField" customModule="STYLiSH" customModuleProvider="target">
+                        <rect key="frame" x="16" y="0.0" width="442" height="56"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="56" id="BG9-wQ-TDb"/>
+                        </constraints>
+                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="nue-Rk-3kZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="50b-57-AeJ"/>
+                    <constraint firstItem="46s-Ut-T8I" firstAttribute="top" secondItem="da4-NM-yrP" secondAttribute="bottom" constant="16" id="7So-KX-6Uk"/>
                     <constraint firstItem="vX3-QS-RG3" firstAttribute="centerY" secondItem="hPR-LJ-9ws" secondAttribute="centerY" id="8Sg-RW-nWj"/>
                     <constraint firstItem="6gP-45-wOA" firstAttribute="bottom" secondItem="da4-NM-yrP" secondAttribute="bottom" id="AKo-Es-3rn"/>
                     <constraint firstAttribute="bottom" secondItem="Jg8-e7-47O" secondAttribute="bottom" priority="250" constant="16" id="GF7-9i-VP6"/>
                     <constraint firstItem="vX3-QS-RG3" firstAttribute="trailing" secondItem="Umo-U6-mXM" secondAttribute="trailing" id="GL7-pg-y5A"/>
                     <constraint firstAttribute="trailing" secondItem="nue-Rk-3kZ" secondAttribute="trailing" id="N8d-ai-wxO"/>
                     <constraint firstAttribute="trailing" secondItem="da4-NM-yrP" secondAttribute="trailing" constant="16" id="N9P-qD-ALL"/>
+                    <constraint firstAttribute="trailing" secondItem="da4-NM-yrP" secondAttribute="trailing" constant="16" id="RyY-Mw-xgf"/>
                     <constraint firstItem="da4-NM-yrP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Sn7-Ij-cEZ"/>
                     <constraint firstAttribute="trailing" secondItem="WmE-zR-aH4" secondAttribute="trailing" id="Urw-Ez-Z7D"/>
                     <constraint firstItem="da4-NM-yrP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Yqy-7v-CdS"/>
@@ -124,18 +136,22 @@
                     <constraint firstAttribute="trailing" secondItem="Jg8-e7-47O" secondAttribute="trailing" constant="16" id="g22-Zo-kyU"/>
                     <constraint firstItem="yvu-dx-COl" firstAttribute="leading" secondItem="da4-NM-yrP" secondAttribute="leading" id="gjy-tS-hsW"/>
                     <constraint firstItem="6gP-45-wOA" firstAttribute="leading" secondItem="da4-NM-yrP" secondAttribute="leading" id="kwc-H9-x3b"/>
+                    <constraint firstAttribute="trailing" secondItem="46s-Ut-T8I" secondAttribute="trailing" constant="16" id="lew-mj-B5P"/>
                     <constraint firstItem="hPR-LJ-9ws" firstAttribute="top" secondItem="yvu-dx-COl" secondAttribute="bottom" constant="16" id="q9a-t1-gsq"/>
                     <constraint firstItem="6gP-45-wOA" firstAttribute="trailing" secondItem="da4-NM-yrP" secondAttribute="trailing" id="qXa-OA-IRP"/>
-                    <constraint firstItem="nue-Rk-3kZ" firstAttribute="top" secondItem="da4-NM-yrP" secondAttribute="bottom" constant="20" id="sav-4o-ODF"/>
+                    <constraint firstItem="nue-Rk-3kZ" firstAttribute="top" secondItem="46s-Ut-T8I" secondAttribute="bottom" constant="20" id="sav-4o-ODF"/>
+                    <constraint firstItem="46s-Ut-T8I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="t4Q-GB-dHg"/>
                     <constraint firstItem="hPR-LJ-9ws" firstAttribute="leading" secondItem="yvu-dx-COl" secondAttribute="leading" id="uuz-v6-WxW"/>
                     <constraint firstItem="WmE-zR-aH4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vRd-6w-cg6"/>
                     <constraint firstItem="WmE-zR-aH4" firstAttribute="top" secondItem="hPR-LJ-9ws" secondAttribute="bottom" constant="24" id="x8i-2U-CRA"/>
-                    <constraint firstItem="yvu-dx-COl" firstAttribute="top" secondItem="da4-NM-yrP" secondAttribute="bottom" constant="44" id="yp3-1R-2Z2"/>
+                    <constraint firstItem="yvu-dx-COl" firstAttribute="top" secondItem="46s-Ut-T8I" secondAttribute="bottom" constant="84" id="yp3-1R-2Z2"/>
+                    <constraint firstItem="da4-NM-yrP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="zXz-QU-rvF"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="checkoutBtn" destination="Jg8-e7-47O" id="Rdv-gI-U7C"/>
+                <outlet property="couponTextField" destination="46s-Ut-T8I" id="gvh-Eu-coS"/>
                 <outlet property="creditView" destination="nue-Rk-3kZ" id="2mE-Xs-Z0g"/>
                 <outlet property="paymentTextField" destination="da4-NM-yrP" id="eia-6w-AhH"/>
                 <outlet property="productAmountLabel" destination="8ov-ov-dSM" id="rep-49-JCF"/>
@@ -148,6 +164,9 @@
         </tableViewCell>
     </objects>
     <designables>
+        <designable name="46s-Ut-T8I">
+            <size key="intrinsicContentSize" width="128" height="24.333333333333332"/>
+        </designable>
         <designable name="da4-NM-yrP">
             <size key="intrinsicContentSize" width="64" height="24.333333333333332"/>
         </designable>

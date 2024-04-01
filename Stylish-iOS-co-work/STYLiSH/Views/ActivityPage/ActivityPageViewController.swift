@@ -11,6 +11,8 @@ import MarqueeLabel
 
 class ActivityPageViewController: UIViewController {
     
+    var stPaymentInfoCell: STPaymentInfoTableViewCell!
+    
     var recommendProduct: Product?
     var matchingProducts: [Product] = []
     
@@ -114,10 +116,10 @@ extension ActivityPageViewController {
         }
     }
     
-    //TODO: -
-    func fetchMatchData() {
+    //TODO: - stored id
+    func fetchMatchData(id: String) {
         APIManager.shared.sendRequest(
-            urlString: "https://13.214.22.170/api/1.0",
+            urlString: "https://traviss.beauty/api/1.0/recommendation_by_product?product_id=\(id)",
             method: .post,
             parameters: ["key": "value"]
         ) { data, response, error in
@@ -322,8 +324,8 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
 }
 
 //MARK: - Birth Month ActivityPage View
-extension ActivityPageViewController {
-    
+extension ActivityPageViewController: ScratchCardViewDelegate {
+  
     func setupScratchCard() {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300))
         let scratchView = ScratchCardView(frame: CGRect(x: 20, y: 0, width: footerView.frame.width - 40, height: 280))
@@ -346,6 +348,28 @@ extension ActivityPageViewController {
         lengthyLabel.holdScrolling = false
         lengthyLabel.animationDelay = 1
         view.addSubview(lengthyLabel)
+    }
+    
+    //Coupon
+    func scratchCardDidWin(_ view: ScratchCardView) {
+        guard view.isWinningCard == true else { return }
+        guard let cell = stPaymentInfoCell else {
+            return
+        }
+        // Store coupon information in UserDefaults and track count
+        let couponCount = UserDefaults.standard.integer(forKey: "CouponCount")
+        UserDefaults.standard.set(couponCount + 1, forKey: "CouponCount")
+        UserDefaults.standard.set("CouponInfo", forKey: "Coupon\(couponCount + 1)")
+        
+        let couponText = "五折優惠卷: \(couponCount + 1) 張"
+        cell.couponTextField.text = couponText
+        
+        // Update total price label
+        let productPrice = Int(cell.productPriceLabel.text ?? "") // Example product price
+        let shipPrice = Int(cell.shipPriceLabel.text ?? "") // Example ship price
+        let discountPrice = productPrice! / 2 // Apply 50% discount for coupon
+        let totalPrice = discountPrice + shipPrice!
+        cell.totalPriceLabel.text = "NT$ \(totalPrice)"
     }
     
 }

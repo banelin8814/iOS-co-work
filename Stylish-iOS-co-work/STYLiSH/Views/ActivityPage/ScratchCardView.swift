@@ -8,10 +8,20 @@
 
 import UIKit
 
+//Coupon
+protocol ScratchCardViewDelegate: AnyObject {
+    func scratchCardDidWin(_ view: ScratchCardView)
+}
+
 class ScratchCardView: UIView {
+    
+    weak var delegate: ScratchCardViewDelegate?
+    
     var scratchView: ScratchView!
+    var isWinningCard: Bool
 
     override init(frame: CGRect) {
+        self.isWinningCard = false
         super.init(frame: frame)
         
         let textIndex = Int.random(in: 0..<2)
@@ -20,6 +30,8 @@ class ScratchCardView: UIView {
             text = "再接再厲! \n 可悲仔～～"
         } else {
             text = "恭喜中獎！ \n 全館商品5折"
+            self.isWinningCard = true 
+            checkIfWinningCard()
         }
 
         let contentView = UILabel()
@@ -45,6 +57,15 @@ class ScratchCardView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //Coupon
+    func checkIfWinningCard() {
+//        isWinningCard = true
+        
+//        if isWinningCard {
+            delegate?.scratchCardDidWin(self)
+//        }
     }
 
 }
