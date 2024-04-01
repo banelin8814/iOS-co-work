@@ -241,11 +241,6 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
             withIdentifier: "ProductDetailViewController"
         ) as? ProductDetailViewController else { return }
         productDetailVC.product = recommendProduct
-//        guard let product = recommendProduct, let galleryView = productDetailVC.galleryView else { return }
-//        guard let images = recommendProduct?.images else { return }
-//        productDetailVC.galleryView.datas = images
-//        guard let images = recommendProduct?.images else { return }
-//        productDetailVC.galleryView.datas = images
         productDetailVC.backButtonAction = { [weak self] in
             self?.dismiss(animated: false, completion: nil)
         }

@@ -30,8 +30,6 @@ class LobbyViewController: STBaseViewController {
             lobbyView.reloadData()
         }
     }
-    
-//    private var datasToDetailPage: [AllProducts] = []
 
     private let marketProvider = MarketProvider(httpClient: HTTPClient())
 
@@ -65,76 +63,6 @@ class LobbyViewController: STBaseViewController {
             }
         })
     }
-    
-//    func fetchLobbyData() {
-//        APIManager.shared.sendRequest(
-//            urlString: "https://chouyu.site/api/1.0/products/all",
-//            method: .get,
-//            parameters: ["key": "value"]
-//        ) { data, response, error in
-//            if let error = error {
-//                print("Error: \(error.localizedDescription)")
-//                return
-//            }
-//            
-//            guard let httpResponse = response as? HTTPURLResponse,
-//                  (200...299).contains(httpResponse.statusCode) else {
-//                print("Error: Invalid response")
-//                return
-//            }
-//            
-//            guard data != nil else {
-//                print("Error: No data received")
-//                return
-//            }
-//            
-//            do {
-//                if let data = data {
-//                    let decoder = JSONDecoder()
-//                    let lobbyData = try decoder.decode(PromotedProducts.self, from: data)
-//                    self.datas = [lobbyData]
-//                    print("成功：\(lobbyData)")
-//                }
-//            } catch {
-//                print("Error parsing JSON: \(error.localizedDescription)")
-//            }
-//        }
-//    }
-    
-//    func fetchDetailData(id: String) {
-//        APIManager.shared.sendRequest(
-//            urlString: "https://chouyu.site/api/1.0/products/details?id=\(id)",
-//            method: .get,
-//            parameters: ["key": "value"]
-//        ) { data, response, error in
-//            if let error = error {
-//                print("Error: \(error.localizedDescription)")
-//                return
-//            }
-//            
-//            guard let httpResponse = response as? HTTPURLResponse,
-//                  (200...299).contains(httpResponse.statusCode) else {
-//                print("Error: Invalid response")
-//                return
-//            }
-//            
-//            guard data != nil else {
-//                print("Error: No data received")
-//                return
-//            }
-//            
-//            do {
-//                if let data = data {
-//                    let decoder = JSONDecoder()
-//                    let lobbyData = try decoder.decode(AllProducts.self, from: data)
-//                    self.datasToDetailPage = [lobbyData]
-//                    print("成功：\(lobbyData)")
-//                }
-//            } catch {
-//                print("Error parsing JSON: \(error.localizedDescription)")
-//            }
-//        }
-//    }
     
     func popUpView() {
         self.colorPickerView.isHidden = false
@@ -179,7 +107,6 @@ extension LobbyViewController: LobbyViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datas[section].products.count
-//        return datas[section].data.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -189,7 +116,6 @@ extension LobbyViewController: LobbyViewDelegate {
         )
         guard let lobbyCell = cell as? LobbyTableViewCell else { return cell }
         let product = datas[indexPath.section].products[indexPath.row]
-//        let product = datas[indexPath.section].data[indexPath.row]
         if indexPath.row % 2 == 0 {
             lobbyCell.singlePage(
                 img: product.mainImage,
@@ -230,10 +156,7 @@ extension LobbyViewController: LobbyViewDelegate {
         else {
             return
         }
-//        let id = datasToDetailPage[indexPath.section].data[indexPath.row].id
-//        fetchDetailData(id: "\(id)")
         detailVC.product = datas[indexPath.section].products[indexPath.row]
-//        detailVC.product = datas[indexPath.section].data[indexPath.row]
         show(detailVC, sender: nil)
     }
     
