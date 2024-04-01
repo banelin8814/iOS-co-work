@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0E2F5E732BB920F0001B46D9 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F5E722BB920F0001B46D9 /* ColorPickerView.swift */; };
 		0E2F5E752BB9212C001B46D9 /* CircularColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F5E742BB9212C001B46D9 /* CircularColorPickerView.swift */; };
+		0E2F5E792BB9E6E8001B46D9 /* ScratchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F5E782BB9E6E8001B46D9 /* ScratchView.swift */; };
+		0E2F5E7B2BB9E781001B46D9 /* ScratchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F5E7A2BB9E781001B46D9 /* ScratchCardView.swift */; };
 		0E7B270F2BB6DB78001628E6 /* LobbyBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */; };
 		0E7B27112BB6ED90001628E6 /* ActivityPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */; };
 		0E7B27142BB6F259001628E6 /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B27132BB6F259001628E6 /* TableViewCells.swift */; };
@@ -152,6 +154,8 @@
 /* Begin PBXFileReference section */
 		0E2F5E722BB920F0001B46D9 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		0E2F5E742BB9212C001B46D9 /* CircularColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorPickerView.swift; sourceTree = "<group>"; };
+		0E2F5E782BB9E6E8001B46D9 /* ScratchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchView.swift; sourceTree = "<group>"; };
+		0E2F5E7A2BB9E781001B46D9 /* ScratchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchCardView.swift; sourceTree = "<group>"; };
 		0E7B270E2BB6DB78001628E6 /* LobbyBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyBanner.swift; sourceTree = "<group>"; };
 		0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPageViewController.swift; sourceTree = "<group>"; };
 		0E7B27132BB6F259001628E6 /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 			children = (
 				0E7B27102BB6ED90001628E6 /* ActivityPageViewController.swift */,
 				0E7B27132BB6F259001628E6 /* TableViewCells.swift */,
+				0E2F5E782BB9E6E8001B46D9 /* ScratchView.swift */,
+				0E2F5E7A2BB9E781001B46D9 /* ScratchCardView.swift */,
 			);
 			path = ActivityPage;
 			sourceTree = "<group>";
@@ -1030,10 +1036,12 @@
 				3C831C6422E9AF8F00112298 /* STOrderUserInputCell.swift in Sources */,
 				3C4B10E222292EBB009942B7 /* STTapPayViewController.swift in Sources */,
 				3C831C8A22EAAF7A00112298 /* STPaymentInfoTableViewCell.swift in Sources */,
+				0E2F5E7B2BB9E781001B46D9 /* ScratchCardView.swift in Sources */,
 				3C990F6C22E5C78200F2FCEA /* ProductDetailView.swift in Sources */,
 				3C546BE722EAC79D0082C655 /* STOrderHeaderView.swift in Sources */,
 				3C5DD7CC2227EFFF0053B67A /* TrolleyViewController.swift in Sources */,
 				3C6020EA222BC00100312958 /* UILabel+Extension.swift in Sources */,
+				0E2F5E792BB9E6E8001B46D9 /* ScratchView.swift in Sources */,
 				3CB80E76222FCBE60095F18C /* STConstant.swift in Sources */,
 				3C1ACFE422151F50005583E2 /* ProfileViewController.swift in Sources */,
 				3C34794C222E82F600969C30 /* AmountSelectionCell.swift in Sources */,

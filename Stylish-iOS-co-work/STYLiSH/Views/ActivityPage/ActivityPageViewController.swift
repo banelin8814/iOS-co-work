@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import MarqueeLabel
 
 class ActivityPageViewController: UIViewController {
+    
+    var stPaymentInfoCell: STPaymentInfoTableViewCell!
     
     var recommendProduct: Product?
     var matchingProducts: [Product] = []
@@ -33,12 +36,25 @@ class ActivityPageViewController: UIViewController {
 
         let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "FFFFFF"
         let gender = UserDefaults.standard.string(forKey: "SelectedGender") ?? "women"
+        fetchMainData(color: color, gender: gender)
         
-        fetchMainData(color: color, gender: gender) /*{*/
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
+        // Check if the current month matches the stored month in UserDefaults
+        if let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
+           let currentMonth = Calendar.current.dateComponents([.month], from: Date()).month,
+           currentMonth == storedMonth {
+            // Call the functions to setup scratch card and news ticker
+            setupScratchCard()
+            setupNewsTicker()
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
+           let currentMonth = Calendar.current.dateComponents([.month], from: Date()).month,
+           currentMonth == storedMonth {
+            setupNewsTicker()
+        }
     }
     
     @objc private func closeButtonPressed() {
@@ -52,7 +68,7 @@ class ActivityPageViewController: UIViewController {
             closeButton.widthAnchor.constraint(equalToConstant: 24),
             closeButton.heightAnchor.constraint(equalToConstant: 24),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
     }
 
@@ -62,7 +78,7 @@ class ActivityPageViewController: UIViewController {
 
 extension ActivityPageViewController {
     
-    func fetchMainData(color: String, gender: String/*, completion: @escaping () -> Void*/) {
+    func fetchMainData(color: String, gender: String) {
         APIManager.shared.sendRequest(
             urlString: "https://traviss.beauty/api/1.0/recommendation?color=\(color)&gender=\(gender)",
             method: .post,
@@ -97,14 +113,13 @@ extension ActivityPageViewController {
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
-//                completion()
         }
     }
     
-    //TODO: -
-    func fetchMatchData() {
+    //TODO: - stored id
+    func fetchMatchData(id: String) {
         APIManager.shared.sendRequest(
-            urlString: "https://13.214.22.170/api/1.0",
+            urlString: "https://traviss.beauty/api/1.0/recommendation_by_product?product_id=\(id)",
             method: .post,
             parameters: ["key": "value"]
         ) { data, response, error in
@@ -245,11 +260,6 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
             withIdentifier: "ProductDetailViewController"
         ) as? ProductDetailViewController else { return }
         productDetailVC.product = recommendProduct
-//        guard let product = recommendProduct, let galleryView = productDetailVC.galleryView else { return }
-//        guard let images = recommendProduct?.images else { return }
-//        productDetailVC.galleryView.datas = images
-//        guard let images = recommendProduct?.images else { return }
-//        productDetailVC.galleryView.datas = images
         productDetailVC.backButtonAction = { [weak self] in
             self?.dismiss(animated: false, completion: nil)
         }
@@ -257,8 +267,9 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: false, completion: nil)
     }
-    
 }
+
+//MARK: - CollectionView
 
 extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
@@ -310,4 +321,55 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
         self.present(navController, animated: false, completion: nil)
     }
 
+}
+
+//MARK: - Birth Month ActivityPage View
+extension ActivityPageViewController: ScratchCardViewDelegate {
+  
+    func setupScratchCard() {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300))
+        let scratchView = ScratchCardView(frame: CGRect(x: 20, y: 0, width: footerView.frame.width - 40, height: 280))
+        let sectionHeader = UILabel(frame: CGRect(x: 20, y: 30, width: footerView.frame.width - 40, height: 30))
+        sectionHeader.text = "刮刮樂"
+        sectionHeader.textColor = UIColor.darkGray
+        sectionHeader.font = UIFont.boldSystemFont(ofSize: 20)
+        footerView.addSubview(scratchView)
+        footerView.addSubview(sectionHeader)
+        tableView.tableFooterView = footerView
+    }
+    
+    func setupNewsTicker() {
+        let lengthyLabel = MarqueeLabel(frame: CGRect(x: 0, y: 10, width: 0, height: 0), duration: 12.0, fadeLength: 0)
+        lengthyLabel.frame = CGRect(x: 0, y: 85, width: view.bounds.width, height: 32)
+        lengthyLabel.textColor = .white
+        lengthyLabel.font = UIFont.systemFont(ofSize: 16)
+        lengthyLabel.text = "🎉本日牡羊座運勢🎉 今天，星星閃爍著神秘的光芒，預示著你將迎來許多機遇和挑戰。勇敢地面對這些挑戰，並抓住機遇，因為它們將帶給你成長和成功的機會。🎁"
+        lengthyLabel.backgroundColor = UIColor.hexStringToUIColor(hex: "6b5c5b")
+        lengthyLabel.holdScrolling = false
+        lengthyLabel.animationDelay = 1
+        view.addSubview(lengthyLabel)
+    }
+    
+    //Coupon
+    func scratchCardDidWin(_ view: ScratchCardView) {
+        guard view.isWinningCard == true else { return }
+        guard let cell = stPaymentInfoCell else {
+            return
+        }
+        // Store coupon information in UserDefaults and track count
+        let couponCount = UserDefaults.standard.integer(forKey: "CouponCount")
+        UserDefaults.standard.set(couponCount + 1, forKey: "CouponCount")
+        UserDefaults.standard.set("CouponInfo", forKey: "Coupon\(couponCount + 1)")
+        
+        let couponText = "五折優惠卷: \(couponCount + 1) 張"
+        cell.couponTextField.text = couponText
+        
+        // Update total price label
+        let productPrice = Int(cell.productPriceLabel.text ?? "") // Example product price
+        let shipPrice = Int(cell.shipPriceLabel.text ?? "") // Example ship price
+        let discountPrice = productPrice! / 2 // Apply 50% discount for coupon
+        let totalPrice = discountPrice + shipPrice!
+        cell.totalPriceLabel.text = "NT$ \(totalPrice)"
+    }
+    
 }

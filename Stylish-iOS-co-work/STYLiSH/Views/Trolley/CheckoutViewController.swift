@@ -83,6 +83,16 @@ class CheckoutViewController: STBaseViewController {
         case .credit: checkoutWithTapPay()
         case .cash: checkoutWithCash()
         }
+        
+        //Coupon
+        let couponCount = UserDefaults.standard.integer(forKey: "CouponCount")
+        if couponCount > 0 {
+            // Decrement coupon count in UserDefaults
+            UserDefaults.standard.set(couponCount - 1, forKey: "CouponCount")
+            // Update coupon text field
+            let updatedCouponCount = UserDefaults.standard.integer(forKey: "CouponCount")
+            cell.couponTextField.text = "五折優惠卷\(updatedCouponCount)"
+        }
     }
     
     private func onShowLogin() {

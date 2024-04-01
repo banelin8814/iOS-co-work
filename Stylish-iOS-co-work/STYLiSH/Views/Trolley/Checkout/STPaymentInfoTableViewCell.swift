@@ -39,6 +39,13 @@ class STPaymentInfoTableViewCell: UITableViewCell {
         }
     }
     
+    //Coupon
+    @IBOutlet weak var couponTextField: UITextField! {
+        didSet {
+            
+        }
+    }
+    
     @IBOutlet weak var cardNumberTextField: UITextField!
     
     @IBOutlet weak var dueDateTextField: UITextField!

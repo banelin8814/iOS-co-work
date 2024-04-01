@@ -11,6 +11,7 @@ PODS:
   - JGProgressHUD (2.2)
   - KeychainAccess (4.2.2)
   - Kingfisher (7.6.2)
+  - MarqueeLabel (4.5.0)
   - MJRefresh (3.7.5)
   - SwiftLint (0.52.2)
 
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - JGProgressHUD (from `https://github.com/ronanociosoig/JGProgressHUD`)
   - KeychainAccess
   - Kingfisher (~> 7.6.0)
+  - MarqueeLabel
   - MJRefresh
   - SwiftLint
 
@@ -32,6 +34,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - KeychainAccess
     - Kingfisher
+    - MarqueeLabel
     - MJRefresh
     - SwiftLint
 
@@ -53,9 +56,10 @@ SPEC CHECKSUMS:
   JGProgressHUD: 29a7fe0e5143a4798d8cd6b9630bb5d443a85458
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
+  MarqueeLabel: 4b46d196abd253448e830cbd976f9eacc3af0849
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: 976305e42e4d1d7c46d2474e9480ac8d3aea95ff
+PODFILE CHECKSUM: b31fa36ba7022ee70a0e4dcbbb1e288ac6f8bb28
 
 COCOAPODS: 1.15.2
