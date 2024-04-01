@@ -81,6 +81,8 @@ class LobbyViewController: STBaseViewController {
         colorPickerView.dismissHandler = {[weak self] in
             self?.colorPickerView.isHidden = true
             self?.dimmedBackgroundView.isHidden = true
+            self?.titleLabel3.isHidden = true
+            self?.titleLabel4.isHidden = true
         }
     }
 
