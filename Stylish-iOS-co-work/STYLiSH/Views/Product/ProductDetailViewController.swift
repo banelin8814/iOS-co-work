@@ -34,7 +34,7 @@ class ProductDetailViewController: STBaseViewController {
     @IBOutlet weak var baseView: UIView!
     
     //for fetchStar Top
-    var nubmerOfStars: Float?
+    var numberOfStars: Float?
     //for fetchStar bottom
     
     
@@ -107,11 +107,11 @@ class ProductDetailViewController: STBaseViewController {
             do {
                 let docoder = JSONDecoder()
                 let reponse = try docoder.decode(RecommendProduct.self, from: data)
-                self.nubmerOfStars = reponse.data.rating
+                self.numberOfStars = reponse.data.rating
                 complition(.success(reponse))
                 DispatchQueue.main.async {
                     if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProductDescriptionTableViewCell {
-                        cell.updateNumberOfStars(self.nubmerOfStars ?? 0.0)
+                        cell.updateNumberOfStars(self.numberOfStars ?? 0.0)
                     }
                 }
             } catch {
