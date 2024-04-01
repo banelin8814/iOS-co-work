@@ -136,7 +136,7 @@ class AddCommentViewController: UIViewController {
         APIManager.shared.postComment(userId: 14486, productId: productId, rate: selectedRate, comment: commentText) { success, error in
             DispatchQueue.main.async {
                 if success {
-                    // 顯示提示，告知用戶評論已成功發送
+                    // 顯示成功提示
                     print("評論成功發送")
                 } else if let error = error {
                     // 處理並顯示錯誤

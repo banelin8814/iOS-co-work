@@ -7,9 +7,14 @@
 //
 
 import Foundation
+
+struct CommentsResponse: Decodable {
+    let data: [CommentForm]
+}
+
 struct CommentForm: Decodable {
-    let userId: Int64
-    let productId: Int64
+    let id: Int64
+    let name: String
     let rate: Int
     let comment: String
 }

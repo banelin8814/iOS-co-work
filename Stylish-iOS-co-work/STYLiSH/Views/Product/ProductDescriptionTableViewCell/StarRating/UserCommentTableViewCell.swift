@@ -96,10 +96,10 @@ class UserCommentTableViewCell: UITableViewCell {
     }
     
     func configureCell(with comment: CommentForm) {
-        nameLabel.text = "User \(comment.userId)" // 需要替換成實際的用戶名
-        commentLabel.text = comment.comment
-        updateStars(rating: comment.rate)
-    }
+           nameLabel.text = comment.name // 使用 CommentForm 中的 name
+           commentLabel.text = comment.comment // 使用 CommentForm 中的 comment
+           updateStars(rating: comment.rate) // 根據 CommentForm 中的 rate 更新星星顯示
+       }
 
     
     // MARK: - Constants

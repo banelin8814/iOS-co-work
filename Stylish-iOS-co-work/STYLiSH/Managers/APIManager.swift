@@ -125,7 +125,7 @@ class APIManager {
 // TODO: 待確認 API 是否有作用？
 extension APIManager {
     func fetchComments(forProductId productId: String, completion: @escaping ([CommentForm]?, Error?) -> Void) {
-        let urlString = "https://chouyu.site/api/1.0/comments?productId=\(productId)"
+        let urlString = "https://chouyu.site/api/1.0/comments?id=\(productId)"
         sendRequest(urlString: urlString, method: .get, parameters: nil) { data, response, error in
             guard error == nil else {
                 completion(nil, error)
@@ -139,14 +139,17 @@ extension APIManager {
             }
             
             do {
-                let comments = try JSONDecoder().decode([CommentForm].self, from: data)
-                completion(comments, nil)
+                // 使用 CommentsResponse 來解析 JSON 數據
+                let commentsResponse = try JSONDecoder().decode(CommentsResponse.self, from: data)
+                completion(commentsResponse.data, nil)  // 現在使用 commentsResponse.data 來獲取評論數據
             } catch {
+                print("Error parsing JSON: \(error.localizedDescription)")
                 completion(nil, error)
             }
         }
     }
 }
+
 
 // MARK: - 上傳 App 使用者留言
 extension APIManager {
