@@ -51,8 +51,8 @@ class ProductDetailViewController: STBaseViewController {
     
     var product: Product? {
         didSet {
-            guard let product = product, let galleryView = galleryView else { return }
-            galleryView.datas = product.images
+            guard let product = product, let galleryView = galleryView, let images = product.images else { return }
+            galleryView.datas = images
         }
     }
     private var pickerViewController: ProductPickerController?
@@ -67,8 +67,8 @@ class ProductDetailViewController: STBaseViewController {
         
         setupTableView()
         
-        guard let product = product else { return }
-        galleryView.datas = product.images
+        guard let product = product, let images = product.images else { return }
+        galleryView.datas = images
         
         fetchReview(id: product.id) { [weak self] result in
             switch result {

@@ -163,8 +163,9 @@ extension LobbyViewController: LobbyViewDelegate {
                 description: product.description
             )
         } else {
+            guard let images = product.images else { return cell }
             lobbyCell.multiplePages(
-                imgs: product.images,
+                imgs: images,
                 title: product.title,
                 description: product.description
             )

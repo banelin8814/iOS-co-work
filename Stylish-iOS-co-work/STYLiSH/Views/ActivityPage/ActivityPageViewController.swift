@@ -15,6 +15,7 @@ class ActivityPageViewController: UIViewController {
     
     var recommendProduct: Product?
     var matchingProducts: [Product] = []
+    var productId: String?
     
     lazy var closeButton: UIButton = {
         let close = UIButton()
@@ -36,7 +37,13 @@ class ActivityPageViewController: UIViewController {
 
         let color = UserDefaults.standard.string(forKey: "SelectedColor") ?? "FFFFFF"
         let gender = UserDefaults.standard.string(forKey: "SelectedGender") ?? "women"
-        fetchMainData(color: color, gender: gender)
+        fetchMainData(color: color, gender: gender) {
+            self.fetchMatchData(id: self.productId ?? "202403300494") {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
         
         // Check if the current month matches the stored month in UserDefaults
         if let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
@@ -78,7 +85,7 @@ class ActivityPageViewController: UIViewController {
 
 extension ActivityPageViewController {
     
-    func fetchMainData(color: String, gender: String) {
+    func fetchMainData(color: String, gender: String, completion: @escaping () -> Void) {
         APIManager.shared.sendRequest(
             urlString: "https://traviss.beauty/api/1.0/recommendation?color=\(color)&gender=\(gender)",
             method: .post,
@@ -105,6 +112,7 @@ extension ActivityPageViewController {
                     let decoder = JSONDecoder()
                     let recommendedData = try decoder.decode(RecommendProduct.self, from: data)
                     self.recommendProduct = recommendedData.data
+                    self.productId = "\(recommendedData.data.id)"
                     print("成功：\(recommendedData)")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -113,13 +121,13 @@ extension ActivityPageViewController {
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
+            completion()
         }
     }
     
-    //TODO: - stored id
-    func fetchMatchData(id: String) {
+    func fetchMatchData(id: String, completion: @escaping () -> Void) {
         APIManager.shared.sendRequest(
-            urlString: "https://traviss.beauty/api/1.0/recommendation_by_product?product_id=\(id)",
+            urlString: "https://traviss.beauty/api/1.0/recommendationproduct?product_id=\(id)",
             method: .post,
             parameters: ["key": "value"]
         ) { data, response, error in
@@ -142,14 +150,14 @@ extension ActivityPageViewController {
             do {
                 if let data = data {
                     let decoder = JSONDecoder()
-                    let matchingData = try decoder.decode(RecommendProduct.self, from: data)
-                    self.matchingProducts = [matchingData.data]
+                    let matchingData = try decoder.decode(MatchingProduct.self, from: data)
+                    self.matchingProducts = matchingData.data
                     print("成功：\(matchingData)")
                 }
             } catch {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
-            
+            completion()
         }
     }
     
@@ -205,7 +213,7 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
                 layout.minimumInteritemSpacing = 0
                 layout.minimumLineSpacing = 0
             }
-    
+            matchingProductCell.collectionView.reloadData()
             return matchingProductCell
             
         default:
@@ -274,8 +282,8 @@ extension ActivityPageViewController: UITableViewDataSource, UITableViewDelegate
 extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-//        return matchingProducts.count
+//        return 5
+        return matchingProducts.count
     }
     
     func collectionView(
@@ -286,15 +294,11 @@ extension ActivityPageViewController: UICollectionViewDelegateFlowLayout, UIColl
             withReuseIdentifier: String(describing: CollectionViewCell.self),
             for: indexPath)
         guard let collectionViewCell = cell as? CollectionViewCell else { return cell }
-//        let product = matchingProducts[indexPath.row]
-//        collectionViewCell.imageView.kf.setImage(with: URL(string: product.mainImage))
-//        collectionViewCell.imageView.contentMode = .scaleAspectFill
-//        collectionViewCell.titleLabel.text = product.title
-//        collectionViewCell.descriptionLabel.text = product.description
-        collectionViewCell.imageView.image = UIImage(named: "Image_Placeholder")
+        let product = matchingProducts[indexPath.row]
+        collectionViewCell.imageView.kf.setImage(with: URL(string: product.mainImage))
         collectionViewCell.imageView.contentMode = .scaleAspectFill
-        collectionViewCell.titleLabel.text = "Title"
-        collectionViewCell.descriptionLabel.text = "Description"
+        collectionViewCell.titleLabel.text = product.title
+        collectionViewCell.descriptionLabel.text = product.description
         return collectionViewCell
     }
     
