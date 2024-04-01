@@ -10,6 +10,8 @@ import UIKit
 import IQKeyboardManagerSwift
 
 class STBaseViewController: UIViewController {
+    
+    var backButtonAction: (() -> Void)?
 
     static var identifier: String {
         return String(describing: self)
@@ -63,6 +65,7 @@ class STBaseViewController: UIViewController {
     }
 
     @IBAction func popBack(_ sender: UIButton) {
+        backButtonAction?()
         navigationController?.popViewController(animated: true)
     }
     

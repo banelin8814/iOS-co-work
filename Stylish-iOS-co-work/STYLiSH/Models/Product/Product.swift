@@ -13,7 +13,12 @@ struct PromotedProducts: Codable {
     let products: [Product]
 }
 
+struct RecommendProduct: Codable {
+    let data: Product
+}
+
 struct Product: Codable {
+    let category: String?
     let id: Int
     let title: String
     let description: String
@@ -28,7 +33,8 @@ struct Product: Codable {
     let variants: [Variant]
     let mainImage: String
     let images: [String]
-
+    let rating: Float?
+    
     var size: String {
         return (sizes.first ?? "") + " - " + (sizes.last ?? "")
     }
@@ -40,6 +46,7 @@ struct Product: Codable {
     }
 
     enum CodingKeys: String, CodingKey {
+        case category
         case id
         case title
         case description
@@ -54,6 +61,7 @@ struct Product: Codable {
         case variants
         case mainImage = "main_image"
         case images
+        case rating
     }
 }
 

@@ -13,6 +13,13 @@ protocol LobbyViewDelegate: UITableViewDataSource, UITableViewDelegate {
 }
 
 class LobbyView: UIView {
+    
+    let banners = [
+        "https://pse.is/5ramnu",
+        "https://api.appworks-school.tw/assets/201807242228/keyvisual.jpg",
+        "https://api.appworks-school.tw/assets/201807242222/keyvisual.jpg",
+        "https://api.appworks-school.tw/assets/201807202140/keyvisual.jpg"
+    ]
 
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -49,6 +56,17 @@ class LobbyView: UIView {
     
     // MARK: - Private Method
     private func setupTableView() {
+        
+        tableView.register(
+            LobbyBanner.self,
+            forHeaderFooterViewReuseIdentifier: String(describing: LobbyTableViewHeaderView.self)
+        )
+        let headerView = LobbyBanner(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 180))
+        tableView.tableHeaderView = headerView
+        let allImages = banners
+        headerView.configure(with: allImages)
+        headerView.delegate = self
+        
         tableView.lk_registerCellWithNib(
             identifier: String(describing: LobbyTableViewCell.self),
             bundle: nil
@@ -63,5 +81,14 @@ class LobbyView: UIView {
             guard let self = self else { return }
             self.delegate?.triggerRefresh(self)
         })
+    }
+
+}
+
+extension LobbyView: TableViewCellDelegate {
+    func didSelectBanner(in cell: LobbyBanner) {
+        if let lobbyVC = delegate as? LobbyViewController {
+            lobbyVC.presentActivityPageViewController()
+        }
     }
 }
