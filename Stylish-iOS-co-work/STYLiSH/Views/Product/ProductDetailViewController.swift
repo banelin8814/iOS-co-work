@@ -229,30 +229,33 @@ extension ProductDetailViewController: UITableViewDataSource {
             }
             return cell
             
-        default:
+        case datas.count + 1 ..< datas.count + 1 + displayedComments:
             // 展示評論的 cell
-            // 展示評論的 cell = 目前 row - 產品 data 數量 - 撰寫評論按鈕
-            let actualIndex = indexPath.row - datas.count - 1
+            let actualIndex = indexPath.row - (datas.count + 1)
             if actualIndex < comments.count {
                 let comment = comments[actualIndex]
                 guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "UserCommentTableViewCell", for: indexPath) as? UserCommentTableViewCell else {
-                    return UITableViewCell()
+                    return UITableViewCell() // 如果無法取得正確的 cell，返回空 cell
                 }
-                // 使用新的 configureCell 方法來設定 Cell
                 commentCell.configureCell(with: comment)
                 commentCell.selectionStyle = .none
                 return commentCell
-            } else {
-                // 處理「看更多評論」的 cell 或其他情況
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreCommentsCell", for: indexPath) as? SeeMoreCommentsCell ?? SeeMoreCommentsCell()
-                cell.onSeeMoreTapped = { [weak self] in
-                    self?.loadMoreComments()
-                }
-                return cell
             }
+            
+        default:
+            // 「看更多評論」的 cell
+            guard let seeMoreCommentsCell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreCommentsCell", for: indexPath) as? SeeMoreCommentsCell else {
+                return UITableViewCell() // 如果無法取得正確的 cell，返回空 cell
+            }
+            seeMoreCommentsCell.onSeeMoreTapped = { [weak self] in
+                self?.loadMoreComments()
+            }
+            return seeMoreCommentsCell
         }
+        
+        // 預設返回一個空的 UITableViewCell
+        return UITableViewCell()
     }
-    
 }
 
 extension ProductDetailViewController: LKGalleryViewDelegate {
