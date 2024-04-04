@@ -74,8 +74,8 @@ class ProfileViewController: UIViewController {
     private func updateUser(_ user: User) {
         imageProfile.loadImage(user.picture, placeHolder: .asset(.Icons_36px_Profile_Normal))
         
-        labelName.text = "Lily"
-        labelInfo.text = "Lily"
+        labelName.text = "史蒂芬周我老大"
+        labelInfo.text = "史蒂芬周我老大"
         labelInfo.isHidden = false
     }
 }
@@ -183,7 +183,16 @@ extension ProfileViewController: UICollectionViewDelegate {
     
     private func presentColorPickerView() {
         let colorPickerView = ColorPickerView(frame: .zero)
-        colorPickerView.birthdatePicker.isHidden = true
+//        colorPickerView.birthdatePicker.isHidden = true
+        
+        
+        if let storedDate = UserDefaults.standard.object(forKey: "Birthdate") as? Date {
+            colorPickerView.birthdatePicker.date = storedDate
+            print("===\(storedDate)")
+        }
+//        let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int
+//        Calendar.current.dateComponents([.month], from: Date()).month = storedMonth
+//        colorPickerView.birthdatePicker.date.
         
         lazy var dimmedBackgroundView: UIView = {
             let view = UIView()

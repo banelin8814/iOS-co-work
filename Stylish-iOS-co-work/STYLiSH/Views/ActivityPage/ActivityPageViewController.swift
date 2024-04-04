@@ -46,24 +46,24 @@ class ActivityPageViewController: UIViewController {
                 }
             }
         }
-        
-        // Check if the current month matches the stored month in UserDefaults
-        if let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
-           let currentMonth = Calendar.current.dateComponents([.month], from: Date()).month,
-           currentMonth == storedMonth {
-            // Call the functions to setup scratch card and news ticker
-            setupScratchCard()
-            setupNewsTicker()
-        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
+        guard let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
+              let currentMonth = Calendar.current.dateComponents([.month], from: Date()).month,
+              currentMonth == storedMonth else { return }
+        setupNewsTicker()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Check if the current month matches the stored month in UserDefaults
+        guard let storedMonth = UserDefaults.standard.object(forKey: "SelectedBirthMonth") as? Int,
            let currentMonth = Calendar.current.dateComponents([.month], from: Date()).month,
-           currentMonth == storedMonth {
+              currentMonth == storedMonth else { return }
+            // Call the functions to setup scratch card and news ticker
+            setupScratchCard()
             setupNewsTicker()
-        }
     }
     
     @objc private func closeButtonPressed() {

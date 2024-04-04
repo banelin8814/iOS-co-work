@@ -136,7 +136,7 @@ class AddCommentViewController: UIViewController {
         APIManager.shared.postComment(userId: 14486, productId: productId, rate: selectedRate, comment: commentText) { [weak self] success, error in
             DispatchQueue.main.async {
                 if success {
-                    self?.delegate?.didFinishAddingComment(rating: self?.selectedRate ?? 0, comment: commentText, username: "Lily")
+                    self?.delegate?.didFinishAddingComment(rating: self?.selectedRate ?? 0, comment: commentText, username: "史蒂芬周我老大")
                     self?.dismiss(animated: true, completion: nil)
                 } else if let error = error {
                     // 處理錯誤

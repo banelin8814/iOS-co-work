@@ -12,6 +12,15 @@ class ColorPickerView: UIView {
     
     var colorSelectedHandler: ((String, String) -> Void)?
     
+//    var isFirstTimeSelection: Bool {
+//            get {
+//                return UserDefaults.standard.bool(forKey: "IsFirstTimeSelection")
+//            }
+//            set {
+//                UserDefaults.standard.set(newValue, forKey: "IsFirstTimeSelection")
+//            }
+//        }
+    
     let titleLabel1: UILabel = {
         let label = UILabel()
         label.text = "Pick Your"
@@ -148,15 +157,23 @@ class ColorPickerView: UIView {
         let selectedSegment = genderSegmentedControl.selectedSegmentIndex
         let gender = genderSegmentedControl.titleForSegment(at: selectedSegment) ?? "women"
         let selectedDate = birthdatePicker.date
-        let birthMonth = Calendar.current.component(.month, from: selectedDate)
+        
+//        if isFirstTimeSelection {
+//            // 第一次選擇，儲存日期、性別和顏色到 UserDefaults
+//            let birthMonth = Calendar.current.component(.month, from: selectedDate)
+//            UserDefaults.standard.set(birthMonth, forKey: "SelectedBirthMonth")
+//            isFirstTimeSelection = false
+//            
+//        }
+        
         print("===selectedColor: \(color), gender: \(gender), selectedDate: \(selectedDate)")
-
+        let birthMonth = Calendar.current.component(.month, from: selectedDate)
+        UserDefaults.standard.set(birthMonth, forKey: "SelectedBirthMonth")
         // Save to UserDefaults
         UserDefaults.standard.set(color, forKey: "SelectedColor")
         NotificationCenter.default.post(name: NSNotification.Name("SelectedColorChanged"), object: nil)
         UserDefaults.standard.set(gender, forKey: "SelectedGender")
-        UserDefaults.standard.set(birthMonth, forKey: "SelectedBirthMonth")
-
+       
         dismissHandler?()
     }
     
